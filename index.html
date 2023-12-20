@@ -147,7 +147,7 @@
 
         <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
             <div id="home-head">
-    <div id="home-background" ref="homeBackground" data-images="/images/background.jpg"></div>
+    <div id="home-background" ref="homeBackground" data-images="/images/background1.jpg,/images/background2.jpg,/images/background3.jpg,/images/background4.jpg"></div>
     <div id="home-info" @click="homeClick">
         <span class="loop"></span>
         <span class="loop"></span>
@@ -172,6 +172,15 @@
     </a>
     <div class="category-and-date">
         
+        <span class="category">
+            <a href="/categories/%E6%95%99%E7%A8%8B/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                教程
+            </a>
+        </span>
+        
         <span class="date">
             <span class="icon">
                 <i class="fa-solid fa-calendar fa-fw"></i>
@@ -184,13 +193,54 @@
     <div class="description">
         <div class="content" v-pre>
             
-            
+            <h1 id="一、粒子系统概述"><a href="#一、粒子系统概述" class="headerlink" title="一、粒子系统概述"></a>一、粒子系统概述</h1><p>小型效果诸如击中特效，火焰特效等使用内置粒子系统即可，对于更加绚丽，需要粒子数量更多的，诸如雨雪天气，大爆炸之类的可酌情使用VFX（Visual Effect Graph粒子系统）。</p>
+<h1 id="二、粒子系统结构概述"><a href="#二、粒子系统结构概述" class="headerlink" title="二、粒子系统结构概述"></a>二、粒子系统结构概述</h1><p>在Unity中，粒子系统是作为组件存在的即 Particle System 组件，Emission、Shape、Render三个模块是发射粒子的基础模块。</p>
+<h1 id="三、粒子系统模块概述"><a href="#三、粒子系统模块概述" class="headerlink" title="三、粒子系统模块概述"></a>三、粒子系统模块概述</h1><p>Mian：控制粒子初始状态，全局状态</p>
+<p>Emission：控制粒子的发射速率、时间、波次</p>
+<p>Shape：粒子的体积形状</p>
+<p>Velocity over Lifetime：控制粒子在生命周期内的速度</p>
+<p>Limit  Velocity over Lifetime： 生命周期内  限制粒子的速度</p>
+<p>Inherit Velocity：控制粒子的速度如何随着时间推移而受父物体移动的影响</p>
+<p>Force over Lifetime：运用这个模块里面的指定力来对粒子产生影响</p>
+<p>Color over Lifetime： 指定粒子颜色和透明度在生命周期内的变化</p>
+<p>Color by Speed：粒子颜色随着速度的变化</p>
+<p>Size over Lifetime：设置在生命周期内的大小</p>
+<p>Size by Speed：设置大小随着速度的变化</p>
+<p>Rotation over Lifetime：控制粒子在生命周期的旋转</p>
+<p>Rotation by Speed：控制粒子旋转根据粒子速度的变化</p>
+<p>External Forces：修改力场对于粒子的影响</p>
+<p>Noise：给粒子添加湍流</p>
+<p>Collision：控制粒子如何和其他物体碰撞</p>
+<p>Triggers：控制粒子的触发</p>
+<p>Sub Emitters： 在某粒子的生命周期的阶段创建附加粒子发射器</p>
+<p>Texture Sheet Animation：控制动画帧进行播放</p>
+<p>Lights：控制实时光照</p>
+<p>Trails：控制轨迹（拖尾）</p>
+<p>Custom Data： 在Editor中定义要附加到粒子的自定义数据格式</p>
+<p>Renderer：设置粒子的图像或网格如何被其他粒子变换、着色和绘制</p>
+<h1 id="四、Scene视图中的Particle-Effect面板"><a href="#四、Scene视图中的Particle-Effect面板" class="headerlink" title="四、Scene视图中的Particle Effect面板"></a>四、Scene视图中的Particle Effect面板</h1><p>左侧是我们刚刚创建的粒子，右侧是预览粒子的一些控制项（<strong>修改这些数值只会影响Scene窗口下的粒子显示效果，并不会影响实际粒子运行效果</strong>）</p>
+<p><strong>Pause</strong> 暂停播放 | <strong>Restart</strong> 重新播放 | <strong>Stop</strong> 停止播放</p>
+<p><strong>Playback Speed</strong> 播放速度</p>
+<p><strong>Playback Time</strong> 粒子开始播放的累计时间，Restart重新播放可重置该值</p>
+<p><strong>Particles</strong> 当前存在的粒子数量</p>
+<p><strong>Speed Range</strong> <strong>暂无解释</strong> <strong>Simulate Layers</strong> 一般情况下，Scene场景中只会播放你选中的粒子特效，如果你想要让场景中所有的粒子特效或者个别粒子特效播放，就需要选择相应的层级，或者是Everything（全都播放） <strong>Resimulate</strong> 若启用，粒子系统会立即将属性更改立刻应用于已生成的粒子；若禁用，仅将属性更改应用于新生成的粒子。（仅在Scene窗口预览模式下生效） <strong>Show Bounds</strong> 显示包围体积 <strong>Show Only Selected</strong> 隐藏所有未选中的粒子特效 </p>
+<h1 id="五、粒子显示紫色"><a href="#五、粒子显示紫色" class="headerlink" title="五、粒子显示紫色"></a>五、粒子显示紫色</h1><p>因为Unity的bug，粒子显示紫色是因为粒子的材质丢失，是Unity没有默认给粒子赋予材质的原因，在Render模块里面赋予材质即可解决</p>
+
             
         </div>
     </div>
     <div class="post-tags">
         
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
         
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/Unity/" style="color: #ffa2c4">Unity</a>
+        </span>
         
     </div>
     <a href="/2023/12/20/Unity%E7%B2%92%E5%AD%90%E7%B3%BB%E7%BB%9F%EF%BC%881%EF%BC%89/" class="go-post">阅读全文</a>
@@ -250,7 +300,7 @@
         
         <span class="tag">
             
-            <a href="/tags/%E5%8E%9F%E5%A7%8B/" style="color: #00bcd4">原始</a>
+            <a href="/tags/%E5%8E%9F%E5%A7%8B/" style="color: #03a9f4">原始</a>
         </span>
         
     </div>
