@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <title>Unity粒子系统（1） | whisper3zzzの窝</title>
+    <title>Unity粒子系统（2） | whisper3zzzの窝</title>
     <meta name="author" content="whisper3zzz" />
     <meta name="description" content="" />
     <meta name="keywords" content="" />
@@ -152,7 +152,7 @@
         <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
             <div class="article">
     <div>
-        <h1>Unity粒子系统（1）</h1>
+        <h1>Unity粒子系统（2）</h1>
     </div>
     <div class="info">
         <span class="date">
@@ -188,40 +188,60 @@
     </div>
     
     <div class="content" v-pre>
-        <h1 id="一、粒子系统概述"><a href="#一、粒子系统概述" class="headerlink" title="一、粒子系统概述"></a>一、粒子系统概述</h1><p>小型效果诸如击中特效，火焰特效等使用内置粒子系统即可，对于更加绚丽，需要粒子数量更多的，诸如雨雪天气，大爆炸之类的可酌情使用VFX（Visual Effect Graph粒子系统）。</p>
-<span id="more"></span>
+        <h1 id="粒子系统主模块"><a href="#粒子系统主模块" class="headerlink" title="粒子系统主模块"></a>粒子系统主模块</h1><span id="more"></span>
 
-<h1 id="二、粒子系统结构概述"><a href="#二、粒子系统结构概述" class="headerlink" title="二、粒子系统结构概述"></a>二、粒子系统结构概述</h1><p>在Unity中，粒子系统是作为组件存在的即 Particle System 组件，Emission、Shape、Render三个模块是发射粒子的基础模块。</p>
-<h1 id="三、粒子系统模块概述"><a href="#三、粒子系统模块概述" class="headerlink" title="三、粒子系统模块概述"></a>三、粒子系统模块概述</h1><p>Mian：控制粒子初始状态，全局状态</p>
-<p>Emission：控制粒子的发射速率、时间、波次</p>
-<p>Shape：粒子的体积形状</p>
-<p>Velocity over Lifetime：控制粒子在生命周期内的速度</p>
-<p>Limit  Velocity over Lifetime： 生命周期内  限制粒子的速度</p>
-<p>Inherit Velocity：控制粒子的速度如何随着时间推移而受父物体移动的影响</p>
-<p>Force over Lifetime：运用这个模块里面的指定力来对粒子产生影响</p>
-<p>Color over Lifetime： 指定粒子颜色和透明度在生命周期内的变化</p>
-<p>Color by Speed：粒子颜色随着速度的变化</p>
-<p>Size over Lifetime：设置在生命周期内的大小</p>
-<p>Size by Speed：设置大小随着速度的变化</p>
-<p>Rotation over Lifetime：控制粒子在生命周期的旋转</p>
-<p>Rotation by Speed：控制粒子旋转根据粒子速度的变化</p>
-<p>External Forces：修改力场对于粒子的影响</p>
-<p>Noise：给粒子添加湍流</p>
-<p>Collision：控制粒子如何和其他物体碰撞</p>
-<p>Triggers：控制粒子的触发</p>
-<p>Sub Emitters： 在某粒子的生命周期的阶段创建附加粒子发射器</p>
-<p>Texture Sheet Animation：控制动画帧进行播放</p>
-<p>Lights：控制实时光照</p>
-<p>Trails：控制轨迹（拖尾）</p>
-<p>Custom Data： 在Editor中定义要附加到粒子的自定义数据格式</p>
-<p>Renderer：设置粒子的图像或网格如何被其他粒子变换、着色和绘制</p>
-<h1 id="四、Scene视图中的Particle-Effect面板"><a href="#四、Scene视图中的Particle-Effect面板" class="headerlink" title="四、Scene视图中的Particle Effect面板"></a>四、Scene视图中的Particle Effect面板</h1><p>左侧是我们刚刚创建的粒子，右侧是预览粒子的一些控制项（<strong>修改这些数值只会影响Scene窗口下的粒子显示效果，并不会影响实际粒子运行效果</strong>）</p>
-<p><strong>Pause</strong> 暂停播放 | <strong>Restart</strong> 重新播放 | <strong>Stop</strong> 停止播放</p>
-<p><strong>Playback Speed</strong> 播放速度</p>
-<p><strong>Playback Time</strong> 粒子开始播放的累计时间，Restart重新播放可重置该值</p>
-<p><strong>Particles</strong> 当前存在的粒子数量</p>
-<p><strong>Speed Range</strong> <strong>暂无解释</strong> <strong>Simulate Layers</strong> 一般情况下，Scene场景中只会播放你选中的粒子特效，如果你想要让场景中所有的粒子特效或者个别粒子特效播放，就需要选择相应的层级，或者是Everything（全都播放） <strong>Resimulate</strong> 若启用，粒子系统会立即将属性更改立刻应用于已生成的粒子；若禁用，仅将属性更改应用于新生成的粒子。（仅在Scene窗口预览模式下生效） <strong>Show Bounds</strong> 显示包围体积 <strong>Show Only Selected</strong> 隐藏所有未选中的粒子特效 </p>
-<h1 id="五、粒子显示紫色"><a href="#五、粒子显示紫色" class="headerlink" title="五、粒子显示紫色"></a>五、粒子显示紫色</h1><p>因为Unity的bug，粒子显示紫色是因为粒子的材质丢失，是Unity没有默认给粒子赋予材质的原因，在Render模块里面赋予材质即可解决</p>
+<h2 id="参数详解"><a href="#参数详解" class="headerlink" title="参数详解"></a>参数详解</h2><p><strong>Duration</strong></p>
+<p>粒子系统运行的时间长度（秒）</p>
+<h5 id="Looping"><a href="#Looping" class="headerlink" title="Looping"></a><strong>Looping</strong></h5><p>若启用此属性，系统将重复播放粒子，也就是开启循环模式（无论是Scene窗口还是运行时）</p>
+<h5 id="Prewarm"><a href="#Prewarm" class="headerlink" title="Prewarm"></a>Prewarm</h5><p>若启用此属性，则粒子系统会在播放前进行预加载，比如漫天星河有3000颗粒子，但按照粒子发射速率，估计要好多秒，勾选此项，一旦播放就会达到预设置的Max Particles</p>
+<p><strong>Start Delay</strong></p>
+<p>粒子系统发射前将延迟播放一段时间（秒）</p>
+<p><strong>Start Lifetime</strong></p>
+<p>每个粒子的初始生命周期（秒），指粒子从被创建到被销毁的时间</p>
+<p><strong>Start Speed</strong></p>
+<p>粒子初始速度</p>
+<p><strong>3D Start Size</strong></p>
+<p>控制每个轴的大小</p>
+<p><strong>Start Size</strong></p>
+<p>初始大小，按照定值等比缩放</p>
+<p><strong>3D Start Rotation</strong></p>
+<p>控制每个轴的旋转角度</p>
+<p><strong>Start Rotation</strong></p>
+<p>初始旋转角度，按照定值等比缩放</p>
+<p><strong>Flip Rotation</strong></p>
+<p>使得一些粒子以相反的方向旋转，值取0-1之间，数值越大，翻转越多</p>
+<p><em>这个属性和上一个Start Rotation是一对，如果上一个属性有值，比如45，那么下面这个属性就是让一些<strong>粒子</strong>反转度数为-45，如果这里的值是0.1，那就是让10%的粒子反转，如果值为1，则是全部反转</em></p>
+<p><strong>Start Color</strong></p>
+<p>初始颜色</p>
+<p><strong>Gravity Modifier</strong></p>
+<p>物理系统的重力值</p>
+<p><strong>Simulation Space</strong></p>
+<p>粒子系统的参照坐标，世界，局部，自定义</p>
+<p><strong>Delta Time</strong></p>
+<p>在 Scaled 和 Unscaled 之间进行选择，其中的 Scaled 使用 Time Scale 值，而 Unscaled 将忽略该值</p>
+<p><strong>Scaling Mode</strong></p>
+<p>有三个选项</p>
+<p>1.Hierarchy：粒子随着父级进行缩放</p>
+<p>2.Local：忽略父级缩放</p>
+<p>3.Shape：整体缩放是按照当前粒子的发射形状（Shape）进行缩放的，不会影响粒子本身的缩放，选Local会影响粒子本身的缩放。</p>
+<p><strong>Play On Awake</strong></p>
+<p>启用则粒子被创建时候就开始播放</p>
+<p><strong>Emitter Velocity</strong></p>
+<p>发射器速率，使用那种组件来计算速度（.translate，.velocity）</p>
+<p>Rigidbody</p>
+<p>Transform</p>
+<p><strong>Max Particles</strong></p>
+<p>同时存在的最大粒子数，达到上限时，移除活的最久的粒子</p>
+<p><strong>Auto Random Seed</strong></p>
+<p>启用则随机发射粒子，每次初始化的时候，粒子位置不一样</p>
+<p><strong>Random Seed</strong></p>
+<p>禁用<strong>Auto Random Seed</strong>，则此值生效，用于创建唯一的可重复的粒子效果</p>
+<p><strong>Stop Action</strong></p>
+<p>当粒子特效不在摄像机范围内时是否暂停粒子系统模拟 1.Automatic 自动模式（如果是单次播放则不暂停，如果是循环（Looping）播放则暂停模拟） 2.Pause And Catch-up 暂停但是没有完全暂停（暂停模拟，但当再次注视时则演算出它应该在的位置） 3.Pause 暂停模拟 4.Always Simulate 总是模拟</p>
+<p><strong>Ring Buffer</strong> <strong>Mode</strong></p>
+<p>粒子不会在它们的生命周期结束时死亡，而是会一直存活到最大粒子缓冲区（Max Particles）满，届时新的粒子将取代旧的粒子。 1.Disabled 禁用该模式 2.Pause Until Replaced 暂停直到替换</p>
+<p>在旧粒子的生命周期结束时暂停它们，直到达到最大粒子限制，此时系统会回收它们，因此它们会重新显示为新粒子 3.Loop Until Replaced 循环直到替换</p>
+<p>在其生命周期结束时，粒子会回退到其生命周期的指定比例，直到达到最大粒子限制，此时系统会回收它们，因此它们会重新出现为新粒子</p>
 
     </div>
     
