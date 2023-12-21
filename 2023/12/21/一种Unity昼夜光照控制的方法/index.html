@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <title>Categories | whisper3zzzの窝</title>
+    <title>一种Unity昼夜光照控制的方法 | whisper3zzzの窝</title>
     <meta name="author" content="whisper3zzz" />
     <meta name="description" content="" />
     <meta name="keywords" content="" />
@@ -33,6 +33,12 @@
 <script src="/js/lib/preview.js"></script>
 
 
+
+
+
+
+
+<script src="https://cdn.staticfile.org/twikoo/1.6.22/twikoo.all.min.js"></script>
 
 
 
@@ -144,36 +150,20 @@
 </transition>
 
         <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
-            <div id="archives">
-    
-    <div class="categories-tags">
-        
-        
-        
-        <span>
-            <a href="/categories/%E5%AD%A6%E4%B9%A0/" style="background: #00a596">
-                <span class="icon">
-                    <i class="fa-solid fa-bookmark fa-fw"></i>
-                </span>
-                学习
-            </a>
+            <div class="article">
+    <div>
+        <h1>一种Unity昼夜光照控制的方法</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/12/21
         </span>
         
-        
-        
-        <span>
-            <a href="/categories/%E5%BC%80%E5%A7%8B/" style="background: #ff7d73">
-                <span class="icon">
-                    <i class="fa-solid fa-bookmark fa-fw"></i>
-                </span>
-                开始
-            </a>
-        </span>
-        
-        
-        
-        <span>
-            <a href="/categories/%E6%95%99%E7%A8%8B/" style="background: #ffa2c4">
+        <span class="category">
+            <a href="/categories/%E6%95%99%E7%A8%8B/">
                 <span class="icon">
                     <i class="fa-solid fa-bookmark fa-fw"></i>
                 </span>
@@ -182,7 +172,112 @@
         </span>
         
         
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            
+            <span class="tag">
+                
+                <a href="/tags/Unity/" style="color: #03a9f4">Unity</a>
+            </span>
+            
+        </span>
+        
     </div>
+    
+    <div class="content" v-pre>
+        <p>刚接个活，写了个脚本控制场景简单的光照昼夜变化，记录一下。</p>
+<!-- ... -->
+<pre><code>using UnityEngine;
+
+public class DayNightCycle : MonoBehaviour
+&#123;
+    public Light sun;
+    public Light lightEmit;
+    public Light[] indoorLights;
+
+    public float dayDuration = 60f; // 一天的持续时间（秒）
+
+        void Update()
+    &#123;
+        // 计算当前时间（0到1之间）
+        float currentTime = Mathf.Repeat(Time.time / dayDuration, 1f);
+
+        // 根据当前时间设置不同的状态
+        if (currentTime &lt; 0.5f)
+            &#123;
+            // 白天
+                SetDaytime();
+            &#125;
+            else if (currentTime &lt; 0.75f)
+        &#123;
+                // 傍晚
+                SetEvening();
+        &#125;
+            else
+            &#123;
+                // 夜晚
+                SetNight();
+        &#125;
+
+                // 根据当前时间旋转太阳
+            sun.transform.eulerAngles = new Vector3(currentTime * 360f - 90f, 30f, 0f);
+        &#125;
+
+        void SetDaytime()
+        &#123;
+                // 白天状态
+            sun.intensity = 1f;
+            lightEmit.intensity = 1f;
+
+                // 关闭室内灯光
+            foreach (Light indoorLight in indoorLights)
+                &#123;
+                    indoorLight.intensity = 0f;
+                &#125;
+        &#125;
+
+        void SetEvening()
+        &#123;
+                // 傍晚状态
+        sun.intensity = 0.5f;
+        lightEmit.intensity = 0.5f;
+
+            // 部分室内灯光打开
+            foreach (Light indoorLight in indoorLights)
+            &#123;
+                indoorLight.intensity = 0.5f;
+            &#125;
+        &#125;
+
+        void SetNight()
+        &#123;
+            // 夜晚状态
+            sun.intensity = 0f;
+            lightEmit.intensity = 0f;
+
+            // 所有室内灯光打开
+            foreach (Light indoorLight in indoorLights)
+            &#123;
+                indoorLight.intensity = 1f;
+            &#125;
+        &#125;
+    &#125;
+</code></pre>
+
+    </div>
+    
+    
+    
+    
+    
+    
+    <div id="comment">
+        <div id="twikoo-container"></div>
+    </div>
+    
     
 </div>
 
@@ -214,6 +309,22 @@
         
     </div>
     <script src="/js/main.js"></script>
+    
+    
+
+
+
+<script>
+    twikoo.init({
+        el: "#twikoo-container",
+        envId: "",
+        region: "",
+        path: location.pathname,
+        lang: "",
+    })
+</script>
+
+
     
 </body>
 </html>
