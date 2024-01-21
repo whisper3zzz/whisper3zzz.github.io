@@ -167,6 +167,86 @@
         
 
 <div class="post">
+    <a href="/2024/01/21/C-%E5%BC%95%E7%94%A8%E5%8F%82%E6%95%B0%E7%9A%84%E4%BF%AE%E9%A5%B0%E7%AC%A6/">
+        <h2 class="post-title">C#引用参数的修饰符</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/1/21
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        
+        
+    </div>
+    <a href="/2024/01/21/C-%E5%BC%95%E7%94%A8%E5%8F%82%E6%95%B0%E7%9A%84%E4%BF%AE%E9%A5%B0%E7%AC%A6/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/2024/01/21/transform-forward%E5%92%8CVector3-forward%E7%9A%84%E5%8C%BA%E5%88%AB/">
+        <h2 class="post-title">transform.forward和Vector3.forward的区别</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="category">
+            <a href="/categories/%E5%AD%A6%E4%B9%A0/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                学习
+            </a>
+        </span>
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/1/21
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <p>transform.forward：其值是物体局部坐标的Z轴在世界坐标的指向，不一定是（0,0,1）。</p>
+<p>Vector3.forward：其值永远等于（0,0,1），是世界坐标，是不变的。</p>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
+        
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/Unity/" style="color: #03a9f4">Unity</a>
+        </span>
+        
+    </div>
+    <a href="/2024/01/21/transform-forward%E5%92%8CVector3-forward%E7%9A%84%E5%8C%BA%E5%88%AB/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
     <a href="/2024/01/21/%E5%B0%84%E7%BA%BF%E5%92%8C%E5%B0%84%E7%BA%BF%E6%A3%80%E6%B5%8B/">
         <h2 class="post-title">射线和射线检测</h2>
     </a>
@@ -207,7 +287,7 @@
         
         <span class="tag">
             
-            <a href="/tags/Unity/" style="color: #ffa2c4">Unity</a>
+            <a href="/tags/Unity/" style="color: #00a596">Unity</a>
         </span>
         
     </div>
@@ -244,7 +324,6 @@
             <p>刚接个活，写了个脚本控制场景简单的光照昼夜变化，记录一下。</p>
 <!-- ... -->
 <pre><code>using UnityEngine;
-
 public class DayNightCycle : MonoBehaviour
 &#123;
     public Light sun;
@@ -253,48 +332,48 @@ public class DayNightCycle : MonoBehaviour
 
     public float dayDuration = 60f; // 一天的持续时间（秒）
 
-        void Update()
+     void Update()
     &#123;
         // 计算当前时间（0到1之间）
         float currentTime = Mathf.Repeat(Time.time / dayDuration, 1f);
 
         // 根据当前时间设置不同的状态
         if (currentTime &lt; 0.5f)
-            &#123;
-            // 白天
-                SetDaytime();
-            &#125;
-            else if (currentTime &lt; 0.75f)
+         &#123;
+    		// 白天
+   			 SetDaytime();
+         &#125;
+         else if (currentTime &lt; 0.75f)
         &#123;
-                // 傍晚
-                SetEvening();
+   			 // 傍晚
+   			 SetEvening();
         &#125;
-            else
-            &#123;
-                // 夜晚
-                SetNight();
+         else
+         &#123;
+   			 // 夜晚
+   			 SetNight();
         &#125;
 
-                // 根据当前时间旋转太阳
+             // 根据当前时间旋转太阳
             sun.transform.eulerAngles = new Vector3(currentTime * 360f - 90f, 30f, 0f);
         &#125;
 
         void SetDaytime()
         &#123;
-                // 白天状态
+             // 白天状态
             sun.intensity = 1f;
             lightEmit.intensity = 1f;
 
-                // 关闭室内灯光
-            foreach (Light indoorLight in indoorLights)
-                &#123;
-                    indoorLight.intensity = 0f;
-                &#125;
+             // 关闭室内灯光
+    		foreach (Light indoorLight in indoorLights)
+             &#123;
+   				 indoorLight.intensity = 0f;
+             &#125;
         &#125;
 
         void SetEvening()
         &#123;
-                // 傍晚状态
+             // 傍晚状态
         sun.intensity = 0.5f;
         lightEmit.intensity = 0.5f;
 
@@ -381,7 +460,7 @@ public class DayNightCycle : MonoBehaviour
         
         <span class="tag">
             
-            <a href="/tags/Unity/" style="color: #00a596">Unity</a>
+            <a href="/tags/Unity/" style="color: #03a9f4">Unity</a>
         </span>
         
     </div>
@@ -429,7 +508,7 @@ public class DayNightCycle : MonoBehaviour
         
         <span class="tag">
             
-            <a href="/tags/Unity/" style="color: #ff7d73">Unity</a>
+            <a href="/tags/Unity/" style="color: #ffa2c4">Unity</a>
         </span>
         
     </div>
@@ -490,7 +569,7 @@ public class DayNightCycle : MonoBehaviour
         
         <span class="tag">
             
-            <a href="/tags/%E5%8E%9F%E5%A7%8B/" style="color: #00bcd4">原始</a>
+            <a href="/tags/%E5%8E%9F%E5%A7%8B/" style="color: #ff7d73">原始</a>
         </span>
         
     </div>

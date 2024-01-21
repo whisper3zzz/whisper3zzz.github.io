@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <title>一种Unity昼夜光照控制的方法 | whisper3zzzの窝</title>
+    <title>C#引用参数的修饰符 | whisper3zzzの窝</title>
     <meta name="author" content="whisper3zzz" />
     <meta name="description" content="" />
     <meta name="keywords" content="" />
@@ -152,120 +152,21 @@
         <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
             <div class="article">
     <div>
-        <h1>一种Unity昼夜光照控制的方法</h1>
+        <h1>C#引用参数的修饰符</h1>
     </div>
     <div class="info">
         <span class="date">
             <span class="icon">
                 <i class="fa-solid fa-calendar fa-fw"></i>
             </span>
-            2023/12/21
+            2024/1/21
         </span>
         
-        <span class="category">
-            <a href="/categories/%E6%95%99%E7%A8%8B/">
-                <span class="icon">
-                    <i class="fa-solid fa-bookmark fa-fw"></i>
-                </span>
-                教程
-            </a>
-        </span>
-        
-        
-        <span class="tags">
-            <span class="icon">
-                <i class="fa-solid fa-tags fa-fw"></i>
-            </span>
-            
-            
-            <span class="tag">
-                
-                <a href="/tags/Unity/" style="color: #ff7d73">Unity</a>
-            </span>
-            
-        </span>
         
     </div>
     
     <div class="content" v-pre>
-        <p>刚接个活，写了个脚本控制场景简单的光照昼夜变化，记录一下。</p>
-<!-- ... -->
-<pre><code>using UnityEngine;
-public class DayNightCycle : MonoBehaviour
-&#123;
-    public Light sun;
-    public Light lightEmit;
-    public Light[] indoorLights;
-
-    public float dayDuration = 60f; // 一天的持续时间（秒）
-
-     void Update()
-    &#123;
-        // 计算当前时间（0到1之间）
-        float currentTime = Mathf.Repeat(Time.time / dayDuration, 1f);
-
-        // 根据当前时间设置不同的状态
-        if (currentTime &lt; 0.5f)
-         &#123;
-    		// 白天
-   			 SetDaytime();
-         &#125;
-         else if (currentTime &lt; 0.75f)
-        &#123;
-   			 // 傍晚
-   			 SetEvening();
-        &#125;
-         else
-         &#123;
-   			 // 夜晚
-   			 SetNight();
-        &#125;
-
-             // 根据当前时间旋转太阳
-            sun.transform.eulerAngles = new Vector3(currentTime * 360f - 90f, 30f, 0f);
-        &#125;
-
-        void SetDaytime()
-        &#123;
-             // 白天状态
-            sun.intensity = 1f;
-            lightEmit.intensity = 1f;
-
-             // 关闭室内灯光
-    		foreach (Light indoorLight in indoorLights)
-             &#123;
-   				 indoorLight.intensity = 0f;
-             &#125;
-        &#125;
-
-        void SetEvening()
-        &#123;
-             // 傍晚状态
-        sun.intensity = 0.5f;
-        lightEmit.intensity = 0.5f;
-
-            // 部分室内灯光打开
-            foreach (Light indoorLight in indoorLights)
-            &#123;
-                indoorLight.intensity = 0.5f;
-            &#125;
-        &#125;
-
-        void SetNight()
-        &#123;
-            // 夜晚状态
-            sun.intensity = 0f;
-            lightEmit.intensity = 0f;
-
-            // 所有室内灯光打开
-            foreach (Light indoorLight in indoorLights)
-            &#123;
-                indoorLight.intensity = 1f;
-            &#125;
-        &#125;
-    &#125;
-</code></pre>
-
+        
     </div>
     
     
