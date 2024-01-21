@@ -180,7 +180,7 @@
             
             <span class="tag">
                 
-                <a href="/tags/Unity/" style="color: #00a596">Unity</a>
+                <a href="/tags/Unity/" style="color: #ffa2c4">Unity</a>
             </span>
             
         </span>
@@ -190,7 +190,81 @@
     <div class="content" v-pre>
         <p>刚接个活，写了个脚本控制场景简单的光照昼夜变化，记录一下。</p>
 <!-- ... -->
-<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> UnityEngine;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">DayNightCycle</span> : <span class="title">MonoBehaviour</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">public</span> Light sun;</span><br><span class="line">	<span class="keyword">public</span> Light lightEmit;</span><br><span class="line">	<span class="keyword">public</span> Light[] indoorLights;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="built_in">float</span> dayDuration = <span class="number">60f</span>; <span class="comment">// 一天的持续时间（秒）</span></span><br><span class="line"></span><br><span class="line">	 <span class="function"><span class="keyword">void</span> <span class="title">Update</span>()</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="comment">// 计算当前时间（0到1之间）</span></span><br><span class="line">		<span class="built_in">float</span> currentTime = Mathf.Repeat(Time.time / dayDuration, <span class="number">1f</span>);</span><br><span class="line"></span><br><span class="line">		<span class="comment">// 根据当前时间设置不同的状态</span></span><br><span class="line">		<span class="keyword">if</span> (currentTime &lt; <span class="number">0.5f</span>)</span><br><span class="line">		 &#123;</span><br><span class="line">    		<span class="comment">// 白天</span></span><br><span class="line">   			 SetDaytime();</span><br><span class="line">		 &#125;</span><br><span class="line">		 <span class="keyword">else</span> <span class="keyword">if</span> (currentTime &lt; <span class="number">0.75f</span>)</span><br><span class="line">		&#123;</span><br><span class="line">   			 <span class="comment">// 傍晚</span></span><br><span class="line">   			 SetEvening();</span><br><span class="line">		&#125;</span><br><span class="line">		 <span class="keyword">else</span></span><br><span class="line">		 &#123;</span><br><span class="line">   			 <span class="comment">// 夜晚</span></span><br><span class="line">   			 SetNight();</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">			 <span class="comment">// 根据当前时间旋转太阳</span></span><br><span class="line">			sun.transform.eulerAngles = <span class="keyword">new</span> Vector3(currentTime * <span class="number">360f</span> - <span class="number">90f</span>, <span class="number">30f</span>, <span class="number">0f</span>);</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="function"><span class="keyword">void</span> <span class="title">SetDaytime</span>()</span></span><br><span class="line">		&#123;</span><br><span class="line">			 <span class="comment">// 白天状态</span></span><br><span class="line">			sun.intensity = <span class="number">1f</span>;</span><br><span class="line">			lightEmit.intensity = <span class="number">1f</span>;</span><br><span class="line"></span><br><span class="line">			 <span class="comment">// 关闭室内灯光</span></span><br><span class="line">    		<span class="keyword">foreach</span> (Light indoorLight <span class="keyword">in</span> indoorLights)</span><br><span class="line">			 &#123;</span><br><span class="line">   				 indoorLight.intensity = <span class="number">0f</span>;</span><br><span class="line">			 &#125;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="function"><span class="keyword">void</span> <span class="title">SetEvening</span>()</span></span><br><span class="line">		&#123;</span><br><span class="line">			 <span class="comment">// 傍晚状态</span></span><br><span class="line">		sun.intensity = <span class="number">0.5f</span>;</span><br><span class="line">		lightEmit.intensity = <span class="number">0.5f</span>;</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 部分室内灯光打开</span></span><br><span class="line">            <span class="keyword">foreach</span> (Light indoorLight <span class="keyword">in</span> indoorLights)</span><br><span class="line">            &#123;</span><br><span class="line">                indoorLight.intensity = <span class="number">0.5f</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">SetNight</span>()</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">// 夜晚状态</span></span><br><span class="line">            sun.intensity = <span class="number">0f</span>;</span><br><span class="line">            lightEmit.intensity = <span class="number">0f</span>;</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 所有室内灯光打开</span></span><br><span class="line">            <span class="keyword">foreach</span> (Light indoorLight <span class="keyword">in</span> indoorLights)</span><br><span class="line">            &#123;</span><br><span class="line">                indoorLight.intensity = <span class="number">1f</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<pre><code>    using UnityEngine;
+    public class DayNightCycle : MonoBehaviour
+    &#123;
+        public Light sun;
+        public Light lightEmit;
+        public Light[] indoorLights;
+    
+        public float dayDuration = 60f; // 一天的持续时间（秒）
+    
+         void Update()
+        &#123;
+            // 计算当前时间（0到1之间）
+            float currentTime = Mathf.Repeat(Time.time / dayDuration, 1f);
+    
+            // 根据当前时间设置不同的状态
+            if (currentTime &lt; 0.5f)
+             &#123;
+        		// 白天
+       			 SetDaytime();
+             &#125;
+             else if (currentTime &lt; 0.75f)
+            &#123;
+       			 // 傍晚
+       			 SetEvening();
+            &#125;
+             else
+             &#123;
+       			 // 夜晚
+       			 SetNight();
+            &#125;
+    
+                 // 根据当前时间旋转太阳
+                sun.transform.eulerAngles = new Vector3(currentTime * 360f - 90f, 30f, 0f);
+            &#125;
+    
+            void SetDaytime()
+            &#123;
+                 // 白天状态
+                sun.intensity = 1f;
+                lightEmit.intensity = 1f;
+    
+                 // 关闭室内灯光
+        		foreach (Light indoorLight in indoorLights)
+                 &#123;
+       				 indoorLight.intensity = 0f;
+                 &#125;
+            &#125;
+    
+            void SetEvening()
+            &#123;
+                 // 傍晚状态
+            sun.intensity = 0.5f;
+            lightEmit.intensity = 0.5f;
+    
+                // 部分室内灯光打开
+                foreach (Light indoorLight in indoorLights)
+                &#123;
+                    indoorLight.intensity = 0.5f;
+                &#125;
+            &#125;
+    
+            void SetNight()
+            &#123;
+                // 夜晚状态
+                sun.intensity = 0f;
+                lightEmit.intensity = 0f;
+    
+                // 所有室内灯光打开
+                foreach (Light indoorLight in indoorLights)
+                &#123;
+                    indoorLight.intensity = 1f;
+                &#125;
+            &#125;
+        &#125;
+</code></pre>
 
     </div>
     

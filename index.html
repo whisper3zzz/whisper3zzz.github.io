@@ -194,12 +194,27 @@
         <div class="content" v-pre>
             
             <h1 id="两个常见的简单参数修饰符"><a href="#两个常见的简单参数修饰符" class="headerlink" title="两个常见的简单参数修饰符"></a><strong>两个常见的简单参数修饰符</strong></h1><h2 id="1-ref"><a href="#1-ref" class="headerlink" title="1.ref"></a>1.ref</h2><p>若要使用 <code>ref</code> 参数，方法定义和调用方法均必须显式使用 <code>ref</code> 关键字，如下面的示例所示。 （除了在进行 COM 调用时，调用方法可忽略 <code>ref</code>。）</p>
-<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Method</span>(<span class="params"><span class="keyword">ref</span> <span class="built_in">int</span> refArgument</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    refArgument = refArgument + <span class="number">44</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">int</span> number = <span class="number">1</span>;</span><br><span class="line">Method(<span class="keyword">ref</span> number);</span><br><span class="line">Console.WriteLine(number);</span><br><span class="line"><span class="comment">// Output: 45</span></span><br></pre></td></tr></table></figure>
+<pre><code>void Method(ref int refArgument)
+&#123;
+    refArgument = refArgument + 44;
+&#125;
 
+int number = 1;
+Method(ref number);
+Console.WriteLine(number);
+// Output: 45
+</code></pre>
 <p>传递到 <code>ref</code> 参数的自变量必须先经过初始化，然后才能传递。</p>
 <h2 id="2-out"><a href="#2-out" class="headerlink" title="2.out"></a>2.out</h2><p>若要使用 <code>out</code> 参数，方法定义和调用方法均必须显式使用 <code>out</code> 关键字。</p>
-<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">int</span> initializeInMethod;</span><br><span class="line">OutArgExample(<span class="keyword">out</span> initializeInMethod);</span><br><span class="line">Console.WriteLine(initializeInMethod);     <span class="comment">// value is now 44</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">OutArgExample</span>(<span class="params"><span class="keyword">out</span> <span class="built_in">int</span> number</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    number = <span class="number">44</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code>int initializeInMethod;
+OutArgExample(out initializeInMethod);
+Console.WriteLine(initializeInMethod);     // value is now 44
 
+void OutArgExample(out int number)
+&#123;
+    number = 44;
+&#125;
+</code></pre>
 <p>作为 <code>out</code> 自变量传递的变量在方法调用中传递之前不必进行初始化。 但是，被调用的方法需要在返回之前赋一个值。必须先在单独的语句中声明变量，然后才能将其作为 <code>out</code> 参数传递。 还可以在方法调用的参数列表而不是单独的变量声明中声明 <code>out</code> 变量。</p>
 
             
@@ -215,7 +230,7 @@
         
         <span class="tag">
             
-            <a href="/tags/C/" style="color: #ffa2c4">C#</a>
+            <a href="/tags/C/" style="color: #ff7d73">C#</a>
         </span>
         
     </div>
@@ -265,7 +280,7 @@
         
         <span class="tag">
             
-            <a href="/tags/Unity/" style="color: #ff7d73">Unity</a>
+            <a href="/tags/Unity/" style="color: #00a596">Unity</a>
         </span>
         
     </div>
@@ -314,7 +329,7 @@
         
         <span class="tag">
             
-            <a href="/tags/Unity/" style="color: #00a596">Unity</a>
+            <a href="/tags/Unity/" style="color: #ff7d73">Unity</a>
         </span>
         
     </div>
@@ -350,7 +365,81 @@
             
             <p>刚接个活，写了个脚本控制场景简单的光照昼夜变化，记录一下。</p>
 <!-- ... -->
-<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> UnityEngine;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">DayNightCycle</span> : <span class="title">MonoBehaviour</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">public</span> Light sun;</span><br><span class="line">	<span class="keyword">public</span> Light lightEmit;</span><br><span class="line">	<span class="keyword">public</span> Light[] indoorLights;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="built_in">float</span> dayDuration = <span class="number">60f</span>; <span class="comment">// 一天的持续时间（秒）</span></span><br><span class="line"></span><br><span class="line">	 <span class="function"><span class="keyword">void</span> <span class="title">Update</span>()</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="comment">// 计算当前时间（0到1之间）</span></span><br><span class="line">		<span class="built_in">float</span> currentTime = Mathf.Repeat(Time.time / dayDuration, <span class="number">1f</span>);</span><br><span class="line"></span><br><span class="line">		<span class="comment">// 根据当前时间设置不同的状态</span></span><br><span class="line">		<span class="keyword">if</span> (currentTime &lt; <span class="number">0.5f</span>)</span><br><span class="line">		 &#123;</span><br><span class="line">    		<span class="comment">// 白天</span></span><br><span class="line">   			 SetDaytime();</span><br><span class="line">		 &#125;</span><br><span class="line">		 <span class="keyword">else</span> <span class="keyword">if</span> (currentTime &lt; <span class="number">0.75f</span>)</span><br><span class="line">		&#123;</span><br><span class="line">   			 <span class="comment">// 傍晚</span></span><br><span class="line">   			 SetEvening();</span><br><span class="line">		&#125;</span><br><span class="line">		 <span class="keyword">else</span></span><br><span class="line">		 &#123;</span><br><span class="line">   			 <span class="comment">// 夜晚</span></span><br><span class="line">   			 SetNight();</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">			 <span class="comment">// 根据当前时间旋转太阳</span></span><br><span class="line">			sun.transform.eulerAngles = <span class="keyword">new</span> Vector3(currentTime * <span class="number">360f</span> - <span class="number">90f</span>, <span class="number">30f</span>, <span class="number">0f</span>);</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="function"><span class="keyword">void</span> <span class="title">SetDaytime</span>()</span></span><br><span class="line">		&#123;</span><br><span class="line">			 <span class="comment">// 白天状态</span></span><br><span class="line">			sun.intensity = <span class="number">1f</span>;</span><br><span class="line">			lightEmit.intensity = <span class="number">1f</span>;</span><br><span class="line"></span><br><span class="line">			 <span class="comment">// 关闭室内灯光</span></span><br><span class="line">    		<span class="keyword">foreach</span> (Light indoorLight <span class="keyword">in</span> indoorLights)</span><br><span class="line">			 &#123;</span><br><span class="line">   				 indoorLight.intensity = <span class="number">0f</span>;</span><br><span class="line">			 &#125;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="function"><span class="keyword">void</span> <span class="title">SetEvening</span>()</span></span><br><span class="line">		&#123;</span><br><span class="line">			 <span class="comment">// 傍晚状态</span></span><br><span class="line">		sun.intensity = <span class="number">0.5f</span>;</span><br><span class="line">		lightEmit.intensity = <span class="number">0.5f</span>;</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 部分室内灯光打开</span></span><br><span class="line">            <span class="keyword">foreach</span> (Light indoorLight <span class="keyword">in</span> indoorLights)</span><br><span class="line">            &#123;</span><br><span class="line">                indoorLight.intensity = <span class="number">0.5f</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">SetNight</span>()</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">// 夜晚状态</span></span><br><span class="line">            sun.intensity = <span class="number">0f</span>;</span><br><span class="line">            lightEmit.intensity = <span class="number">0f</span>;</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 所有室内灯光打开</span></span><br><span class="line">            <span class="keyword">foreach</span> (Light indoorLight <span class="keyword">in</span> indoorLights)</span><br><span class="line">            &#123;</span><br><span class="line">                indoorLight.intensity = <span class="number">1f</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<pre><code>    using UnityEngine;
+    public class DayNightCycle : MonoBehaviour
+    &#123;
+        public Light sun;
+        public Light lightEmit;
+        public Light[] indoorLights;
+    
+        public float dayDuration = 60f; // 一天的持续时间（秒）
+    
+         void Update()
+        &#123;
+            // 计算当前时间（0到1之间）
+            float currentTime = Mathf.Repeat(Time.time / dayDuration, 1f);
+    
+            // 根据当前时间设置不同的状态
+            if (currentTime &lt; 0.5f)
+             &#123;
+        		// 白天
+       			 SetDaytime();
+             &#125;
+             else if (currentTime &lt; 0.75f)
+            &#123;
+       			 // 傍晚
+       			 SetEvening();
+            &#125;
+             else
+             &#123;
+       			 // 夜晚
+       			 SetNight();
+            &#125;
+    
+                 // 根据当前时间旋转太阳
+                sun.transform.eulerAngles = new Vector3(currentTime * 360f - 90f, 30f, 0f);
+            &#125;
+    
+            void SetDaytime()
+            &#123;
+                 // 白天状态
+                sun.intensity = 1f;
+                lightEmit.intensity = 1f;
+    
+                 // 关闭室内灯光
+        		foreach (Light indoorLight in indoorLights)
+                 &#123;
+       				 indoorLight.intensity = 0f;
+                 &#125;
+            &#125;
+    
+            void SetEvening()
+            &#123;
+                 // 傍晚状态
+            sun.intensity = 0.5f;
+            lightEmit.intensity = 0.5f;
+    
+                // 部分室内灯光打开
+                foreach (Light indoorLight in indoorLights)
+                &#123;
+                    indoorLight.intensity = 0.5f;
+                &#125;
+            &#125;
+    
+            void SetNight()
+            &#123;
+                // 夜晚状态
+                sun.intensity = 0f;
+                lightEmit.intensity = 0f;
+    
+                // 所有室内灯光打开
+                foreach (Light indoorLight in indoorLights)
+                &#123;
+                    indoorLight.intensity = 1f;
+                &#125;
+            &#125;
+        &#125;
+</code></pre>
 
             
         </div>
@@ -365,7 +454,7 @@
         
         <span class="tag">
             
-            <a href="/tags/Unity/" style="color: #00a596">Unity</a>
+            <a href="/tags/Unity/" style="color: #03a9f4">Unity</a>
         </span>
         
     </div>
@@ -413,7 +502,7 @@
         
         <span class="tag">
             
-            <a href="/tags/Unity/" style="color: #00bcd4">Unity</a>
+            <a href="/tags/Unity/" style="color: #ffa2c4">Unity</a>
         </span>
         
     </div>
@@ -461,7 +550,7 @@
         
         <span class="tag">
             
-            <a href="/tags/Unity/" style="color: #03a9f4">Unity</a>
+            <a href="/tags/Unity/" style="color: #ff7d73">Unity</a>
         </span>
         
     </div>
@@ -522,7 +611,7 @@
         
         <span class="tag">
             
-            <a href="/tags/%E5%8E%9F%E5%A7%8B/" style="color: #03a9f4">原始</a>
+            <a href="/tags/%E5%8E%9F%E5%A7%8B/" style="color: #00bcd4">原始</a>
         </span>
         
     </div>
