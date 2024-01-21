@@ -162,11 +162,36 @@
             2024/1/21
         </span>
         
+        <span class="category">
+            <a href="/categories/%E5%AD%A6%E4%B9%A0/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                学习
+            </a>
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            
+            <span class="tag">
+                
+                <a href="/tags/C/" style="color: #00a596">C#</a>
+            </span>
+            
+        </span>
         
     </div>
     
     <div class="content" v-pre>
-        
+        <h1 id="两个常见的简单参数修饰符"><a href="#两个常见的简单参数修饰符" class="headerlink" title="两个常见的简单参数修饰符"></a><strong>两个常见的简单参数修饰符</strong></h1><h2 id="1-ref"><a href="#1-ref" class="headerlink" title="1.ref"></a>1.ref</h2><p>若要使用 <code>ref</code> 参数，方法定义和调用方法均必须显式使用 <code>ref</code> 关键字，如下面的示例所示。 （除了在进行 COM 调用时，调用方法可忽略 <code>ref</code>。）</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Method</span>(<span class="params"><span class="keyword">ref</span> <span class="built_in">int</span> refArgument</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    refArgument = refArgument + <span class="number">44</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">int</span> number = <span class="number">1</span>;</span><br><span class="line">Method(<span class="keyword">ref</span> number);</span><br><span class="line">Console.WriteLine(number);</span><br><span class="line"><span class="comment">// Output: 45</span></span><br></pre></td></tr></table></figure>
+
+
     </div>
     
     
