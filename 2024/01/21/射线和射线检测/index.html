@@ -180,7 +180,7 @@
             
             <span class="tag">
                 
-                <a href="/tags/Unity/" style="color: #03a9f4">Unity</a>
+                <a href="/tags/Unity/" style="color: #00bcd4">Unity</a>
             </span>
             
         </span>
@@ -356,6 +356,7 @@ void Move(Vector3 pos)
 &#125;
 </code></pre>
 <p><em>这个例子还是有不足之处和Bug的，比如没有写转向，导致完全是平移，还有就是如果地面处于倾斜状态，当前物体依旧是90度垂直，看起来很不和谐。</em></p>
+<p><strong>注意！！！因为某个GO的position的坐标是其中心，如果你的GO具有一定体积且你的GO也是被检测的目标之一，那么请在使用Raycast的时候，将起点换算到GO的体积之外，否则将一直返回true。</strong></p>
 <p>参考资料</p>
 <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43147385/article/details/124179148">详解Unity中的射线与射线检测_unity 射线检测-CSDN博客</a></p>
 
