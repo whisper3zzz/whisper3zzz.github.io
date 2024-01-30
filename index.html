@@ -167,10 +167,19 @@
         
 
 <div class="post">
-    <a href="/2024/01/30/Shader%E4%B8%8E%E5%9B%BE%E5%BD%A2%E6%B8%B2%E6%9F%93/">
-        <h2 class="post-title">Shader与图形渲染</h2>
+    <a href="/2024/01/30/Unity%20Shader%E4%B8%8E%E5%9B%BE%E5%BD%A2%E6%B8%B2%E6%9F%93/">
+        <h2 class="post-title">Unity Shader与图形渲染</h2>
     </a>
     <div class="category-and-date">
+        
+        <span class="category">
+            <a href="/categories/%E5%AD%A6%E4%B9%A0/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                学习
+            </a>
+        </span>
         
         <span class="date">
             <span class="icon">
@@ -184,46 +193,75 @@
     <div class="description">
         <div class="content" v-pre>
             
-            
+            <h1 id="一、Shader与图形渲染"><a href="#一、Shader与图形渲染" class="headerlink" title="一、Shader与图形渲染"></a>一、Shader与图形渲染</h1><h2 id="（一）、基础概念"><a href="#（一）、基础概念" class="headerlink" title="（一）、基础概念"></a>（一）、基础概念</h2><h3 id="材质（Material）是什么？"><a href="#材质（Material）是什么？" class="headerlink" title="材质（Material）是什么？"></a>材质（Material）是什么？</h3><p>一个物体要显示在屏幕上，必须通过一个属于它的材质来实现。材质准确地定义了每个物体在特定情况下显示出来的颜色，比如sprite的默认材质是将图片上每个像素的颜色原封不动的显示出来（我们也可以自定义一个材质去修改原图片的颜色）。</p>
+<h3 id="实际上，材质的准确定义是着色器的一个实例，那么着色器（Shader）是什么？"><a href="#实际上，材质的准确定义是着色器的一个实例，那么着色器（Shader）是什么？" class="headerlink" title="实际上，材质的准确定义是着色器的一个实例，那么着色器（Shader）是什么？"></a>实际上，材质的准确定义是着色器的一个实例，那么着色器（Shader）是什么？</h3><p>Shader是一个在GPU上面运行的程序（一般的代码是在CPU上运行的），他接受一个物体的形状、颜色等数据，通过一系列的计算来输出每个像素的颜色。</p>
+<p>下面介绍一下一个立方体如何从模型数据变成屏幕上的色彩：</p>
+<p>1.Shader接收到立方体的顶点、法线等数据。</p>
+<p>2.Shader将这些位置转换到屏幕坐标里面。</p>
+<p>3.Shader对每个像素进行染色。</p>
+<p>4.Shader获取当前光照，计算每个像素受光之后的颜色。</p>
+<p>5.Shader将计算好的颜色输出至屏幕。</p>
+<h3 id="纹理（Texture）又是什么？"><a href="#纹理（Texture）又是什么？" class="headerlink" title="纹理（Texture）又是什么？"></a>纹理（Texture）又是什么？</h3><p>Texture就是一张图片，比如人物衣服的颜色。Texture在渲染流程中是Shader中的一个“texture”类型的变量，好比如熟知的float、vector等。</p>
+<p>那Shader是怎么显示出木箱上的木纹的？</p>
+<p>······</p>
+<p>3.Shader对于每个像素染色。</p>
+<p>4.Shader读取texture中每个像素的颜色，并将颜色给到<strong>对应</strong>的物体像素上。</p>
+<h3 id="Material的真面目"><a href="#Material的真面目" class="headerlink" title="Material的真面目"></a>Material的真面目</h3><p>现在我们有一个Shader，其中有一个变量是“物体的颜色”，假设现在我们要用它去渲染五个不同颜色的物体，那需要有五个不同的Shader吗？</p>
+<p>显然这样不合理，我们应该以Shader为模板，去衍生一系列它的实例，然后修改各个实例的颜色即可（就好像创建C#的类的实例）</p>
+<p>而根据Shader创建出来的实例就是Material，所以每一个Material背后都有一个Shader，Material只是代表<strong>一个Shader变量的一系列特定值的实例</strong>。</p>
+<h3 id="Material、Shader、Texture的地位一样吗？"><a href="#Material、Shader、Texture的地位一样吗？" class="headerlink" title="Material、Shader、Texture的地位一样吗？"></a>Material、Shader、Texture的地位一样吗？</h3><p>这三者其实地位不一样，万物来源是Shader，Material是Shader的一个实例，Texture是Shader的一个变量。</p>
+<p>那：</p>
+<p>修改Shader，其相关的所有Material都会受到影响吗？</p>
+<p>修改一个Material，其相关的Material都会受到影响吗？</p>
+<p>显然前者的答案是肯定而后者是否定。</p>
+<h3 id="Unity组件：MeshFilter和MeshRenderer"><a href="#Unity组件：MeshFilter和MeshRenderer" class="headerlink" title="Unity组件：MeshFilter和MeshRenderer"></a>Unity组件：MeshFilter和MeshRenderer</h3><p>什么是Mesh？</p>
+<p>“mesh”即为网格，主流的3D渲染器讲物体表面分割为一个个三角形进行渲染，整个物体表面是一个三角形的网格，通俗一点，mesh是一个模型的形状。</p>
+<p>在Unity3D当中，要显示模型通常需要两个组件：MeshFilter和MeshRenderer</p>
+<p><em>2D当中只需要SpriteRenderer一个组件就可以了</em></p>
+<p>MeshFilter是用于处理模型本身的几何信息的（顶点位置，法线位置，切线方向等）</p>
+<p>MeshRenderer是用来渲染该模型的（通过某个material）</p>
+<h3 id="Unity的默认材质"><a href="#Unity的默认材质" class="headerlink" title="Unity的默认材质"></a>Unity的默认材质</h3><p>如何修改一个3D物体的颜色？</p>
+<p>在2D项目中，我们只需要修改SpriteRenderer中的Color值就可以了，但是3D中并不可以这样更改Unity的默认材质。因为材质是shader的一个实例，所以可以用默认的shader新建一个材质，再修改材质的参数。</p>
+<h4 id="参数"><a href="#参数" class="headerlink" title="参数"></a>参数</h4><ol>
+<li>Rendering Mode（渲染模式）：主要与透明度有关</li>
+<li>Albedo（反射率）：其实就是颜色</li>
+<li>Metallic&#x2F;Smoothness（金属度&#x2F;平滑度）：定义了与光照的互动强度</li>
+<li>Normal Map（法线贴图）：用来改变物体的法线，增加细节程度</li>
+</ol>
+<h3 id="Lighting-光照"><a href="#Lighting-光照" class="headerlink" title="Lighting 光照"></a>Lighting 光照</h3><p>Unity提供了以下几种光照</p>
+<ol>
+<li>Directionnal（平行光）：类似“太阳光”，从某个固定的方向以固定的强度照射过来，且覆盖范围是无限的。世界中的所有物体都会平等的受到平行光的照射。一般场景里面只有一个，它的光源的position没有影响，rotation是重要的。</li>
+<li>Point(点光)：类似“灯泡”，从一点均匀地在一定范围内发出光照，且强度随着距离减弱。显然它的position重要而rotation不重要。</li>
+<li>Spot（聚光灯）：从一点向一个方向发出圆锥形的光照，且强度随着距离减弱。</li>
+<li>Area（范围光）：类似有一定面积的LED灯，在一个面积上均匀地发射光线。这是唯一一个非实时光照，需要提前bakery（烘焙）。</li>
+</ol>
+<p>学习参考：</p>
+<p><a target="_blank" rel="noopener" href="https://space.bilibili.com/28471795">Silverjay银鸟工作室个人主页</a></p>
+<p><a target="_blank" rel="noopener" href="https://docs.unity3d.com/cn/2023.2/Manual/UnityManual.html">Unity官方文档</a></p>
+
             
         </div>
     </div>
     <div class="post-tags">
         
-        
-        
-    </div>
-    <a href="/2024/01/30/Shader%E4%B8%8E%E5%9B%BE%E5%BD%A2%E6%B8%B2%E6%9F%93/" class="go-post">阅读全文</a>
-</div>
-
-<div class="post">
-    <a href="/2024/01/29/shader%E5%AD%A6%E4%B9%A0/">
-        <h2 class="post-title">shader学习</h2>
-    </a>
-    <div class="category-and-date">
-        
-        <span class="date">
-            <span class="icon">
-                <i class="fa-solid fa-calendar fa-fw"></i>
-            </span>
-            2024/1/29
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
         </span>
         
         
-    </div>
-    <div class="description">
-        <div class="content" v-pre>
-            
-            
-            
-        </div>
-    </div>
-    <div class="post-tags">
         
+        <span class="tag">
+            
+            <a href="/tags/Unity/" style="color: #ff7d73">Unity</a>
+        </span>
         
+        <span class="tag">
+            
+            <a href="/tags/%E6%B8%B2%E6%9F%93/" style="color: #00a596">渲染</a>
+        </span>
         
     </div>
-    <a href="/2024/01/29/shader%E5%AD%A6%E4%B9%A0/" class="go-post">阅读全文</a>
+    <a href="/2024/01/30/Unity%20Shader%E4%B8%8E%E5%9B%BE%E5%BD%A2%E6%B8%B2%E6%9F%93/" class="go-post">阅读全文</a>
 </div>
 
 <div class="post">
@@ -388,7 +426,7 @@ void OutArgExample(out int number)
         
         <span class="tag">
             
-            <a href="/tags/Unity/" style="color: #ff7d73">Unity</a>
+            <a href="/tags/Unity/" style="color: #ffa2c4">Unity</a>
         </span>
         
     </div>
@@ -609,7 +647,7 @@ void OutArgExample(out int number)
         
         <span class="tag">
             
-            <a href="/tags/Unity/" style="color: #00a596">Unity</a>
+            <a href="/tags/Unity/" style="color: #03a9f4">Unity</a>
         </span>
         
     </div>
