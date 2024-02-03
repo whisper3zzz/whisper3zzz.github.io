@@ -241,8 +241,18 @@
 </ol>
 <h3 id="渲染（Rendering）是什么？"><a href="#渲染（Rendering）是什么？" class="headerlink" title="渲染（Rendering）是什么？"></a>渲染（Rendering）是什么？</h3><p>渲染是把物体模型数据转换成屏幕上每个像素的颜色的过程。</p>
 <h3 id="渲染管线（Rendering-Pipeline）"><a href="#渲染管线（Rendering-Pipeline）" class="headerlink" title="渲染管线（Rendering Pipeline）"></a>渲染管线（Rendering Pipeline）</h3><p>“渲染管线”代表一个特定的物体的渲染过程。</p>
-<p>下图是一个标准的渲染管线（橙色的方块是我们可以编程的部分）。+</p>
+<p>下图是一个标准的渲染管线（橙色的方块是我们可以编程的部分）。</p>
 <p><img src="/photos/%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E7%A4%BA%E6%84%8F%E5%9B%BE.jpg"></p>
+<ol>
+<li>Vertex&#x2F;index buffer：模型数据（在计算机中“buffer”（缓冲）指的是一块内存中间&#x2F;一个数组）</li>
+<li><strong>Vertex Shader</strong>： 顶点着色器</li>
+<li>Tessellation：曲面细分</li>
+<li>Geometry Shader：几何着色器</li>
+<li>Resterization：光栅化</li>
+<li><strong>Fragment Shader</strong>：片元着色器</li>
+<li>Color Blending：处理透明度</li>
+<li>Frame Buffer：当前帧所有像素的颜色</li>
+</ol>
 <p>学习参考：</p>
 <p><a target="_blank" rel="noopener" href="https://space.bilibili.com/28471795">Silverjay银鸟工作室个人主页</a></p>
 <p><a target="_blank" rel="noopener" href="https://docs.unity3d.com/cn/2023.2/Manual/UnityManual.html">Unity官方文档</a></p>
@@ -260,12 +270,12 @@
         
         <span class="tag">
             
-            <a href="/tags/%E6%B8%B2%E6%9F%93/" style="color: #00bcd4">渲染</a>
+            <a href="/tags/%E6%B8%B2%E6%9F%93/" style="color: #03a9f4">渲染</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/Unity/" style="color: #03a9f4">Unity</a>
+            <a href="/tags/Unity/" style="color: #00bcd4">Unity</a>
         </span>
         
     </div>
@@ -386,7 +396,7 @@ void OutArgExample(out int number)
         
         <span class="tag">
             
-            <a href="/tags/Unity/" style="color: #03a9f4">Unity</a>
+            <a href="/tags/Unity/" style="color: #ff7d73">Unity</a>
         </span>
         
     </div>
@@ -434,7 +444,7 @@ void OutArgExample(out int number)
         
         <span class="tag">
             
-            <a href="/tags/Unity/" style="color: #00a596">Unity</a>
+            <a href="/tags/Unity/" style="color: #00bcd4">Unity</a>
         </span>
         
     </div>
@@ -559,7 +569,7 @@ void OutArgExample(out int number)
         
         <span class="tag">
             
-            <a href="/tags/Unity/" style="color: #ff7d73">Unity</a>
+            <a href="/tags/Unity/" style="color: #00bcd4">Unity</a>
         </span>
         
     </div>
@@ -607,7 +617,7 @@ void OutArgExample(out int number)
         
         <span class="tag">
             
-            <a href="/tags/Unity/" style="color: #ffa2c4">Unity</a>
+            <a href="/tags/Unity/" style="color: #03a9f4">Unity</a>
         </span>
         
     </div>
@@ -655,7 +665,7 @@ void OutArgExample(out int number)
         
         <span class="tag">
             
-            <a href="/tags/Unity/" style="color: #00a596">Unity</a>
+            <a href="/tags/Unity/" style="color: #00bcd4">Unity</a>
         </span>
         
     </div>
@@ -716,7 +726,7 @@ void OutArgExample(out int number)
         
         <span class="tag">
             
-            <a href="/tags/%E5%8E%9F%E5%A7%8B/" style="color: #ff7d73">原始</a>
+            <a href="/tags/%E5%8E%9F%E5%A7%8B/" style="color: #ffa2c4">原始</a>
         </span>
         
     </div>

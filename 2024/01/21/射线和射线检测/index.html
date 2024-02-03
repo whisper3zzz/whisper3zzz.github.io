@@ -193,7 +193,7 @@
 
 <h1 id="一、使用并且创建射线"><a href="#一、使用并且创建射线" class="headerlink" title="一、使用并且创建射线"></a>一、使用并且创建射线</h1><p>射线检测：从初始某点开始，发射一条「不可见」的射线，用来检测是否有模型添加了Collider组件，一旦检测到就停止发射。</p>
 <p>之前使用的刚体或者碰撞器都是组件，代码来处理碰撞逻辑，而射线是纯代码处理的，需要我们自行调用API来实现。</p>
-<p><strong>Collider组件中的Is Trigger选项不影响射线是否检测</strong>Is Trigger选项的开关不影响射线检测，但是前提是QueryTriggerInteraction该参数设置为检测触发器了，你也可以将该参数设置为仅对碰撞器进行检测，这个参数可以全局设置，这个参数写在Raycast末尾。</p>
+<p><strong>Collider组件中的Is Trigger选项不影响射线是否检测</strong>，但是前提是QueryTriggerInteraction该参数设置为检测触发器了，你也可以将该参数设置为仅对碰撞器进行检测，这个参数可以全局设置，这个参数写在Raycast末尾。</p>
 <p>Physics.Raycast一共有16个重载方法，可以自行组合</p>
 <pre><code>Physics.Raycast（origin（v3）,direction（v3）,hitInfo(RaycastHit),distance(float),LaterMask(int)）;
 </code></pre>
