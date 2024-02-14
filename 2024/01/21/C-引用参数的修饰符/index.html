@@ -180,7 +180,7 @@
             
             <span class="tag">
                 
-                <a href="/tags/C/" style="color: #ffa2c4">C#</a>
+                <a href="/tags/C/" style="color: #03a9f4">C#</a>
             </span>
             
         </span>
@@ -189,7 +189,7 @@
     
     <div class="content" v-pre>
         <h1 id="两个常见的简单参数修饰符"><a href="#两个常见的简单参数修饰符" class="headerlink" title="两个常见的简单参数修饰符"></a><strong>两个常见的简单参数修饰符</strong></h1><h2 id="1-ref"><a href="#1-ref" class="headerlink" title="1.ref"></a>1.ref</h2><p>若要使用 <code>ref</code> 参数，方法定义和调用方法均必须显式使用 <code>ref</code> 关键字，如下面的示例所示。 （除了在进行 COM 调用时，调用方法可忽略 <code>ref</code>。）</p>
-<pre><code>void Method(ref int refArgument)
+<pre><code class="c#">void Method(ref int refArgument)
 &#123;
     refArgument = refArgument + 44;
 &#125;
@@ -199,9 +199,9 @@ Method(ref number);
 Console.WriteLine(number);
 // Output: 45
 </code></pre>
-<p>传递到 <code>ref</code> 参数的自变量必须先经过初始化，然后才能传递。</p>
+<p>​<br>传递到 <code>ref</code> 参数的自变量必须先经过初始化，然后才能传递。</p>
 <h2 id="2-out"><a href="#2-out" class="headerlink" title="2.out"></a>2.out</h2><p>若要使用 <code>out</code> 参数，方法定义和调用方法均必须显式使用 <code>out</code> 关键字。</p>
-<pre><code>int initializeInMethod;
+<pre><code class="c#">int initializeInMethod;
 OutArgExample(out initializeInMethod);
 Console.WriteLine(initializeInMethod);     // value is now 44
 

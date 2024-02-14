@@ -193,16 +193,30 @@
     <div class="description">
         <div class="content" v-pre>
             
-            <h2 id="堆和栈"><a href="#堆和栈" class="headerlink" title="堆和栈"></a>堆和栈</h2><p>栈（Stack)是一块较小的区域，其大小是固定的，一般在1-2MB之间。其中主要存储 本地变量。栈的访问速度非常快。</p>
-<p>堆（Heap)是一块较大的区域，其中主要储存我们用new关键字创建出的类的实例。 它的大小是随着我们的使用不断增长的，最大可达到绝大部分进程可用内存。但是 堆的访问相较栈要慢很多。</p>
+            <h2 id="堆和栈"><a href="#堆和栈" class="headerlink" title="堆和栈"></a>堆和栈</h2><p>   堆（Heap)是一块较大的区域，其中主要储存我们用new关键字创建出的类的实例。 它的大小是随着我们的使用不断增长的，最大可达到绝大部分进程可用内存。但是 堆的访问相较栈要慢很多。</p>
 <p><img src="/photos/C-%E8%BF%9B%E9%98%B6_%E5%A0%86%E5%92%8C%E6%A0%88.jpg"></p>
 <h2 id="值类型-Value-Type"><a href="#值类型-Value-Type" class="headerlink" title="值类型 Value Type"></a>值类型 Value Type</h2><p>在C#中，数据类型分为两大类：值类型（value type）和引用类型（reference type）。 它们的区别主要在数据的存储方式与变量之间的数据传递方式：</p>
 <p>值类型直接存储数据，并且变量之间是通过拷贝的方式传递的。</p>
 <p>比如int是值类型，那么考虑以下的代码：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">int a=7;</span><br><span class="line"></span><br><span class="line">int b=a;</span><br><span class="line"></span><br><span class="line">b=-1;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">很明显，通过修改b的值是不能影响到a的值的。（尽管我们写了int b = a） 这是因为a这个变量中直接存储了‘7’这个数据，而b = a实际上是把a中的值拷贝了一份再复制给b的。所以b和a没有直接的联系。</span><br><span class="line"></span><br><span class="line">**值类型的数据是存储在栈（Stack）上的！**</span><br><span class="line"></span><br><span class="line">*常见的值类型有：所有的基本数据类型(int, float, double, bool, long, char, etc.)、枚举类型（enum）、结构体（struct）*</span><br><span class="line"></span><br><span class="line">## 引用类型 Reference Type</span><br><span class="line"></span><br><span class="line">引用类型与值类型很不同，它并非直接存储数据本身，而是存储了指向该数据的地址。 引用类型的变量之间传递数据时只是拷贝了其地址，并没有拷贝数据本身。所以自始至终只会有一份数据。</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>&#x2F;&#x2F;Transform是引用类型，考虑以下代码：<br>Transform tf1 &#x3D; object1.transform; </p>
-<p>Transform tf2 &#x3D; tf1;</p>
-<p> tf2.position &#x3D; new Vector3(1,0,0);<br>&#x2F;&#x2F;我们通过修改tf2的position会影响到object1的位置吗？会！<br>&#x2F;&#x2F;这是因为tf1和tf2中只存储了指向object1.transform的地址。tf2&#x3D;tf1这行代码仅拷贝了地址，并没有拷贝object1.transform本身，所以tf2和tf1指向的是同一个物体。</p>
+<pre><code class="c#">int a=7;
+
+int b=a;
+
+b=-1;
+</code></pre>
+<p>很明显，通过修改b的值是不能影响到a的值的。（尽管我们写了int b &#x3D; a） 这是因为a这个变量中直接存储了‘7’这个数据，而b &#x3D; a实际上是把a中的值拷贝了一份再复制给b的。所以b和a没有直接的联系。</p>
+<p><strong>值类型的数据是存储在栈（Stack）上的！</strong></p>
+<p><em>常见的值类型有：所有的基本数据类型(int, float, double, bool, long, char, etc.)、枚举类型（enum）、结构体（struct）</em></p>
+<h2 id="引用类型-Reference-Type"><a href="#引用类型-Reference-Type" class="headerlink" title="引用类型 Reference Type"></a>引用类型 Reference Type</h2><p>引用类型与值类型很不同，它并非直接存储数据本身，而是存储了指向该数据的地址。 引用类型的变量之间传递数据时只是拷贝了其地址，并没有拷贝数据本身。所以自始至终只会有一份数据。</p>
+<pre><code class="c#">//Transform是引用类型，考虑以下代码：
+Transform tf1 = object1.transform; 
+
+Transform tf2 = tf1;
+
+ tf2.position = new Vector3(1,0,0);
+//我们通过修改tf2的position会影响到object1的位置吗？会！
+//这是因为tf1和tf2中只存储了指向object1.transform的地址。tf2=tf1这行代码仅拷贝了地址，并没有拷贝object1.transform本身，所以tf2和tf1指向的是同一个物体。
+</code></pre>
 <p><strong>引用类型本身是存储在栈（Stack）上的，而引用类型所指向的数据是存储在堆（Heap）上的!</strong></p>
 <p>所有的引用类型都继承自System.Object类。 </p>
 <p><em>常见的引用类型有：类（class）、字符串（string）、数组（与数组的元素类型无关）、委托（delegate）</em></p>
@@ -212,10 +226,14 @@
 <h3 id="String-Interning"><a href="#String-Interning" class="headerlink" title="String Interning"></a>String Interning</h3><p>当我们频繁地引用一个内容相同的字符串时（比如在Update里写string s &#x3D; “a”），难道系统会需要不断创建新的字符串吗？</p>
 <p>这 未免有些浪费了。 于是，C#内置了string interning机制。</p>
 <p>它很像一个“字符串池”，当我们想要引用一个字符串时，如果池中已经有内容相同的字 符串，我们可以直接访问该已存在的字符串，不需要创建新的字符串。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">string str1 = &quot;Hello&quot;;</span><br><span class="line">string str2 = &quot;Hello&quot;;</span><br><span class="line">bool areEqual = Object.ReferenceEquals(str1, str2);</span><br><span class="line">//areEqual为true！</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<pre><code class="c#">string str1 = &quot;Hello&quot;;
+string str2 = &quot;Hello&quot;;
+bool areEqual = Object.ReferenceEquals(str1, str2);
+//areEqual为true！
+</code></pre>
 <h2 id="ref-关键字"><a href="#ref-关键字" class="headerlink" title="ref 关键字"></a>ref 关键字</h2><p>C#中函数的参数可以被ref关键字修饰。它允许我们在传参时使用变量的引用，而非变量的值。 </p>
 <p><em>（一般来说，我们向函数中传参数时都是复制了一份变量的值并传入的。这也是为什么函数内的变量通常和函数外的变量没关系。）</em></p>
-<pre><code>int a = 1;
+<pre><code class="c#">int a = 1;
 AddOne(a);
 print(a); // a=1
 ……
@@ -223,11 +241,7 @@ void AddOne(int a)
 &#123;
 a++;
 &#125;
-//参数“a”是通过值传递的，和函数外的“a”
-完全没关系。
-
-
-
+//参数“a”是通过值传递的，和函数外的“a”完全没关系。
 </code></pre>
 
             
@@ -355,12 +369,12 @@ a++;
         
         <span class="tag">
             
-            <a href="/tags/%E6%B8%B2%E6%9F%93/" style="color: #03a9f4">渲染</a>
+            <a href="/tags/%E6%B8%B2%E6%9F%93/" style="color: #00a596">渲染</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/Unity/" style="color: #00bcd4">Unity</a>
+            <a href="/tags/Unity/" style="color: #03a9f4">Unity</a>
         </span>
         
     </div>
@@ -395,7 +409,7 @@ a++;
         <div class="content" v-pre>
             
             <h1 id="两个常见的简单参数修饰符"><a href="#两个常见的简单参数修饰符" class="headerlink" title="两个常见的简单参数修饰符"></a><strong>两个常见的简单参数修饰符</strong></h1><h2 id="1-ref"><a href="#1-ref" class="headerlink" title="1.ref"></a>1.ref</h2><p>若要使用 <code>ref</code> 参数，方法定义和调用方法均必须显式使用 <code>ref</code> 关键字，如下面的示例所示。 （除了在进行 COM 调用时，调用方法可忽略 <code>ref</code>。）</p>
-<pre><code>void Method(ref int refArgument)
+<pre><code class="c#">void Method(ref int refArgument)
 &#123;
     refArgument = refArgument + 44;
 &#125;
@@ -405,9 +419,9 @@ Method(ref number);
 Console.WriteLine(number);
 // Output: 45
 </code></pre>
-<p>传递到 <code>ref</code> 参数的自变量必须先经过初始化，然后才能传递。</p>
+<p>​<br>传递到 <code>ref</code> 参数的自变量必须先经过初始化，然后才能传递。</p>
 <h2 id="2-out"><a href="#2-out" class="headerlink" title="2.out"></a>2.out</h2><p>若要使用 <code>out</code> 参数，方法定义和调用方法均必须显式使用 <code>out</code> 关键字。</p>
-<pre><code>int initializeInMethod;
+<pre><code class="c#">int initializeInMethod;
 OutArgExample(out initializeInMethod);
 Console.WriteLine(initializeInMethod);     // value is now 44
 
@@ -431,7 +445,7 @@ void OutArgExample(out int number)
         
         <span class="tag">
             
-            <a href="/tags/C/" style="color: #03a9f4">C#</a>
+            <a href="/tags/C/" style="color: #ffa2c4">C#</a>
         </span>
         
     </div>
@@ -529,7 +543,7 @@ void OutArgExample(out int number)
         
         <span class="tag">
             
-            <a href="/tags/Unity/" style="color: #ffa2c4">Unity</a>
+            <a href="/tags/Unity/" style="color: #00bcd4">Unity</a>
         </span>
         
     </div>
@@ -565,7 +579,7 @@ void OutArgExample(out int number)
             
             <p>刚接个活，写了个脚本控制场景简单的光照昼夜变化，记录一下。</p>
 <!-- ... -->
-<pre><code>    using UnityEngine;
+<pre><code class="c#">    using UnityEngine;
     public class DayNightCycle : MonoBehaviour
     &#123;
         public Light sun;
@@ -654,7 +668,7 @@ void OutArgExample(out int number)
         
         <span class="tag">
             
-            <a href="/tags/Unity/" style="color: #03a9f4">Unity</a>
+            <a href="/tags/Unity/" style="color: #00a596">Unity</a>
         </span>
         
     </div>
@@ -702,7 +716,7 @@ void OutArgExample(out int number)
         
         <span class="tag">
             
-            <a href="/tags/Unity/" style="color: #ff7d73">Unity</a>
+            <a href="/tags/Unity/" style="color: #03a9f4">Unity</a>
         </span>
         
     </div>
@@ -755,67 +769,6 @@ void OutArgExample(out int number)
         
     </div>
     <a href="/2023/12/20/Unity%E7%B2%92%E5%AD%90%E7%B3%BB%E7%BB%9F%EF%BC%882%EF%BC%89/" class="go-post">阅读全文</a>
-</div>
-
-<div class="post">
-    <a href="/2023/12/20/hello-world/">
-        <h2 class="post-title">Hello World</h2>
-    </a>
-    <div class="category-and-date">
-        
-        <span class="category">
-            <a href="/categories/%E5%BC%80%E5%A7%8B/">
-                <span class="icon">
-                    <i class="fa-solid fa-bookmark fa-fw"></i>
-                </span>
-                开始
-            </a>
-        </span>
-        
-        <span class="date">
-            <span class="icon">
-                <i class="fa-solid fa-calendar fa-fw"></i>
-            </span>
-            2023/12/20
-        </span>
-        
-        
-    </div>
-    <div class="description">
-        <div class="content" v-pre>
-            
-            <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
-            
-        </div>
-    </div>
-    <div class="post-tags">
-        
-        <span class="icon">
-            <i class="fa-solid fa-tags fa-fw"></i>
-        </span>
-        
-        
-        
-        <span class="tag">
-            
-            <a href="/tags/%E5%8E%9F%E5%A7%8B/" style="color: #00bcd4">原始</a>
-        </span>
-        
-    </div>
-    <a href="/2023/12/20/hello-world/" class="go-post">阅读全文</a>
 </div>
 
 
