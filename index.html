@@ -199,11 +199,35 @@
 <h2 id="值类型-Value-Type"><a href="#值类型-Value-Type" class="headerlink" title="值类型 Value Type"></a>值类型 Value Type</h2><p>在C#中，数据类型分为两大类：值类型（value type）和引用类型（reference type）。 它们的区别主要在数据的存储方式与变量之间的数据传递方式：</p>
 <p>值类型直接存储数据，并且变量之间是通过拷贝的方式传递的。</p>
 <p>比如int是值类型，那么考虑以下的代码：</p>
-<pre><code>int a=7;
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">int a=7;</span><br><span class="line"></span><br><span class="line">int b=a;</span><br><span class="line"></span><br><span class="line">b=-1;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">很明显，通过修改b的值是不能影响到a的值的。（尽管我们写了int b = a） 这是因为a这个变量中直接存储了‘7’这个数据，而b = a实际上是把a中的值拷贝了一份再复制给b的。所以b和a没有直接的联系。</span><br><span class="line"></span><br><span class="line">**值类型的数据是存储在栈（Stack）上的！**</span><br><span class="line"></span><br><span class="line">*常见的值类型有：所有的基本数据类型(int, float, double, bool, long, char, etc.)、枚举类型（enum）、结构体（struct）*</span><br><span class="line"></span><br><span class="line">## 引用类型 Reference Type</span><br><span class="line"></span><br><span class="line">引用类型与值类型很不同，它并非直接存储数据本身，而是存储了指向该数据的地址。 引用类型的变量之间传递数据时只是拷贝了其地址，并没有拷贝数据本身。所以自始至终只会有一份数据。</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>&#x2F;&#x2F;Transform是引用类型，考虑以下代码：<br>Transform tf1 &#x3D; object1.transform; </p>
+<p>Transform tf2 &#x3D; tf1;</p>
+<p> tf2.position &#x3D; new Vector3(1,0,0);<br>&#x2F;&#x2F;我们通过修改tf2的position会影响到object1的位置吗？会！<br>&#x2F;&#x2F;这是因为tf1和tf2中只存储了指向object1.transform的地址。tf2&#x3D;tf1这行代码仅拷贝了地址，并没有拷贝object1.transform本身，所以tf2和tf1指向的是同一个物体。</p>
+<p><strong>引用类型本身是存储在栈（Stack）上的，而引用类型所指向的数据是存储在堆（Heap）上的!</strong></p>
+<p>所有的引用类型都继承自System.Object类。 </p>
+<p><em>常见的引用类型有：类（class）、字符串（string）、数组（与数组的元素类型无关）、委托（delegate）</em></p>
+<h2 id="C-中的string"><a href="#C-中的string" class="headerlink" title="C#中的string"></a>C#中的string</h2><p>string是一种引用类型，但它有许多特别之处，使得它有时会显得和值类型很像。</p>
+<h3 id="不变性（Immutability）"><a href="#不变性（Immutability）" class="headerlink" title="不变性（Immutability）"></a>不变性（Immutability）</h3><p>C#中的string是不变的。这意味着当一个string被创建时，它就永远不能被改变了。而我们对string进行的任何修改操作其实都 是创建了一个新的字符串变量。 </p>
+<p>比如string s &#x3D; “123”; s+&#x3D;“4”; 我们其实创建了两个string：”123” 和 ”1234”。s这个变量最后指向的是”1234”，而一开始 的”123”这个字符串就变成了“垃圾”。</p>
+<h3 id="String-Interning"><a href="#String-Interning" class="headerlink" title="String Interning"></a>String Interning</h3><p>当我们频繁地引用一个内容相同的字符串时（比如在Update里写string s &#x3D; “a”），难道系统会需要不断创建新的字符串吗？</p>
+<p>这 未免有些浪费了。 于是，C#内置了string interning机制。</p>
+<p>它很像一个“字符串池”，当我们想要引用一个字符串时，如果池中已经有内容相同的字 符串，我们可以直接访问该已存在的字符串，不需要创建新的字符串。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">string str1 = &quot;Hello&quot;;</span><br><span class="line">string str2 = &quot;Hello&quot;;</span><br><span class="line">bool areEqual = Object.ReferenceEquals(str1, str2);</span><br><span class="line">//areEqual为true！</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="ref-关键字"><a href="#ref-关键字" class="headerlink" title="ref 关键字"></a>ref 关键字</h2><p>C#中函数的参数可以被ref关键字修饰。它允许我们在传参时使用变量的引用，而非变量的值。 </p>
+<p><em>（一般来说，我们向函数中传参数时都是复制了一份变量的值并传入的。这也是为什么函数内的变量通常和函数外的变量没关系。）</em></p>
+<pre><code>int a = 1;
+AddOne(a);
+print(a); // a=1
+……
+void AddOne(int a)
+&#123;
+a++;
+&#125;
+//参数“a”是通过值传递的，和函数外的“a”
+完全没关系。
 
-int b=a;
 
-b=-1;
+
 </code></pre>
 
             
@@ -219,7 +243,7 @@ b=-1;
         
         <span class="tag">
             
-            <a href="/tags/C/" style="color: #ffa2c4">C#</a>
+            <a href="/tags/C/" style="color: #00bcd4">C#</a>
         </span>
         
     </div>
@@ -331,7 +355,7 @@ b=-1;
         
         <span class="tag">
             
-            <a href="/tags/%E6%B8%B2%E6%9F%93/" style="color: #00a596">渲染</a>
+            <a href="/tags/%E6%B8%B2%E6%9F%93/" style="color: #03a9f4">渲染</a>
         </span>
         
         <span class="tag">
@@ -407,7 +431,7 @@ void OutArgExample(out int number)
         
         <span class="tag">
             
-            <a href="/tags/C/" style="color: #00a596">C#</a>
+            <a href="/tags/C/" style="color: #03a9f4">C#</a>
         </span>
         
     </div>
@@ -457,7 +481,7 @@ void OutArgExample(out int number)
         
         <span class="tag">
             
-            <a href="/tags/Unity/" style="color: #00bcd4">Unity</a>
+            <a href="/tags/Unity/" style="color: #03a9f4">Unity</a>
         </span>
         
     </div>
@@ -505,7 +529,7 @@ void OutArgExample(out int number)
         
         <span class="tag">
             
-            <a href="/tags/Unity/" style="color: #03a9f4">Unity</a>
+            <a href="/tags/Unity/" style="color: #ffa2c4">Unity</a>
         </span>
         
     </div>
@@ -630,7 +654,7 @@ void OutArgExample(out int number)
         
         <span class="tag">
             
-            <a href="/tags/Unity/" style="color: #00bcd4">Unity</a>
+            <a href="/tags/Unity/" style="color: #03a9f4">Unity</a>
         </span>
         
     </div>
@@ -678,7 +702,7 @@ void OutArgExample(out int number)
         
         <span class="tag">
             
-            <a href="/tags/Unity/" style="color: #00bcd4">Unity</a>
+            <a href="/tags/Unity/" style="color: #ff7d73">Unity</a>
         </span>
         
     </div>
@@ -726,7 +750,7 @@ void OutArgExample(out int number)
         
         <span class="tag">
             
-            <a href="/tags/Unity/" style="color: #00a596">Unity</a>
+            <a href="/tags/Unity/" style="color: #03a9f4">Unity</a>
         </span>
         
     </div>
@@ -787,7 +811,7 @@ void OutArgExample(out int number)
         
         <span class="tag">
             
-            <a href="/tags/%E5%8E%9F%E5%A7%8B/" style="color: #ff7d73">原始</a>
+            <a href="/tags/%E5%8E%9F%E5%A7%8B/" style="color: #00bcd4">原始</a>
         </span>
         
     </div>
