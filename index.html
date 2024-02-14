@@ -167,6 +167,60 @@
         
 
 <div class="post">
+    <a href="/2024/02/14/C-%E8%BF%9B%E9%98%B6/">
+        <h2 class="post-title">C#进阶</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="category">
+            <a href="/categories/%E5%AD%A6%E4%B9%A0/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                学习
+            </a>
+        </span>
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/2/14
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <h2 id="堆和栈"><a href="#堆和栈" class="headerlink" title="堆和栈"></a>堆和栈</h2><p><img src="/photos/C-%E8%BF%9B%E9%98%B6_%E5%A0%86%E5%92%8C%E6%A0%88.jpg"></p>
+<p>栈（Stack)是一块较小的区域，其大小是固定的，一般在1-2MB之间。其中主要存储 本地变量。栈的访问速度非常快。</p>
+<p>堆（Heap)是一块较大的区域，其中主要储存我们用new关键字创建出的类的实例。 它的大小是随着我们的使用不断增长的，最大可达到绝大部分进程可用内存。但是 堆的访问相较栈要慢很多。</p>
+<h2 id="值类型-Value-Type"><a href="#值类型-Value-Type" class="headerlink" title="值类型 Value Type"></a>值类型 Value Type</h2><p>在C#中，数据类型分为两大类：值类型（value type）和引用类型（reference type）。 它们的区别主要在数据的存储方式与变量之间的数据传递方式：</p>
+<p>值类型直接存储数据，并且变量之间是通过拷贝的方式传递的。</p>
+<p>比如int是值类型，那么考虑以下的代码：</p>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
+        
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/C/" style="color: #00a596">C#</a>
+        </span>
+        
+    </div>
+    <a href="/2024/02/14/C-%E8%BF%9B%E9%98%B6/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
     <a href="/2024/01/30/Unity%20Shader%E4%B8%8E%E5%9B%BE%E5%BD%A2%E6%B8%B2%E6%9F%93/">
         <h2 class="post-title">Unity Shader与图形渲染</h2>
     </a>
@@ -242,17 +296,18 @@
 <h3 id="渲染（Rendering）是什么？"><a href="#渲染（Rendering）是什么？" class="headerlink" title="渲染（Rendering）是什么？"></a>渲染（Rendering）是什么？</h3><p>渲染是把物体模型数据转换成屏幕上每个像素的颜色的过程。</p>
 <h3 id="渲染管线（Rendering-Pipeline）"><a href="#渲染管线（Rendering-Pipeline）" class="headerlink" title="渲染管线（Rendering Pipeline）"></a>渲染管线（Rendering Pipeline）</h3><p>“渲染管线”代表一个特定的物体的渲染过程。</p>
 <p>下图是一个标准的渲染管线（橙色的方块是我们可以编程的部分）。</p>
-<p><img src="/photos/%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E7%A4%BA%E6%84%8F%E5%9B%BE.jpg"></p>
+<p>![](&#x2F;photos&#x2F;Unity Shader与图形渲染_渲染管线示意图.jpg)</p>
 <ol>
-<li>Vertex&#x2F;index buffer：模型数据（在计算机中“buffer”（缓冲）指的是一块内存中间&#x2F;一个数组）</li>
+<li>Vertex&#x2F;index buffer：模型数据（在计算机中“buffer”（缓冲）指的是一块内存空间&#x2F;一个数组）</li>
 <li><strong>Vertex Shader</strong>： 顶点着色器</li>
-<li>Tessellation：曲面细分</li>
-<li>Geometry Shader：几何着色器</li>
-<li>Resterization：光栅化</li>
+<li>Tessellation：曲面细分（将一个模型细分为由更多顶点的模型）</li>
+<li>Geometry Shader：几何着色器（对几何数据进行操作，比如添加顶点）</li>
+<li>Resterization：光栅化（将图像映射到像素空间）</li>
 <li><strong>Fragment Shader</strong>：片元着色器</li>
 <li>Color Blending：处理透明度</li>
 <li>Frame Buffer：当前帧所有像素的颜色</li>
 </ol>
+<p>简单的理解一下渲染过程：</p>
 <p>学习参考：</p>
 <p><a target="_blank" rel="noopener" href="https://space.bilibili.com/28471795">Silverjay银鸟工作室个人主页</a></p>
 <p><a target="_blank" rel="noopener" href="https://docs.unity3d.com/cn/2023.2/Manual/UnityManual.html">Unity官方文档</a></p>
@@ -270,12 +325,12 @@
         
         <span class="tag">
             
-            <a href="/tags/%E6%B8%B2%E6%9F%93/" style="color: #03a9f4">渲染</a>
+            <a href="/tags/%E6%B8%B2%E6%9F%93/" style="color: #ffa2c4">渲染</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/Unity/" style="color: #00bcd4">Unity</a>
+            <a href="/tags/Unity/" style="color: #ff7d73">Unity</a>
         </span>
         
     </div>
@@ -346,7 +401,7 @@ void OutArgExample(out int number)
         
         <span class="tag">
             
-            <a href="/tags/C/" style="color: #ff7d73">C#</a>
+            <a href="/tags/C/" style="color: #ffa2c4">C#</a>
         </span>
         
     </div>
@@ -396,7 +451,7 @@ void OutArgExample(out int number)
         
         <span class="tag">
             
-            <a href="/tags/Unity/" style="color: #ff7d73">Unity</a>
+            <a href="/tags/Unity/" style="color: #00bcd4">Unity</a>
         </span>
         
     </div>
@@ -444,7 +499,7 @@ void OutArgExample(out int number)
         
         <span class="tag">
             
-            <a href="/tags/Unity/" style="color: #00bcd4">Unity</a>
+            <a href="/tags/Unity/" style="color: #ffa2c4">Unity</a>
         </span>
         
     </div>
@@ -569,7 +624,7 @@ void OutArgExample(out int number)
         
         <span class="tag">
             
-            <a href="/tags/Unity/" style="color: #00bcd4">Unity</a>
+            <a href="/tags/Unity/" style="color: #00a596">Unity</a>
         </span>
         
     </div>
@@ -617,7 +672,7 @@ void OutArgExample(out int number)
         
         <span class="tag">
             
-            <a href="/tags/Unity/" style="color: #03a9f4">Unity</a>
+            <a href="/tags/Unity/" style="color: #ffa2c4">Unity</a>
         </span>
         
     </div>
@@ -665,7 +720,7 @@ void OutArgExample(out int number)
         
         <span class="tag">
             
-            <a href="/tags/Unity/" style="color: #00bcd4">Unity</a>
+            <a href="/tags/Unity/" style="color: #03a9f4">Unity</a>
         </span>
         
     </div>
