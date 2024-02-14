@@ -199,9 +199,7 @@
 <p>值类型直接存储数据，并且变量之间是通过拷贝的方式传递的。</p>
 <p>比如int是值类型，那么考虑以下的代码：</p>
 <pre><code class="c#">int a=7;
-
 int b=a;
-
 b=-1;
 </code></pre>
 <p>很明显，通过修改b的值是不能影响到a的值的。（尽管我们写了int b &#x3D; a） 这是因为a这个变量中直接存储了‘7’这个数据，而b &#x3D; a实际上是把a中的值拷贝了一份再复制给b的。所以b和a没有直接的联系。</p>
@@ -239,10 +237,110 @@ print(a); // a=1
 ……
 void AddOne(int a)
 &#123;
-a++;
+    a++;
 &#125;
 //参数“a”是通过值传递的，和函数外的“a”完全没关系。
 </code></pre>
+<pre><code class="c#">int a = 1;
+AddOne(ref a);
+print(a); // a=2
+……
+void AddOne(ref int a)
+&#123;
+    a++;
+&#125;
+//有了ref关键字后，参数“a”是通过引用传递的。于是函数内的“a”和函数外的“a”是一个东西了。
+</code></pre>
+<pre><code class="c#">string s = “123”;
+Append(ref s);
+print(s); // s=“123a”
+……
+void Append(ref string s)
+&#123;
+    s+=“a”;
+&#125;
+//同样，这里函数内外的“s”也都是同一个东西了。
+</code></pre>
+<h2 id="装箱与拆箱"><a href="#装箱与拆箱" class="headerlink" title="装箱与拆箱"></a>装箱与拆箱</h2><p>装箱（boxing）：从值类型转换到引用类型；拆箱（unboxing）：从引用类型转换到值类型。</p>
+<p>这是一个性能消耗较大的操作，应尽可能减少。</p>
+<pre><code class="c#">//装箱
+int a = 7;
+object o = a;
+//拆箱
+object o = 42;
+int a = o;
+</code></pre>
+<h2 id="GC：垃圾回收机制"><a href="#GC：垃圾回收机制" class="headerlink" title="GC：垃圾回收机制"></a>GC：垃圾回收机制</h2><p>我们一直在用new来在堆上创建新的物体，但从来不需要主动删除物体。难道内存一直会越来越挤，直到被用完吗？ 当然不！</p>
+<p>为此，C#提供了垃圾回收器（Garbage Collector）来帮助我们清理不需要的内存。</p>
+<p> 堆中的内存是分为3个Generation的！</p>
+<p> Generation 0：主要为临时变量、刚刚被创建的（较小的）类的实例。这里的清理频率是最高的。 </p>
+<p>Generation 1：这是一个缓冲区，从gen0中“存活下来”的物体会被放入gen1。（这说明它们更常被使用）</p>
+<p> Generation 2：从gen1中“存活下来”的物体会被放入gen2。这里主要为长期需要的变量（static变量等），清理的频率最低。 </p>
+<p>当第k个generation被GC清理时，所有小于k的generation也都会被一并清理。 所以当GC清理gen2的时候可以被认为是一个“完整的垃圾回收”。</p>
+<p>一次垃圾清理分为三个阶段。</p>
+<ol>
+<li><p>标记阶段（Marking Phase） 在这个阶段，GC会找出并标记所有仍被引用的物体。（也就是说我们依然在使用它们） </p>
+<p>这是通过一个“引用树”（Reference Tree）实现的：每一个引用类型的数据都“继承”自一个根节点，而这些物体之间的引 用关系构成了一个树状结构。</p>
+</li>
+</ol>
+<pre><code class="c#">void Mark(objectRef o)
+&#123;
+    if (!InUseList.Exists(o))
+    &#123;
+        InUseList.Add(o);
+        List refs = GetAllChildReferences(o);
+        foreach (objectRef childRef in refs)
+        &#123;
+            Mark(childRef);
+        &#125;
+    &#125;
+&#125;
+//可以看到，这是一个递归的操作。我们可以从根节点开始逐渐探索到整个树状结构并将探索到的物体标记为“被使用”。
+//这样，GC就成功找出了所有正在被使用的物体。它们将很幸运地活下来
+</code></pre>
+<ol start="2">
+<li><p>回收阶段（Collection Phase） 在这个阶段，GC会从内存中“删除”所有未被引用的物体。（也就是我们上一步没发现的物体）</p>
+<p> 所谓“删除”，其实并不是真正地抹去数据。实际要简单得多：只需要将该物体所在的内存区域标记为“未使用”就可以了， 这样我们就可以继续使用这块内存做别的事情了。（原来的数据是一直存在的！）</p>
+</li>
+<li><p>压缩阶段（Compacting Phase） 经历过回收阶段的清洗之后，内存中会出现许多空隙（因为我们“删除”了许多物体）。在这个阶段，GC会把存活下来的 物体重新排列，使得它们都“沉到堆底”，从而最小化内存中的空洞。这个过程中物体之间的相对排列顺序是不变的。 到此为止，一次完整的垃圾回收就完成啦！ </p>
+<p>那么，什么时候GC会被触发呢？ </p>
+<p>（1）当可用内存快满时，或内存占用超过GC所设定的某个阈值时 </p>
+<p>（2）当我们手动调用GC.Alloc()方法</p>
+<p>C#中的垃圾回收存在使得我们永远不会为手动清理内存而烦恼，但是因为GC清理是很耗性能的过程，我们需要谨慎地“生产垃圾”。</p>
+</li>
+</ol>
+<pre><code class="c#">string s;
+for(int i; i&lt;1000; i++)
+&#123;
+    i+=“a”;
+&#125;
+//这段代码会产出非常多的垃圾
+</code></pre>
+<pre><code class="c#">for(int i = 0; i &lt; mesh.vertices.Length; i++) 
+&#123;
+    float x, y, z;
+    x = mesh.vertices[i].x;
+    y = mesh.vertices[i].y;
+    z = mesh.vertices[i].z;
+&#125;
+//这段代码也会产出非常多的垃圾。
+//这是因为mesh是一个Unity类，vertices是其中的一个数组。Unity类在每次被访问其中的数组时，都会拷贝一份新的数组给使用者。
+//所以代码生产了4份vertices数组。
+</code></pre>
+<h2 id="C-、Mono-、-NET"><a href="#C-、Mono-、-NET" class="headerlink" title="C# 、Mono 、.NET"></a>C# 、Mono 、.NET</h2><p>.NET是一个微软为Windows推出的程序开发框架。</p>
+<p>它包含了许多常用的类库和一个称为“Common Language Runtime”（CLR） 的运行环境；CLR提供了将C#代码翻译成机器指令的功能、内存管理功能（包括GC）、多线程功能等等。 </p>
+<p>粗略地说，我们把写好的代码一口气丢给.NET处理就可以了。</p>
+<p> .NET虽然很强大，但其主要是运行在Windows上的。于是，为了将.NET适配到多个操作系统，Mono诞生了。</p>
+<p>Mono是.NET的一 种多平台实现，或者说是“另外一个.NET的版本”。</p>
+<p>Mono包含了：C#编译器、Mono Runtime（和CLR类似）、.NET类库和Mono 类库。</p>
+<p> C#是一门用来开发基于.NET框架的软件的编程语言。（Windows：.NET本体；其他平台：Mono） </p>
+<p>Unity作为一个多平台游戏引擎，自然需要Mono的多平台特性。 这也解释了“MonoBahaviour”这个名字的由来：“Mono”指Mono Runtime、“Behaviour”指“物体行为”。所以MonoBehaviour就是 “基于Mono Runtime的物体行为脚本”。</p>
+<p>与大多数编程语言一样，一段C#代码需要通过层层的步骤才能转化为电脑能读懂的机器指令。</p>
+<ol>
+<li>C#代码 这是最高层的，人类易懂的语言。</li>
+<li>IL&#x2F;CIL（Common Intermediate Language，中间语言） 当我们编译C#代码时，编译器会将其转换为跨平台的IL代码。（Windows：.exe）</li>
+<li>机器码（Machine Code） 当我们运行编译好的程序时，CLR会让一个叫做JIT（Just In Time）的编译器将 IL代码编译成当前平台的机器码。这是最底层的，直接被电脑执行的代码。</li>
+</ol>
 
             
         </div>
@@ -257,7 +355,7 @@ a++;
         
         <span class="tag">
             
-            <a href="/tags/C/" style="color: #ff7d73">C#</a>
+            <a href="/tags/C/" style="color: #00a596">C#</a>
         </span>
         
     </div>
@@ -369,12 +467,12 @@ a++;
         
         <span class="tag">
             
-            <a href="/tags/Unity/" style="color: #00a596">Unity</a>
+            <a href="/tags/%E6%B8%B2%E6%9F%93/" style="color: #03a9f4">渲染</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/%E6%B8%B2%E6%9F%93/" style="color: #ff7d73">渲染</a>
+            <a href="/tags/Unity/" style="color: #00a596">Unity</a>
         </span>
         
     </div>
@@ -445,7 +543,7 @@ void OutArgExample(out int number)
         
         <span class="tag">
             
-            <a href="/tags/C/" style="color: #ff7d73">C#</a>
+            <a href="/tags/C/" style="color: #00a596">C#</a>
         </span>
         
     </div>
@@ -495,7 +593,7 @@ void OutArgExample(out int number)
         
         <span class="tag">
             
-            <a href="/tags/Unity/" style="color: #ffa2c4">Unity</a>
+            <a href="/tags/Unity/" style="color: #00a596">Unity</a>
         </span>
         
     </div>
