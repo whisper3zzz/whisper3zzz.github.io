@@ -180,12 +180,12 @@
             
             <span class="tag">
                 
-                <a href="/tags/%E6%B8%B2%E6%9F%93/" style="color: #ff7d73">渲染</a>
+                <a href="/tags/Unity/" style="color: #00a596">Unity</a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/Unity/" style="color: #03a9f4">Unity</a>
+                <a href="/tags/%E6%B8%B2%E6%9F%93/" style="color: #00bcd4">渲染</a>
             </span>
             
         </span>
@@ -193,7 +193,10 @@
     </div>
     
     <div class="content" v-pre>
-        <h1 id="一、Shader与图形渲染"><a href="#一、Shader与图形渲染" class="headerlink" title="一、Shader与图形渲染"></a>一、Shader与图形渲染</h1><h2 id="（一）、基础概念"><a href="#（一）、基础概念" class="headerlink" title="（一）、基础概念"></a>（一）、基础概念</h2><h3 id="材质（Material）是什么？"><a href="#材质（Material）是什么？" class="headerlink" title="材质（Material）是什么？"></a>材质（Material）是什么？</h3><p>一个物体要显示在屏幕上，必须通过一个属于它的材质来实现。材质准确地定义了每个物体在特定情况下显示出来的颜色，比如sprite的默认材质是将图片上每个像素的颜色原封不动的显示出来（我们也可以自定义一个材质去修改原图片的颜色）。</p>
+        <p>Unity Shader学习笔记</p>
+<span id="more"></span>
+
+<h1 id="一、Shader与图形渲染"><a href="#一、Shader与图形渲染" class="headerlink" title="一、Shader与图形渲染"></a>一、Shader与图形渲染</h1><h2 id="（一）、基础概念"><a href="#（一）、基础概念" class="headerlink" title="（一）、基础概念"></a>（一）、基础概念</h2><h3 id="材质（Material）是什么？"><a href="#材质（Material）是什么？" class="headerlink" title="材质（Material）是什么？"></a>材质（Material）是什么？</h3><p>一个物体要显示在屏幕上，必须通过一个属于它的材质来实现。材质准确地定义了每个物体在特定情况下显示出来的颜色，比如sprite的默认材质是将图片上每个像素的颜色原封不动的显示出来（我们也可以自定义一个材质去修改原图片的颜色）。</p>
 <h3 id="实际上，材质的准确定义是着色器的一个实例，那么着色器（Shader）是什么？"><a href="#实际上，材质的准确定义是着色器的一个实例，那么着色器（Shader）是什么？" class="headerlink" title="实际上，材质的准确定义是着色器的一个实例，那么着色器（Shader）是什么？"></a>实际上，材质的准确定义是着色器的一个实例，那么着色器（Shader）是什么？</h3><p>Shader是一个在GPU上面运行的程序（一般的代码是在CPU上运行的），他接受一个物体的形状、颜色等数据，通过一系列的计算来输出每个像素的颜色。</p>
 <p>下面介绍一下一个立方体如何从模型数据变成屏幕上的色彩：</p>
 <p>1.Shader接收到立方体的顶点、法线等数据。</p>
@@ -242,7 +245,7 @@
 <h3 id="渲染（Rendering）是什么？"><a href="#渲染（Rendering）是什么？" class="headerlink" title="渲染（Rendering）是什么？"></a>渲染（Rendering）是什么？</h3><p>渲染是把物体模型数据转换成屏幕上每个像素的颜色的过程。</p>
 <h3 id="渲染管线（Rendering-Pipeline）"><a href="#渲染管线（Rendering-Pipeline）" class="headerlink" title="渲染管线（Rendering Pipeline）"></a>渲染管线（Rendering Pipeline）</h3><p>“渲染管线”代表一个特定的物体的渲染过程。</p>
 <p>下图是一个标准的渲染管线（橙色的方块是我们可以编程的部分）。</p>
-<p>![](&#x2F;photos&#x2F;Unity Shader与图形渲染_渲染管线示意图.jpg)</p>
+<p><img src="/photos/UnityShader%E4%B8%8E%E5%9B%BE%E5%BD%A2%E6%B8%B2%E6%9F%93_%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E7%A4%BA%E6%84%8F%E5%9B%BE.jpg"></p>
 <ol>
 <li>Vertex&#x2F;index buffer：模型数据（在计算机中“buffer”（缓冲）指的是一块内存空间&#x2F;一个数组）</li>
 <li><strong>Vertex Shader</strong>： 顶点着色器</li>
