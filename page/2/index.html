@@ -207,7 +207,7 @@
         
         <span class="tag">
             
-            <a href="/tags/Unity/" style="color: #03a9f4">Unity</a>
+            <a href="/tags/Unity/" style="color: #ffa2c4">Unity</a>
         </span>
         
     </div>
@@ -243,80 +243,81 @@
             
             <p>刚接个活，写了个脚本控制场景简单的光照昼夜变化，记录一下。</p>
 <!-- ... -->
-<pre><code class="c#">    using UnityEngine;
-    public class DayNightCycle : MonoBehaviour
-    &#123;
-        public Light sun;
-        public Light lightEmit;
-        public Light[] indoorLights;
-    
-        public float dayDuration = 60f; // 一天的持续时间（秒）
-    
-         void Update()
-        &#123;
-            // 计算当前时间（0到1之间）
-            float currentTime = Mathf.Repeat(Time.time / dayDuration, 1f);
-    
-            // 根据当前时间设置不同的状态
-            if (currentTime &lt; 0.5f)
-             &#123;
-        		// 白天
-       			 SetDaytime();
-             &#125;
-             else if (currentTime &lt; 0.75f)
-            &#123;
-       			 // 傍晚
-       			 SetEvening();
-            &#125;
-             else
-             &#123;
-       			 // 夜晚
-       			 SetNight();
-            &#125;
-    
-                 // 根据当前时间旋转太阳
-                sun.transform.eulerAngles = new Vector3(currentTime * 360f - 90f, 30f, 0f);
-            &#125;
-    
-            void SetDaytime()
-            &#123;
-                 // 白天状态
-                sun.intensity = 1f;
-                lightEmit.intensity = 1f;
-    
-                 // 关闭室内灯光
-        		foreach (Light indoorLight in indoorLights)
-                 &#123;
-       				 indoorLight.intensity = 0f;
-                 &#125;
-            &#125;
-    
-            void SetEvening()
-            &#123;
-                 // 傍晚状态
-            sun.intensity = 0.5f;
-            lightEmit.intensity = 0.5f;
-    
-                // 部分室内灯光打开
-                foreach (Light indoorLight in indoorLights)
-                &#123;
-                    indoorLight.intensity = 0.5f;
-                &#125;
-            &#125;
-    
-            void SetNight()
-            &#123;
-                // 夜晚状态
-                sun.intensity = 0f;
-                lightEmit.intensity = 0f;
-    
-                // 所有室内灯光打开
-                foreach (Light indoorLight in indoorLights)
-                &#123;
-                    indoorLight.intensity = 1f;
-                &#125;
-            &#125;
-        &#125;
+<pre><code class="language-c#">	using UnityEngine;
+	public class DayNightCycle : MonoBehaviour
+	&#123;
+		public Light sun;
+		public Light lightEmit;
+		public Light[] indoorLights;
+	
+		public float dayDuration = 60f; // 一天的持续时间（秒）
+	
+		 void Update()
+		&#123;
+			// 计算当前时间（0到1之间）
+			float currentTime = Mathf.Repeat(Time.time / dayDuration, 1f);
+	
+			// 根据当前时间设置不同的状态
+			if (currentTime &lt; 0.5f)
+			 &#123;
+	    		// 白天
+	   			 SetDaytime();
+			 &#125;
+			 else if (currentTime &lt; 0.75f)
+			&#123;
+	   			 // 傍晚
+	   			 SetEvening();
+			&#125;
+			 else
+			 &#123;
+	   			 // 夜晚
+	   			 SetNight();
+			&#125;
+	
+				 // 根据当前时间旋转太阳
+				sun.transform.eulerAngles = new Vector3(currentTime * 360f - 90f, 30f, 0f);
+			&#125;
+	
+			void SetDaytime()
+			&#123;
+				 // 白天状态
+				sun.intensity = 1f;
+				lightEmit.intensity = 1f;
+	
+				 // 关闭室内灯光
+	    		foreach (Light indoorLight in indoorLights)
+				 &#123;
+	   				 indoorLight.intensity = 0f;
+				 &#125;
+			&#125;
+	
+			void SetEvening()
+			&#123;
+				 // 傍晚状态
+			sun.intensity = 0.5f;
+			lightEmit.intensity = 0.5f;
+	
+	            // 部分室内灯光打开
+	            foreach (Light indoorLight in indoorLights)
+	            &#123;
+	                indoorLight.intensity = 0.5f;
+	            &#125;
+	        &#125;
+	
+	        void SetNight()
+	        &#123;
+	            // 夜晚状态
+	            sun.intensity = 0f;
+	            lightEmit.intensity = 0f;
+	
+	            // 所有室内灯光打开
+	            foreach (Light indoorLight in indoorLights)
+	            &#123;
+	                indoorLight.intensity = 1f;
+	            &#125;
+	        &#125;
+		&#125;
+
 </code></pre>
 
             
@@ -332,7 +333,7 @@
         
         <span class="tag">
             
-            <a href="/tags/Unity/" style="color: #03a9f4">Unity</a>
+            <a href="/tags/Unity/" style="color: #ffa2c4">Unity</a>
         </span>
         
     </div>
@@ -366,7 +367,8 @@
     <div class="description">
         <div class="content" v-pre>
             
-            <h1 id="一、粒子系统概述"><a href="#一、粒子系统概述" class="headerlink" title="一、粒子系统概述"></a>一、粒子系统概述</h1><p>小型效果诸如击中特效，火焰特效等使用内置粒子系统即可，对于更加绚丽，需要粒子数量更多的，诸如雨雪天气，大爆炸之类的可酌情使用VFX（Visual Effect Graph粒子系统）。</p>
+            <h1>一、粒子系统概述</h1>
+<p>小型效果诸如击中特效，火焰特效等使用内置粒子系统即可，对于更加绚丽，需要粒子数量更多的，诸如雨雪天气，大爆炸之类的可酌情使用VFX（Visual Effect Graph粒子系统）。</p>
             
         </div>
     </div>
@@ -380,7 +382,7 @@
         
         <span class="tag">
             
-            <a href="/tags/Unity/" style="color: #ff7d73">Unity</a>
+            <a href="/tags/Unity/" style="color: #00a596">Unity</a>
         </span>
         
     </div>
@@ -414,7 +416,7 @@
     <div class="description">
         <div class="content" v-pre>
             
-            <h1 id="粒子系统主模块"><a href="#粒子系统主模块" class="headerlink" title="粒子系统主模块"></a>粒子系统主模块</h1>
+            <h1>粒子系统主模块</h1>
             
         </div>
     </div>
@@ -428,7 +430,7 @@
         
         <span class="tag">
             
-            <a href="/tags/Unity/" style="color: #00a596">Unity</a>
+            <a href="/tags/Unity/" style="color: #ffa2c4">Unity</a>
         </span>
         
     </div>
@@ -461,7 +463,8 @@
         </div>
         <div class="name">whisper3zzz</div>
         <div class="description">
-            <p>Description<br>Unity学习者&amp;游戏开发者&amp;Computer Graphics学习者</p>
+            <p>Description<br>
+Unity学习者&amp;游戏开发者&amp;Computer Graphics学习者</p>
 
         </div>
         
