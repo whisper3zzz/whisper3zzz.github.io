@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <title>Categories | whisper3zzzの窝</title>
+    <title>设计模式、对象池、ECS | whisper3zzzの窝</title>
     <meta name="author" content="whisper3zzz" />
     <meta name="description" content="" />
     <meta name="keywords" content="" />
@@ -33,6 +33,12 @@
 <script src="/js/lib/preview.js"></script>
 
 
+
+
+
+
+
+<script src="https://cdn.staticfile.org/twikoo/1.6.22/twikoo.all.min.js"></script>
 
 
 
@@ -144,14 +150,20 @@
 </transition>
 
         <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
-            <div id="archives">
-    
-    <div class="categories-tags">
+            <div class="article">
+    <div>
+        <h1>设计模式、对象池、ECS</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/2/17
+        </span>
         
-        
-        
-        <span>
-            <a href="/categories/%E5%AD%A6%E4%B9%A0/" style="background: #03a9f4">
+        <span class="category">
+            <a href="/categories/%E5%AD%A6%E4%B9%A0/">
                 <span class="icon">
                     <i class="fa-solid fa-bookmark fa-fw"></i>
                 </span>
@@ -160,18 +172,55 @@
         </span>
         
         
-        
-        <span>
-            <a href="/categories/%E6%95%99%E7%A8%8B/" style="background: #00a596">
-                <span class="icon">
-                    <i class="fa-solid fa-bookmark fa-fw"></i>
-                </span>
-                教程
-            </a>
+        <span class="tags">
+            <span class="icon">
+                <i class="fa-solid fa-tags fa-fw"></i>
+            </span>
+            
+            
+            <span class="tag">
+                
+                <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="color: #00bcd4">设计模式</a>
+            </span>
+            
         </span>
         
-        
     </div>
+    
+    <div class="content" v-pre>
+        <h2 id="更好的单例模式">更好的单例模式</h2>
+<p>我们可能会用到多个单例类，对于每个单例类都写上那么一段单例模式代码实在不是很优雅。 我们可以创建一个通用的单例类，并让每个真正用到的单例类继承自它就好了！</p>
+<pre><code class="language-c#">public class Singleton&lt;T&gt; where T : class, new()
+&#123;
+ 	protected Singleton() &#123;&#125;
+	 private static T _inst = null;
+ 	public static T instance =&gt; _inst ?? (_inst = new T());
+    //??运算符：a??b是一种简写方法，等价于a!=null?a:b,即a不为null时返回a，否则返回b
+    //可以直接使用lambda表达式来创建getter
+ 	public static void Clear()
+	&#123;
+	 	_inst = null;
+ 	&#125;
+&#125;
+</code></pre>
+<p>缺点：有时一个全局的访问点可能并不是好事，因为这样会增加类之间的耦合度，降低可读性，提高出错率。其实很多时候我们可以使用static字段与方法来代替单例；当我们过度使用单例时，每当一个单例类出错，很可能会导致整个系统崩溃。</p>
+<h2 id="指令模式-Command-Pattern">指令模式 Command Pattern</h2>
+
+    </div>
+    
+    
+    
+    
+    <div id="comment">
+        <div id="giscus-container" class="giscus"></div>
+    </div>
+    
+    
+    
+    <div id="comment">
+        <div id="twikoo-container"></div>
+    </div>
+    
     
 </div>
 
@@ -203,6 +252,39 @@
         
     </div>
     <script src="/js/main.js"></script>
+    
+    
+<script
+    src="https://giscus.app/client.js"
+    data-repo="whisper3zzz/whisper3zzz.github.io"
+    data-repo-id="R_kgDOK7y0CA"
+    data-category="Announcements"
+    data-category-id="DIC_kwDOK7y0CM4Cb4tb"
+    data-mapping="title"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="bottom"
+    data-theme="light"
+    data-lang="zh-CN"
+    crossorigin
+    async
+></script>
+
+
+
+
+<script>
+    twikoo.init({
+        el: "#twikoo-container",
+        envId: "",
+        region: "",
+        path: location.pathname,
+        lang: "",
+    })
+</script>
+
+
     
 </body>
 </html>

@@ -167,6 +167,71 @@
         
 
 <div class="post">
+    <a href="/2024/02/17/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E5%AF%B9%E8%B1%A1%E6%B1%A0-ECS/">
+        <h2 class="post-title">设计模式、对象池、ECS</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="category">
+            <a href="/categories/%E5%AD%A6%E4%B9%A0/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                学习
+            </a>
+        </span>
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/2/17
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <h2 id="更好的单例模式">更好的单例模式</h2>
+<p>我们可能会用到多个单例类，对于每个单例类都写上那么一段单例模式代码实在不是很优雅。 我们可以创建一个通用的单例类，并让每个真正用到的单例类继承自它就好了！</p>
+<pre><code class="language-c#">public class Singleton&lt;T&gt; where T : class, new()
+&#123;
+ 	protected Singleton() &#123;&#125;
+	 private static T _inst = null;
+ 	public static T instance =&gt; _inst ?? (_inst = new T());
+    //??运算符：a??b是一种简写方法，等价于a!=null?a:b,即a不为null时返回a，否则返回b
+    //可以直接使用lambda表达式来创建getter
+ 	public static void Clear()
+	&#123;
+	 	_inst = null;
+ 	&#125;
+&#125;
+</code></pre>
+<p>缺点：有时一个全局的访问点可能并不是好事，因为这样会增加类之间的耦合度，降低可读性，提高出错率。其实很多时候我们可以使用static字段与方法来代替单例；当我们过度使用单例时，每当一个单例类出错，很可能会导致整个系统崩溃。</p>
+<h2 id="指令模式-Command-Pattern">指令模式 Command Pattern</h2>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
+        
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="color: #00a596">设计模式</a>
+        </span>
+        
+    </div>
+    <a href="/2024/02/17/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E5%AF%B9%E8%B1%A1%E6%B1%A0-ECS/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
     <a href="/2024/02/16/%E6%B8%B8%E6%88%8F%E8%AE%BE%E8%AE%A1-%E7%8E%A9%E5%AE%B6%E4%BB%A3%E5%85%A5/">
         <h2 class="post-title">游戏设计_玩家代入</h2>
     </a>
@@ -213,12 +278,12 @@
         
         <span class="tag">
             
-            <a href="/tags/%E6%B8%B8%E6%88%8F%E8%AE%BE%E8%AE%A1/" style="color: #ff7d73">游戏设计</a>
+            <a href="/tags/%E6%B8%B8%E6%88%8F%E8%AE%BE%E8%AE%A1/" style="color: #00bcd4">游戏设计</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/%E9%9A%8F%E7%AC%94/" style="color: #ffa2c4">随笔</a>
+            <a href="/tags/%E9%9A%8F%E7%AC%94/" style="color: #00a596">随笔</a>
         </span>
         
     </div>
@@ -831,7 +896,7 @@ StartCoroutine(DelayedCall(() =&gt;
         
         <span class="tag">
             
-            <a href="/tags/C/" style="color: #00bcd4">C#</a>
+            <a href="/tags/C/" style="color: #ffa2c4">C#</a>
         </span>
         
     </div>
@@ -879,12 +944,12 @@ StartCoroutine(DelayedCall(() =&gt;
         
         <span class="tag">
             
-            <a href="/tags/%E6%B8%B2%E6%9F%93/" style="color: #03a9f4">渲染</a>
+            <a href="/tags/%E6%B8%B2%E6%9F%93/" style="color: #00a596">渲染</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/Unity/" style="color: #ff7d73">Unity</a>
+            <a href="/tags/Unity/" style="color: #03a9f4">Unity</a>
         </span>
         
     </div>
@@ -959,61 +1024,11 @@ void OutArgExample(out int number)
         
         <span class="tag">
             
-            <a href="/tags/C/" style="color: #ffa2c4">C#</a>
+            <a href="/tags/C/" style="color: #ff7d73">C#</a>
         </span>
         
     </div>
     <a href="/2024/01/21/C-%E5%BC%95%E7%94%A8%E5%8F%82%E6%95%B0%E7%9A%84%E4%BF%AE%E9%A5%B0%E7%AC%A6/" class="go-post">阅读全文</a>
-</div>
-
-<div class="post">
-    <a href="/2024/01/21/transform-forward%E5%92%8CVector3-forward%E7%9A%84%E5%8C%BA%E5%88%AB/">
-        <h2 class="post-title">transform.forward和Vector3.forward的区别</h2>
-    </a>
-    <div class="category-and-date">
-        
-        <span class="category">
-            <a href="/categories/%E5%AD%A6%E4%B9%A0/">
-                <span class="icon">
-                    <i class="fa-solid fa-bookmark fa-fw"></i>
-                </span>
-                学习
-            </a>
-        </span>
-        
-        <span class="date">
-            <span class="icon">
-                <i class="fa-solid fa-calendar fa-fw"></i>
-            </span>
-            2024/1/21
-        </span>
-        
-        
-    </div>
-    <div class="description">
-        <div class="content" v-pre>
-            
-            <p>transform.forward：其值是物体局部坐标的Z轴在世界坐标的指向，不一定是（0,0,1）。</p>
-<p>Vector3.forward：其值永远等于（0,0,1），是世界坐标，是不变的。</p>
-
-            
-        </div>
-    </div>
-    <div class="post-tags">
-        
-        <span class="icon">
-            <i class="fa-solid fa-tags fa-fw"></i>
-        </span>
-        
-        
-        
-        <span class="tag">
-            
-            <a href="/tags/Unity/" style="color: #ffa2c4">Unity</a>
-        </span>
-        
-    </div>
-    <a href="/2024/01/21/transform-forward%E5%92%8CVector3-forward%E7%9A%84%E5%8C%BA%E5%88%AB/" class="go-post">阅读全文</a>
 </div>
 
 
