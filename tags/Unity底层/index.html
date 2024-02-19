@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <title>游戏设计_玩家代入 | whisper3zzzの窝</title>
+    <title>Tags: Unity底层 | whisper3zzzの窝</title>
     <meta name="author" content="whisper3zzz" />
     <meta name="description" content="" />
     <meta name="keywords" content="" />
@@ -33,12 +33,6 @@
 <script src="/js/lib/preview.js"></script>
 
 
-
-
-
-
-
-<script src="https://cdn.staticfile.org/twikoo/1.6.22/twikoo.all.min.js"></script>
 
 
 
@@ -150,73 +144,148 @@
 </transition>
 
         <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
-            <div class="article">
-    <div>
-        <h1>游戏设计_玩家代入</h1>
-    </div>
-    <div class="info">
-        <span class="date">
-            <span class="icon">
-                <i class="fa-solid fa-calendar fa-fw"></i>
-            </span>
-            2024/2/16
-        </span>
+            <div id="archives">
+    
+    <div class="categories-tags">
         
-        <span class="category">
-            <a href="/categories/%E5%AD%A6%E4%B9%A0/">
+        
+        
+        <span>
+            <a href="/tags/C/" style="background: #00a596">
                 <span class="icon">
-                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                    <i class="fa-solid fa-tags fa-fw"></i>
                 </span>
-                学习
+                C#
             </a>
         </span>
         
         
-        <span class="tags">
-            <span class="icon">
-                <i class="fa-solid fa-tags fa-fw"></i>
-            </span>
-            
-            
-            <span class="tag">
-                
-                <a href="/tags/%E6%B8%B8%E6%88%8F%E8%AE%BE%E8%AE%A1/" style="color: #00a596">游戏设计</a>
-            </span>
-            
-            <span class="tag">
-                
-                <a href="/tags/%E9%9A%8F%E7%AC%94/" style="color: #ff7d73">随笔</a>
-            </span>
-            
+        
+        <span>
+            <a href="/tags/Unity/" style="background: #00bcd4">
+                <span class="icon">
+                    <i class="fa-solid fa-tags fa-fw"></i>
+                </span>
+                Unity
+            </a>
         </span>
+        
+        
+        
+        <span>
+            <a href="/tags/%E6%B8%B2%E6%9F%93/" style="background: #03a9f4">
+                <span class="icon">
+                    <i class="fa-solid fa-tags fa-fw"></i>
+                </span>
+                渲染
+            </a>
+        </span>
+        
+        
+        
+        <span>
+            <a href="/tags/%E6%B8%B8%E6%88%8F%E8%AE%BE%E8%AE%A1/" style="background: #ff7d73">
+                <span class="icon">
+                    <i class="fa-solid fa-tags fa-fw"></i>
+                </span>
+                游戏设计
+            </a>
+        </span>
+        
+        
+        
+        <span>
+            <a href="/tags/%E9%9A%8F%E7%AC%94/" style="background: #ffa2c4">
+                <span class="icon">
+                    <i class="fa-solid fa-tags fa-fw"></i>
+                </span>
+                随笔
+            </a>
+        </span>
+        
+        
+        
+        <span>
+            <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="background: #00bcd4">
+                <span class="icon">
+                    <i class="fa-solid fa-tags fa-fw"></i>
+                </span>
+                设计模式
+            </a>
+        </span>
+        
+        
+        
+        <span>
+            <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="background: #ff7d73">
+                <span class="icon">
+                    <i class="fa-solid fa-tags fa-fw"></i>
+                </span>
+                数据结构
+            </a>
+        </span>
+        
+        
+        
+        <span>
+            <a href="/tags/Unity%E5%BA%95%E5%B1%82/" style="background: linear-gradient(120deg, #9abbf7 0%, #ffbbf4 100%)">
+                <span class="icon">
+                    <i class="fa-solid fa-tags fa-fw"></i>
+                </span>
+                Unity底层
+            </a>
+        </span>
+        
+        
+        
         
     </div>
     
-    <div class="content" v-pre>
-        <p>玩家的代入机制是每个游戏设计者都需要考虑的重要因素。对于一个游戏的剧情或想要表达的观点是否需要玩家的代入，则取决于游戏的设计理念和目标受众。每个人都有自己的『代入阈值』，即对游戏角色或情节产生情感共鸣的程度。有些玩家可以轻松地将自己投射到游戏世界中，而另一些则更倾向于以观望者的身份体验游戏，只是简单地欣赏故事。</p>
-<p>个人认为，对于『代入』的定义可以更加宽泛一些。玩家在游戏中产生对角色的情感共鸣也可以被视为一种代入。然而，要让玩家完全将自己视为游戏中所操控的角色是不现实的，因为每个人的生活经历和人生观都不同。因此，设计出一个能够让所有玩家都完全代入的角色是不可能的。但如果游戏中的角色具有某些与玩家相似的特质或行为逻辑，玩家就更容易产生代入感。如果设计的目的是追求“适配”更多玩家，那么所设计的角色可能会显得比较模糊或者平面化。</p>
-<p>从游戏设计的角度来看，『捏脸』环节是增强玩家代入感的重要方式之一。技能树的设计也可以被看作是『捏脸』的延伸，它给予玩家一定的自由度来塑造自己操控的角色。</p>
-<p>然而，『对话』设计则可能会减弱玩家的代入感，因为预设的对话选项不一定与玩家的期待一致。增加更多的对话选项可以在一定程度上缓解这种影响，尤其是如果这些选项与玩家的现实经验相关。另一方面，为什么有些游戏中的主角是哑巴，这种设计决策并不难理解，因为游戏开发者可能意识到给主角配音与玩家自己的想象之间可能存在出入。这就像某些小说改编成影视作品后，原著粉丝对于配音或选角不满意一样。因此，让主角保持沉默，留给玩家更大的想象空间，可能是制作方的一种策略选择。</p>
-<p>其实，一个游戏的代入感强度并不是判断其优劣的唯一标准。有些游戏的设计目的是通过共情来给玩家情感上的深刻体验，这种游戏通常会注重营造强烈的代入感，以便让玩家更深刻地参与到游戏世界中。而有些游戏的核心机制可能更注重其他方面，比如挑战性、探索性或者竞技性，因此对代入感的设计并不会过多考虑。</p>
-<p>每款游戏都有其独特的设计理念和目标受众，因此需要根据具体情况来决定是否强调代入感。有些游戏可能更注重让玩家在游戏中产生情感共鸣，而有些游戏可能更注重玩家的技巧和策略。在评价游戏优劣时，需要考虑其整体设计和玩家体验，而不仅仅是代入感的强弱。</p>
-<p>···待续</p>
-<p>-分析《崩坏3》1.0和2.0主线叙事区别</p>
-
+    <div class="timeline">
+        <div class="timeline-tail"></div>
+        <div class="timeline-content">
+            <div class="item-time">2024/2/19</div>
+            <a href="/2024/02/19/%E5%8D%8F%E7%A8%8B%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
+                <h3>协程与数据结构</h3>
+            </a>
+            <div class="info">
+                
+                <span class="category">
+                    <a href="/categories/%E5%AD%A6%E4%B9%A0/">
+                        <span class="icon">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </span>
+                        学习
+                    </a>
+                </span>
+                
+                
+                <span class="tags">
+                    <span class="icon">
+                        <i class="fa-solid fa-tags fa-fw"></i>
+                    </span>
+                    
+                    
+                    <span class="tag">
+                        
+                        <a href="/tags/C/" style="color: #ffa2c4">C#</a>
+                    </span>
+                    
+                    <span class="tag">
+                        
+                        <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="color: #00a596">数据结构</a>
+                    </span>
+                    
+                    <span class="tag">
+                        
+                        <a href="/tags/Unity%E5%BA%95%E5%B1%82/" style="color: #ff7d73">Unity底层</a>
+                    </span>
+                    
+                </span>
+                
+            </div>
+        </div>
     </div>
-    
-    
-    
-    
-    <div id="comment">
-        <div id="giscus-container" class="giscus"></div>
-    </div>
-    
-    
-    
-    <div id="comment">
-        <div id="twikoo-container"></div>
-    </div>
-    
     
 </div>
 
@@ -248,39 +317,6 @@
         
     </div>
     <script src="/js/main.js"></script>
-    
-    
-<script
-    src="https://giscus.app/client.js"
-    data-repo="whisper3zzz/whisper3zzz.github.io"
-    data-repo-id="R_kgDOK7y0CA"
-    data-category="Announcements"
-    data-category-id="DIC_kwDOK7y0CM4Cb4tb"
-    data-mapping="title"
-    data-strict="0"
-    data-reactions-enabled="1"
-    data-emit-metadata="0"
-    data-input-position="bottom"
-    data-theme="light"
-    data-lang="zh-CN"
-    crossorigin
-    async
-></script>
-
-
-
-
-<script>
-    twikoo.init({
-        el: "#twikoo-container",
-        envId: "",
-        region: "",
-        path: location.pathname,
-        lang: "",
-    })
-</script>
-
-
     
 </body>
 </html>
