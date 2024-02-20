@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <title>Unity粒子系统（2） | whisper3zzzの窝</title>
+    <title>Unity Shader与图形渲染（3） | whisper3zzzの窝</title>
     <meta name="author" content="whisper3zzz" />
     <meta name="description" content="" />
     <meta name="keywords" content="" />
@@ -152,14 +152,14 @@
         <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
             <div class="article">
     <div>
-        <h1>Unity粒子系统（2）</h1>
+        <h1>Unity Shader与图形渲染（3）</h1>
     </div>
     <div class="info">
         <span class="date">
             <span class="icon">
                 <i class="fa-solid fa-calendar fa-fw"></i>
             </span>
-            2023/12/20
+            2024/2/20
         </span>
         
         <span class="category">
@@ -180,6 +180,11 @@
             
             <span class="tag">
                 
+                <a href="/tags/%E6%B8%B2%E6%9F%93/" style="color: #00a596">渲染</a>
+            </span>
+            
+            <span class="tag">
+                
                 <a href="/tags/Unity/" style="color: #03a9f4">Unity</a>
             </span>
             
@@ -188,63 +193,8 @@
     </div>
     
     <div class="content" v-pre>
-        <h1>粒子系统主模块</h1>
+        <p>空间变换与Shader结构</p>
 <span id="more"></span>
-<h2 id="参数详解">参数详解</h2>
-<h6 id="Duration"><strong>Duration</strong></h6>
-<p>粒子系统运行的时间长度（秒）</p>
-<h5 id="Looping"><strong>Looping</strong></h5>
-<p>若启用此属性，系统将重复播放粒子，也就是开启循环模式（无论是Scene窗口还是运行时）</p>
-<h5 id="Prewarm">Prewarm</h5>
-<p>若启用此属性，则粒子系统会在播放前进行预加载，比如漫天星河有3000颗粒子，但按照粒子发射速率，估计要好多秒，勾选此项，一旦播放就会达到预设置的Max Particles</p>
-<p><strong>Start Delay</strong></p>
-<p>粒子系统发射前将延迟播放一段时间（秒）</p>
-<p><strong>Start Lifetime</strong></p>
-<p>每个粒子的初始生命周期（秒），指粒子从被创建到被销毁的时间</p>
-<p><strong>Start Speed</strong></p>
-<p>粒子初始速度</p>
-<p><strong>3D Start Size</strong></p>
-<p>控制每个轴的大小</p>
-<p><strong>Start Size</strong></p>
-<p>初始大小，按照定值等比缩放</p>
-<p><strong>3D Start Rotation</strong></p>
-<p>控制每个轴的旋转角度</p>
-<p><strong>Start Rotation</strong></p>
-<p>初始旋转角度，按照定值等比缩放</p>
-<p><strong>Flip Rotation</strong></p>
-<p>使得一些粒子以相反的方向旋转，值取0-1之间，数值越大，翻转越多</p>
-<p><em>这个属性和上一个Start Rotation是一对，如果上一个属性有值，比如45，那么下面这个属性就是让一些<strong>粒子</strong>反转度数为-45，如果这里的值是0.1，那就是让10%的粒子反转，如果值为1，则是全部反转</em></p>
-<p><strong>Start Color</strong></p>
-<p>初始颜色</p>
-<p><strong>Gravity Modifier</strong></p>
-<p>物理系统的重力值</p>
-<p><strong>Simulation Space</strong></p>
-<p>粒子系统的参照坐标，世界，局部，自定义</p>
-<p><strong>Delta Time</strong></p>
-<p>在 Scaled 和 Unscaled 之间进行选择，其中的 Scaled 使用 Time Scale 值，而 Unscaled 将忽略该值</p>
-<p><strong>Scaling Mode</strong></p>
-<p>有三个选项</p>
-<p>1.Hierarchy：粒子随着父级进行缩放</p>
-<p>2.Local：忽略父级缩放</p>
-<p>3.Shape：整体缩放是按照当前粒子的发射形状（Shape）进行缩放的，不会影响粒子本身的缩放，选Local会影响粒子本身的缩放。</p>
-<p><strong>Play On Awake</strong></p>
-<p>启用则粒子被创建时候就开始播放</p>
-<p><strong>Emitter Velocity</strong></p>
-<p>发射器速率，使用那种组件来计算速度（.translate，.velocity）</p>
-<p>Rigidbody</p>
-<p>Transform</p>
-<p><strong>Max Particles</strong></p>
-<p>同时存在的最大粒子数，达到上限时，移除活的最久的粒子</p>
-<p><strong>Auto Random Seed</strong></p>
-<p>启用则随机发射粒子，每次初始化的时候，粒子位置不一样</p>
-<p><strong>Random Seed</strong></p>
-<p>禁用<strong>Auto Random Seed</strong>，则此值生效，用于创建唯一的可重复的粒子效果</p>
-<p><strong>Stop Action</strong></p>
-<p>当粒子特效不在摄像机范围内时是否暂停粒子系统模拟 1.Automatic 自动模式（如果是单次播放则不暂停，如果是循环（Looping）播放则暂停模拟） 2.Pause And Catch-up 暂停但是没有完全暂停（暂停模拟，但当再次注视时则演算出它应该在的位置） 3.Pause 暂停模拟 4.Always Simulate 总是模拟</p>
-<p><strong>Ring Buffer</strong> <strong>Mode</strong></p>
-<p>粒子不会在它们的生命周期结束时死亡，而是会一直存活到最大粒子缓冲区（Max Particles）满，届时新的粒子将取代旧的粒子。 1.Disabled 禁用该模式 2.Pause Until Replaced 暂停直到替换</p>
-<p>在旧粒子的生命周期结束时暂停它们，直到达到最大粒子限制，此时系统会回收它们，因此它们会重新显示为新粒子 3.Loop Until Replaced 循环直到替换</p>
-<p>在其生命周期结束时，粒子会回退到其生命周期的指定比例，直到达到最大粒子限制，此时系统会回收它们，因此它们会重新出现为新粒子</p>
 
     </div>
     
