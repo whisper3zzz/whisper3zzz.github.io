@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <title>Unity Shader与图形渲染 | whisper3zzzの窝</title>
+    <title>Unity Shader与图形渲染（1） | whisper3zzzの窝</title>
     <meta name="author" content="whisper3zzz" />
     <meta name="description" content="" />
     <meta name="keywords" content="" />
@@ -152,7 +152,7 @@
         <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
             <div class="article">
     <div>
-        <h1>Unity Shader与图形渲染</h1>
+        <h1>Unity Shader与图形渲染（1）</h1>
     </div>
     <div class="info">
         <span class="date">
@@ -180,12 +180,12 @@
             
             <span class="tag">
                 
-                <a href="/tags/%E6%B8%B2%E6%9F%93/" style="color: #ff7d73">渲染</a>
+                <a href="/tags/Unity/" style="color: #03a9f4">Unity</a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/Unity/" style="color: #00a596">Unity</a>
+                <a href="/tags/%E6%B8%B2%E6%9F%93/" style="color: #ffa2c4">渲染</a>
             </span>
             
         </span>
@@ -195,7 +195,7 @@
     <div class="content" v-pre>
         <p>Unity Shader学习笔记</p>
 <span id="more"></span>
-<h1>一、Shader与图形渲染</h1>
+<h1>Shader与图形渲染</h1>
 <h2 id="（一）、基础概念">（一）、基础概念</h2>
 <h3 id="材质（Material）是什么？">材质（Material）是什么？</h3>
 <p>一个物体要显示在屏幕上，必须通过一个属于它的材质来实现。材质准确地定义了每个物体在特定情况下显示出来的颜色，比如sprite的默认材质是将图片上每个像素的颜色原封不动的显示出来（我们也可以自定义一个材质去修改原图片的颜色）。</p>
@@ -261,7 +261,7 @@
 <h3 id="渲染管线（Rendering-Pipeline）">渲染管线（Rendering Pipeline）</h3>
 <p>“渲染管线”代表一个特定的物体的渲染过程。</p>
 <p>下图是一个标准的渲染管线（橙色的方块是我们可以编程的部分）。</p>
-<p><img src="/photos/UnityShader%E4%B8%8E%E5%9B%BE%E5%BD%A2%E6%B8%B2%E6%9F%93_%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E7%A4%BA%E6%84%8F%E5%9B%BE.jpg" alt=""></p>
+<p><img src="/photos/UnityShader%E4%B8%8E%E5%9B%BE%E5%BD%A2%E6%B8%B2%E6%9F%93%EF%BC%881%EF%BC%89_%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E7%A4%BA%E6%84%8F%E5%9B%BE.jpg" alt=""></p>
 <ol>
 <li>Vertex/index buffer：模型数据（在计算机中“buffer”（缓冲）指的是一块内存空间/一个数组）</li>
 <li><strong>Vertex Shader</strong>： 顶点着色器</li>
@@ -273,6 +273,13 @@
 <li>Frame Buffer：当前帧所有像素的颜色</li>
 </ol>
 <p>简单的理解一下渲染过程：</p>
+<ol>
+<li>（Vertex Buffer）对于一个模型，我们收到很多顶点的数据。每个顶点包括位置，法线，颜色等等。</li>
+<li>（Vertex Shader）接着，我们对每一个顶点执行一段程序。比如“向右移动一个单位”。</li>
+<li>（Interpolation）我们已经完成了顶点的处理，但顶点之间的三角形是由很多像素组成的。我们需要将这些顶点的数据平 均分配给它旁边的像素。</li>
+<li>（Fragment Shader）现在我们对每一个像素执行一段程序。比如“将这个像素染成红色”。</li>
+<li>最后，将这些像素的颜色显示在屏幕上。</li>
+</ol>
 <p>学习参考：</p>
 <p><a target="_blank" rel="noopener" href="https://space.bilibili.com/28471795">Silverjay银鸟工作室个人主页</a></p>
 <p><a target="_blank" rel="noopener" href="https://docs.unity3d.com/cn/2023.2/Manual/UnityManual.html">Unity官方文档</a></p>
