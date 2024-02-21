@@ -180,12 +180,12 @@
             
             <span class="tag">
                 
-                <a href="/tags/%E6%B8%B2%E6%9F%93/" style="color: #03a9f4">渲染</a>
+                <a href="/tags/%E6%B8%B2%E6%9F%93/" style="color: #00a596">渲染</a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/Unity/" style="color: #00a596">Unity</a>
+                <a href="/tags/Unity/" style="color: #00bcd4">Unity</a>
             </span>
             
         </span>
@@ -210,9 +210,17 @@
 <h3 id="纹理（Texture）又是什么？">纹理（Texture）又是什么？</h3>
 <p>Texture就是一张图片，比如人物衣服的颜色。Texture在渲染流程中是Shader中的一个“texture”类型的变量，好比如熟知的float、vector等。</p>
 <p>那Shader是怎么显示出木箱上的木纹的？</p>
+<ul>
+<li>
 <p>······</p>
+</li>
+<li>
 <p>3.Shader对于每个像素染色。</p>
+</li>
+<li>
 <p>4.Shader读取texture中每个像素的颜色，并将颜色给到<strong>对应</strong>的物体像素上。</p>
+</li>
+</ul>
 <h3 id="Material的真面目">Material的真面目</h3>
 <p>现在我们有一个Shader，其中有一个变量是“物体的颜色”，假设现在我们要用它去渲染五个不同颜色的物体，那需要有五个不同的Shader吗？</p>
 <p>显然这样不合理，我们应该以Shader为模板，去衍生一系列它的实例，然后修改各个实例的颜色即可（就好像创建C#的类的实例）</p>
