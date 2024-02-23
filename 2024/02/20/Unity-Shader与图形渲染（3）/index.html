@@ -185,7 +185,7 @@
             
             <span class="tag">
                 
-                <a href="/tags/Unity/" style="color: #03a9f4">Unity</a>
+                <a href="/tags/Unity/" style="color: #00a596">Unity</a>
             </span>
             
         </span>
@@ -221,11 +221,11 @@
 <p><img src="/photos/UnityShader%E4%B8%8E%E5%9B%BE%E5%BD%A2%E6%B8%B2%E6%9F%93%EF%BC%883%EF%BC%89_V.jpg" alt=""></p>
 <p>视角坐标（或相机坐标）是以相机自身中心为原点，且Z轴指向相机方向的坐标系。在这一步中，将模型的每一个顶点位置乘以相机的View Matrix。 这样，就可以从相机的视角看向物体了。</p>
 <h3 id="Projection-Transformation">Projection Transformation</h3>
-<p>在空间变换的第三步，我们需要把相机坐标转换为剪裁坐标。</p>
+<p>在空间变换的第三步，需要把相机坐标转换为剪裁坐标。</p>
 <p><img src="/photos/UnityShader%E4%B8%8E%E5%9B%BE%E5%BD%A2%E6%B8%B2%E6%9F%93%EF%BC%883%EF%BC%89_P.jpg" alt=""></p>
 <p>剪裁坐标是以相机自身中心为原点，且具有投影的坐标系。投影分为两种：<strong>正交投影</strong>（Orthographic Projection） 和<strong>透视投影</strong>（Perspective Projection）。</p>
 <p>在这一步中，将模型的每一个顶点位置乘以相机的Projection Matrix。 这样，就拥有一个正确显示在屏幕上的物体了。</p>
-<p>Model Matrix、View Matrix和Projection Matrix当然也可以复合，只要把这三个矩阵从左到右相乘，我们就可以得到一个MVP Matrix。它能将一个点从模型空间直接变换至剪裁空间。以上的MVP变换，其实就是<strong>Vertex Shader</strong>（顶点着色器）的主要工作。</p>
+<p>Model Matrix、View Matrix和Projection Matrix当然也可以复合，只要把这三个矩阵从左到右相乘，就可以得到一个MVP Matrix。它能将一个点从模型空间直接变换至剪裁空间。以上的MVP变换，其实就是<strong>Vertex Shader</strong>（顶点着色器）的主要工作。</p>
 <p>在Unity的vertex shader中，可以通过这个语句完成MVP变换：<code>o.vertex = mul(UNITY_MATRIX_MVP, v.vertex)</code>mul是矩阵乘法函数</p>
 <h1>Unity Shader结构</h1>
 <ul>
