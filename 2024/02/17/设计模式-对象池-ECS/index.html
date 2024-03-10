@@ -180,7 +180,7 @@
             
             <span class="tag">
                 
-                <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="color: #ffa2c4">设计模式</a>
+                <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="color: #03a9f4">设计模式</a>
             </span>
             
         </span>
@@ -188,7 +188,9 @@
     </div>
     
     <div class="content" v-pre>
-        <h1>设计模式</h1>
+        <p>设计模式、对象池、ECS</p>
+<span id="more"></span>
+<h1>设计模式</h1>
 <h2 id="更好的单例模式">更好的单例模式</h2>
 <p>我们可能会用到多个单例类，对于每个单例类都写上那么一段单例模式代码实在不是很优雅。 我们可以创建一个通用的单例类，并让每个真正用到的单例类继承自它就好了！</p>
 <pre><code class="language-c#">public class Singleton&lt;T&gt; where T : class, new()

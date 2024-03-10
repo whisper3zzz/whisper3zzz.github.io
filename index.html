@@ -213,7 +213,7 @@
         
         <span class="tag">
             
-            <a href="/tags/Unity/" style="color: #00a596">Unity</a>
+            <a href="/tags/Unity/" style="color: #ffa2c4">Unity</a>
         </span>
         
     </div>
@@ -261,12 +261,12 @@
         
         <span class="tag">
             
-            <a href="/tags/%E6%B8%B2%E6%9F%93/" style="color: #00a596">渲染</a>
+            <a href="/tags/%E6%B8%B2%E6%9F%93/" style="color: #ffa2c4">渲染</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/Unity/" style="color: #00bcd4">Unity</a>
+            <a href="/tags/Unity/" style="color: #03a9f4">Unity</a>
         </span>
         
     </div>
@@ -319,7 +319,7 @@
         
         <span class="tag">
             
-            <a href="/tags/Unity/" style="color: #00a596">Unity</a>
+            <a href="/tags/Unity/" style="color: #ff7d73">Unity</a>
         </span>
         
     </div>
@@ -367,7 +367,7 @@
         
         <span class="tag">
             
-            <a href="/tags/C/" style="color: #03a9f4">C#</a>
+            <a href="/tags/C/" style="color: #ff7d73">C#</a>
         </span>
         
         <span class="tag">
@@ -377,7 +377,7 @@
         
         <span class="tag">
             
-            <a href="/tags/Unity%E5%BA%95%E5%B1%82/" style="color: #03a9f4">Unity底层</a>
+            <a href="/tags/Unity%E5%BA%95%E5%B1%82/" style="color: #ff7d73">Unity底层</a>
         </span>
         
     </div>
@@ -411,179 +411,7 @@
     <div class="description">
         <div class="content" v-pre>
             
-            <h1>设计模式</h1>
-<h2 id="更好的单例模式">更好的单例模式</h2>
-<p>我们可能会用到多个单例类，对于每个单例类都写上那么一段单例模式代码实在不是很优雅。 我们可以创建一个通用的单例类，并让每个真正用到的单例类继承自它就好了！</p>
-<pre><code class="language-c#">public class Singleton&lt;T&gt; where T : class, new()
-&#123;
- 	protected Singleton() &#123;&#125;
-	 private static T _inst = null;
- 	public static T instance =&gt; _inst ?? (_inst = new T());
-    //??运算符：a??b是一种简写方法，等价于a!=null?a:b,即a不为null时返回a，否则返回b
-    //可以直接使用lambda表达式来创建getter
- 	public static void Clear()
-	&#123;
-	 	_inst = null;
- 	&#125;
-&#125;
-</code></pre>
-<p>缺点：有时一个全局的访问点可能并不是好事，因为这样会增加类之间的耦合度，降低可读性，提高出错率。其实很多时候我们可以使用static字段与方法来代替单例；当我们过度使用单例时，每当一个单例类出错，很可能会导致整个系统崩溃。</p>
-<h2 id="指令模式-Command-Pattern">指令模式 Command Pattern</h2>
-<p>将我们的每一个操作抽象成一个指令，并给每个指令一个“撤销”的操作。</p>
-<p>『解耦』、『撤销功能』</p>
-<pre><code class="language-c#">public interface ICommand//公共的指令接口
-&#123;
-	void Execute();
-	void Undo();
-&#125;
-public class ConcreteCommand : ICommand
-    //每一个实际的指令都是一个继承自Icommand接口的类。执行该指令时调用Execute方法，撤销时调用Undo方法。
-&#123;
-	public void Execute()//执行指令
-    &#123;
-	···
-	&#125;
-	public void Undo()//撤销指令
-    &#123;
-	···
- 	&#125;
-&#125;
-</code></pre>
-<p><img src="/photos/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E3%80%81%E5%AF%B9%E8%B1%A1%E6%B1%A0%E3%80%81ECS_%E6%8C%87%E4%BB%A4%E6%A8%A1%E5%BC%8F.jpg" alt=""></p>
-<ul>
-<li><strong>（1）指令接口（Command Interface）</strong></li>
-<li><strong>（2）指令类（Concrete Command）</strong></li>
-<li>（3）调用者（Invoker）：用来存储、调用指令，类似一个“Manager”</li>
-<li>（4）接收者（Receiver）：用来真正实现一个指令</li>
-<li><strong>（5）使用者（Client）：我们在这里创建指令并执行它们</strong></li>
-</ul>
-<h2 id="工厂模式-Factory-Pattern">工厂模式 Factory Pattern</h2>
-<pre><code class="language-c#">public abstract class Animal
-&#123;
-	public abstract string Speak();
-&#125;
-public class Dog : Animal
-&#123;
-    public override string Speak()
-    &#123;
-    return &quot;Woof&quot;;
-	&#125;
-&#125;
-public class Cat : Animal
-&#123;
-    public override string Speak()
-    &#123;
-    return &quot;Meow&quot;;
-    &#125;
-&#125;
-//工厂类
-public static class AnimalFactory
-&#123;
-     public static Animal CreateAnimal(string type)
-     &#123;
-         switch (type)
-         &#123;
-             case &quot;Dog&quot;:
-             return new Dog();
-             case &quot;Cat&quot;:
-             return new Cat();
-             default:
-             throw new NotSupportedException();
-         &#125;
-     &#125;
-&#125;
-//将工厂继续抽象，得到一个生成工厂的接口，原本的工厂只能生产单一的物品，比如我要生成黑猫和白猫的话就很麻烦
-public interface IAnimalFactory//这样可以得到多个工厂
-&#123;
-     Dog CreateDog();
-     Cat CreateCat();
-&#125;
-public class AnimalFactory : IAnimalFactory//真正的工厂类继承自工厂接口
-&#123;
-    public Dog CreateDog()
-    &#123;
-    return new Dog();
-	&#125;
- 
-	public Cat CreateCat()
-    &#123;
-	return new Cat();
-	&#125;
-&#125;
-</code></pre>
-<h1>对象池 Object Pool</h1>
-<p>是为了优化性能，如果一个GO频繁被实例化和Destroy掉，会产生大量的GC垃圾,而如果把本该销毁的GO改为enable，将其移动到屏幕之外，到再次需要启用时候，仅仅只进行坐标变换，那么消耗的性能会大大减少。</p>
-<p>下面是一个简单的对象池</p>
-<pre><code class="language-c#">public class ObjectPool : MonoBehaviour
-&#123;
-    public GameObject objectToPool; 
-    public int initialPoolSize = 10; 
-    private List&lt;GameObject&gt; pool;
-    void Start()
-    &#123;
-        pool = new List&lt;GameObject&gt;();
-        for (int i = 0; i &lt; initialPoolSize; i++)
-        &#123;
-        GameObject obj = Instantiate(objectToPool);
-        obj.SetActive(false);
-        pool.Add(obj);
-        &#125;
-    &#125;
-    public GameObject Get()
-    &#123;
-        for (int i = 0; i &lt; pool.Count; i++)
-        &#123;
-            if (!pool[i].activeInHierarchy)
-            &#123;
-            return pool[i];
-            &#125;
-        &#125;
-        GameObject obj = Instantiate(objectToPool);
-        obj.SetActive(false);
-        pool.Add(obj);
-        return obj;
-    &#125;
-    public void ReturnToPool(GameObject obj)
-    &#123;
-   		obj.SetActive(false);
-    &#125;
-&#125;
-</code></pre>
-<h1>ECS（Entity、Component、System）模式</h1>
-<p>这是一种面向数据的编程范式，可以获得更高的内存效能和更好的代码并行性。</p>
-<p>Entity 实体 和GameObject类似，entity是一个有ID的物体，其中有且只有一系列的component。</p>
-<p>Component组件和Unity中的component不同，ECS中的component只不过是一些数据结构。它们提供了物体执行逻辑时所需要的数据。 使用Unity中的component时，我们一般不会使用它所以得功能，所以造成了性能浪费。</p>
-<p>System系统System是真正完成物体逻辑的部分。一个system会在所有有特定component的entity上执行操作。（比如一个Render System可能会在所有有sprite renderer组件的物体上执行渲染操作）</p>
-<pre><code class="language-c#">//eg.
-class Position 
-&#123;
-    public float x;
-    public float y;
-&#125;
-class Velocity 
-&#123;
-    public float dx;
-    public float dy;
-&#125;
-class Entity 
-&#123;
-    public string id;
-    public Position position;
-    public Velocity velocity;
-&#125;
-class MovementSystem 
-&#123;
-    public void Update(Entity entity, float deltaTime) 
-    &#123;
-        if(entity.position != null &amp;&amp; entity.velocity != null)
-        &#123;
-            entity.position.x += entity.velocity.dx * deltaTime;
-            entity.position.y += entity.velocity.dy * deltaTime;
-        &#125;
-    &#125;
-&#125;
-</code></pre>
-
+            <p>设计模式、对象池、ECS</p>
             
         </div>
     </div>
@@ -597,7 +425,7 @@ class MovementSystem
         
         <span class="tag">
             
-            <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="color: #00bcd4">设计模式</a>
+            <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="color: #ff7d73">设计模式</a>
         </span>
         
     </div>
