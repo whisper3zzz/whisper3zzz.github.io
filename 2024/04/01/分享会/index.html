@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <title>Tags: 随笔 | whisper3zzzの窝</title>
+    <title> | whisper3zzzの窝</title>
     <meta name="author" content="whisper3zzz" />
     <meta name="description" content="" />
     <meta name="keywords" content="" />
@@ -33,6 +33,12 @@
 <script src="/js/lib/preview.js"></script>
 
 
+
+
+
+
+
+<script src="https://cdn.staticfile.org/twikoo/1.6.22/twikoo.all.min.js"></script>
 
 
 
@@ -144,143 +150,71 @@
 </transition>
 
         <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
-            <div id="archives">
-    
-    <div class="categories-tags">
-        
-        
-        
-        <span>
-            <a href="/tags/C/" style="background: #00bcd4">
-                <span class="icon">
-                    <i class="fa-solid fa-tags fa-fw"></i>
-                </span>
-                C#
-            </a>
-        </span>
-        
-        
-        
-        <span>
-            <a href="/tags/%E6%B8%B2%E6%9F%93/" style="background: #ff7d73">
-                <span class="icon">
-                    <i class="fa-solid fa-tags fa-fw"></i>
-                </span>
-                渲染
-            </a>
-        </span>
-        
-        
-        
-        <span>
-            <a href="/tags/Unity/" style="background: #00bcd4">
-                <span class="icon">
-                    <i class="fa-solid fa-tags fa-fw"></i>
-                </span>
-                Unity
-            </a>
-        </span>
-        
-        
-        
-        <span>
-            <a href="/tags/%E6%B8%B8%E6%88%8F%E8%AE%BE%E8%AE%A1/" style="background: #ff7d73">
-                <span class="icon">
-                    <i class="fa-solid fa-tags fa-fw"></i>
-                </span>
-                游戏设计
-            </a>
-        </span>
-        
-        
-        
-        <span>
-            <a href="/tags/%E9%9A%8F%E7%AC%94/" style="background: linear-gradient(120deg, #9abbf7 0%, #ffbbf4 100%)">
-                <span class="icon">
-                    <i class="fa-solid fa-tags fa-fw"></i>
-                </span>
-                随笔
-            </a>
-        </span>
-        
-        
-        
-        
-        
-        <span>
-            <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="background: #ff7d73">
-                <span class="icon">
-                    <i class="fa-solid fa-tags fa-fw"></i>
-                </span>
-                设计模式
-            </a>
-        </span>
-        
-        
-        
-        <span>
-            <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="background: #00bcd4">
-                <span class="icon">
-                    <i class="fa-solid fa-tags fa-fw"></i>
-                </span>
-                数据结构
-            </a>
-        </span>
-        
-        
-        
-        <span>
-            <a href="/tags/Unity%E5%BA%95%E5%B1%82/" style="background: #ff7d73">
-                <span class="icon">
-                    <i class="fa-solid fa-tags fa-fw"></i>
-                </span>
-                Unity底层
-            </a>
+            <div class="article">
+    <div>
+        <h1></h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/4/1
         </span>
         
         
     </div>
     
-    <div class="timeline">
-        <div class="timeline-tail"></div>
-        <div class="timeline-content">
-            <div class="item-time">2024/2/16</div>
-            <a href="/2024/02/16/%E6%B8%B8%E6%88%8F%E8%AE%BE%E8%AE%A1-%E7%8E%A9%E5%AE%B6%E4%BB%A3%E5%85%A5/">
-                <h3>游戏设计_玩家代入</h3>
-            </a>
-            <div class="info">
-                
-                <span class="category">
-                    <a href="/categories/%E5%AD%A6%E4%B9%A0/">
-                        <span class="icon">
-                            <i class="fa-solid fa-bookmark fa-fw"></i>
-                        </span>
-                        学习
-                    </a>
-                </span>
-                
-                
-                <span class="tags">
-                    <span class="icon">
-                        <i class="fa-solid fa-tags fa-fw"></i>
-                    </span>
-                    
-                    
-                    <span class="tag">
-                        
-                        <a href="/tags/%E6%B8%B8%E6%88%8F%E8%AE%BE%E8%AE%A1/" style="color: #ff7d73">游戏设计</a>
-                    </span>
-                    
-                    <span class="tag">
-                        
-                        <a href="/tags/%E9%9A%8F%E7%AC%94/" style="color: #00bcd4">随笔</a>
-                    </span>
-                    
-                </span>
-                
-            </div>
-        </div>
+    <div class="content" v-pre>
+        <h1>不需要动画师的做法——使用Unity Shader制作简单动画🥰</h1>
+<p>​																										——华夜分享会</p>
+<hr>
+<h3 id="问题的提出：">问题的提出：</h3>
+<p>在开发中，我们经常有『动画』这个需求，要么需要使用IK去绑骨骼，或者让美术同学去画序列帧，在比较复杂的动画需求中这么做无可厚非，但是简单的动画或者说特效这么做，真的很麻烦。</p>
+<p>比如说PVZ里面的向日葵，在即将生产阳光的时候，会闪烁一下，这种闪烁的效果，如果去修改序列帧的每一张图片的话，是很麻烦的。还有有一种做法是在Animation里面去更改对应图片的α值，录成一段动画，这样做简单一些了，但是如果我的需求是只有向日葵的花闪烁，其他的部分不闪烁，那这样做就不合适了，可能又得回到第一种方法。</p>
+<p>这只是简单的一个闪烁效果，那如果我需要的是一个流星的拖尾呢？这个拖尾在不停的动，并且颜色也会不断变化，如果真让美术同学去画一系列的序列帧去做这个拖尾，且不论工作量有多大，这是不能复用的，大拖尾和小拖尾对应的图片完全不一样，去进行拉伸之后效果也不会很好。</p>
+<p>更复杂一点，水体的流动呢？</p>
+<p>……</p>
+<p>既然传统的方法有这么多不便，那是不是有更好的方法呢？</p>
+<p>这就引出来了今天我分享的主题——使用Shader制作简单的动画。</p>
+<hr>
+<h3 id="Shader、Material、Texture"><strong>Shader、Material、Texture</strong></h3>
+<p>先简单介绍一下Shader是什么。</p>
+<p>当然今天不是来谈图形学的，而且今天所谈的Shader也是聚焦在Unity的Shader上。</p>
+<p>『Shader』的中文译名是着色器，（崩坏3现在每次版本更新最后安装校验完资源会多一步“重新编译着色器”，这里重新编译的就是Shader）。</p>
+<p>Shader是一个在GPU上面运行的程序（一般的代码是在CPU上运行的），他接受一个物体的形状、颜色等数据，通过一系列的计算来输出每个像素的颜色。</p>
+<p>下面介绍一下一个立方体如何从模型数据变成屏幕上的色彩：</p>
+<ul>
+<li>1.Shader接收到立方体的顶点、法线等数据。</li>
+<li>2.Shader将这些位置转换到屏幕坐标里面。</li>
+<li>3.Shader对每个像素进行染色。</li>
+<li>4.Shader获取当前光照，计算每个像素受光之后的颜色。</li>
+<li>5.Shader将计算好的颜色输出至屏幕。</li>
+</ul>
+<p>一个物体要显示在屏幕上，必须通过一个属于它的材质（Material）来实现。材质准确地定义了每个物体在特定情况下显示出来的颜色，比如sprite的默认材质是将图片上每个像素的颜色原封不动的显示出来（也可以自定义一个材质去修改原图片的颜色）。</p>
+<p>Texture就是一张图片，比如人物衣服的颜色。Texture在渲染流程中是Shader中的一个“texture”类型的变量，好比如熟知的float、vector等。</p>
+<p>这三者其实地位不一样，万物来源是Shader，Material是Shader的一个实例，Texture是Shader的一个变量。</p>
+<p>根据Shader创建出来的实例就是Material，所以每一个Material背后都有一个Shader，Material只是代表<strong>一个Shader变量的一系列特定值的实例</strong>。</p>
+<p>那：</p>
+<p>修改Shader，其相关的所有Material都会受到影响吗？</p>
+<p>修改一个Material，其相关的Material都会受到影响吗？</p>
+<p>显然前者的答案是肯定而后者是否定。</p>
+
     </div>
+    
+    
+    
+    
+    <div id="comment">
+        <div id="giscus-container" class="giscus"></div>
+    </div>
+    
+    
+    
+    <div id="comment">
+        <div id="twikoo-container"></div>
+    </div>
+    
     
 </div>
 
@@ -312,6 +246,39 @@
         
     </div>
     <script src="/js/main.js"></script>
+    
+    
+<script
+    src="https://giscus.app/client.js"
+    data-repo="whisper3zzz/whisper3zzz.github.io"
+    data-repo-id="R_kgDOK7y0CA"
+    data-category="Announcements"
+    data-category-id="DIC_kwDOK7y0CM4Cb4tb"
+    data-mapping="title"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="bottom"
+    data-theme="light"
+    data-lang="zh-CN"
+    crossorigin
+    async
+></script>
+
+
+
+
+<script>
+    twikoo.init({
+        el: "#twikoo-container",
+        envId: "",
+        region: "",
+        path: location.pathname,
+        lang: "",
+    })
+</script>
+
+
     
 </body>
 </html>
