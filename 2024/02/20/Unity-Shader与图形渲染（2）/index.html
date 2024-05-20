@@ -44,7 +44,7 @@
 
 <link rel="stylesheet" href="/css/main.css" />
 
-<meta name="generator" content="Hexo 6.3.0"></head>
+<meta name="generator" content="Hexo 7.0.0"></head>
 <body>
     <div id="layout">
         <transition name="fade">
@@ -180,12 +180,12 @@
             
             <span class="tag">
                 
-                <a href="/tags/%E6%B8%B2%E6%9F%93/" style="color: #00bcd4">渲染</a>
+                <a href="/tags/%E6%B8%B2%E6%9F%93/" style="color: #ffa2c4">渲染</a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/Unity/" style="color: #00a596">Unity</a>
+                <a href="/tags/Unity/" style="color: #00bcd4">Unity</a>
             </span>
             
         </span>
@@ -224,16 +224,7 @@
 <p>分量名有：x或r（第一个分量）、y或g（第二个分量）、z或b（第三个分量）、w或a（第四个分量）。这些名称是CG语言自 带的，其由来是：xyzw通常用来表示空间坐标，rgba通常用来表示颜色。但在使用上，xyzw和rgba完全没有区别。</p>
 <p>访问其中的多个分量： <code>向量名.几个分量名的组合</code></p>
 <p>这些分量名的组合可以是2-4之间的任意长度和任意顺序。重复的分量名也是被允许的。</p>
-<pre><code class="language-CG">//eg.
-float a = 1.5;
-float b = a*2;
-float2 ab = float2(a,b);
-float2 ba = ab.xy;
-float3 baa = float3(ba, a);//一个高维向量可以又几个低维向量组成，比如这里用一个二维向量和一个一维向量定义了一个三维向量
-float4 res = float4(5, baa.zyx);
-res.a = 0;
-//res=(5,1.5,3,0)
-</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">//eg.</span><br><span class="line">float a = 1.5;</span><br><span class="line">float b = a*2;</span><br><span class="line">float2 ab = float2(a,b);</span><br><span class="line">float2 ba = ab.xy;</span><br><span class="line">float3 baa = float3(ba, a);//一个高维向量可以又几个低维向量组成，比如这里用一个二维向量和一个一维向量定义了一个三维向量</span><br><span class="line">float4 res = float4(5, baa.zyx);</span><br><span class="line">res.a = 0;</span><br><span class="line">//res=(5,1.5,3,0)</span><br></pre></td></tr></table></figure>
 <h1>常用数学函数</h1>
 <p><code>sin(x) //x的正弦</code>   <code>cos(x) //x的余弦</code>  <code>tan(x) //x的正切</code> <code>abs(x) //x的绝对值</code>  <code>frac(x) //x的小数部分</code></p>
 <p><code>sqrt(x) //x的平方根</code>  <code>pow(x,a) //x^a</code></p>

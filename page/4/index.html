@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <title>UniTask | whisper3zzzの窝</title>
+    <title>whisper3zzzの窝</title>
     <meta name="author" content="whisper3zzz" />
     <meta name="description" content="" />
     <meta name="keywords" content="" />
@@ -36,11 +36,7 @@
 
 
 
-
-
-<script src="https://cdn.staticfile.org/twikoo/1.6.22/twikoo.all.min.js"></script>
-
-
+<script src="/js/lib/home.js"></script>
 
 <link rel="stylesheet" href="/css/main.css" />
 
@@ -150,17 +146,31 @@
 </transition>
 
         <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
-            <div class="article">
-    <div>
-        <h1>UniTask</h1>
-    </div>
-    <div class="info">
-        <span class="date">
-            <span class="icon">
-                <i class="fa-solid fa-calendar fa-fw"></i>
-            </span>
-            2024/3/24
+            <div id="home-head">
+    <div id="home-background" ref="homeBackground" data-images="/images/background1.jpg,/images/background2.jpg,/images/background3.jpg,/images/background4.jpg"></div>
+    <div id="home-info" @click="homeClick">
+        <span class="loop"></span>
+        <span class="loop"></span>
+        <span class="loop"></span>
+        <span class="loop"></span>
+        <span class="info">
+            <div class="wrap">
+                <h1>whisper3zzzの窝</h1>
+                <h3></h3>
+                <h5></h5>
+            </div>
         </span>
+    </div>
+</div>
+<div id="home-posts-wrap" true ref="homePostsWrap">
+    <div id="home-posts">
+        
+
+<div class="post">
+    <a href="/2023/12/20/Unity%E7%B2%92%E5%AD%90%E7%B3%BB%E7%BB%9F%EF%BC%881%EF%BC%89/">
+        <h2 class="post-title">Unity粒子系统（1）</h2>
+    </a>
+    <div class="category-and-date">
         
         <span class="category">
             <a href="/categories/%E5%AD%A6%E4%B9%A0/">
@@ -171,39 +181,84 @@
             </a>
         </span>
         
-        
-        <span class="tags">
+        <span class="date">
             <span class="icon">
-                <i class="fa-solid fa-tags fa-fw"></i>
+                <i class="fa-solid fa-calendar fa-fw"></i>
             </span>
+            2023/12/20
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
             
+            <h1>一、粒子系统概述</h1>
+<p>小型效果诸如击中特效，火焰特效等使用内置粒子系统即可，对于更加绚丽，需要粒子数量更多的，诸如雨雪天气，大爆炸之类的可酌情使用VFX（Visual Effect Graph粒子系统）。</p>
             
-            <span class="tag">
-                
-                <a href="/tags/Unity/" style="color: #ffa2c4">Unity</a>
-            </span>
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
+        
+        
+        
+        <span class="tag">
             
+            <a href="/tags/Unity/" style="color: #00a596">Unity</a>
         </span>
         
     </div>
+    <a href="/2023/12/20/Unity%E7%B2%92%E5%AD%90%E7%B3%BB%E7%BB%9F%EF%BC%881%EF%BC%89/" class="go-post">阅读全文</a>
+</div>
+
+
+        <div class="page-current">
     
-    <div class="content" v-pre>
+    <a class="page-num" href="/page/3/">
+        <i class="fa-solid fa-caret-left fa-fw"></i>
+    </a>
+    <a class="page-num" href="/">1</a>
+    <span class="page-omit">...</span>
+    
+    <span class="current">4</span>
+    
+    
+    
+    
+</div>
+
+    </div>
+    
+    <div id="home-card">
+        <div id="card-style">
+    <div id="card-div">
+        <div class="avatar">
+            <img src="/images/avatar.jpg" alt="avatar" />
+        </div>
+        <div class="name">whisper3zzz</div>
+        <div class="description">
+            <p>Description<br>
+Unity学习&amp;游戏开发&amp;Computer Graphics学习</p>
+
+        </div>
+        
+        
+        <div class="friend-links">
+            
+            <div class="friend-link">
+                <a target="_blank" rel="noopener" href="https://rdququ.top">蛐蛐</a>
+            </div>
+            
+        </div>
         
     </div>
-    
-    
-    
-    
-    <div id="comment">
-        <div id="giscus-container" class="giscus"></div>
+</div>
+
     </div>
-    
-    
-    
-    <div id="comment">
-        <div id="twikoo-container"></div>
-    </div>
-    
     
 </div>
 
@@ -235,39 +290,6 @@
         
     </div>
     <script src="/js/main.js"></script>
-    
-    
-<script
-    src="https://giscus.app/client.js"
-    data-repo="whisper3zzz/whisper3zzz.github.io"
-    data-repo-id="R_kgDOK7y0CA"
-    data-category="Announcements"
-    data-category-id="DIC_kwDOK7y0CM4Cb4tb"
-    data-mapping="title"
-    data-strict="0"
-    data-reactions-enabled="1"
-    data-emit-metadata="0"
-    data-input-position="bottom"
-    data-theme="light"
-    data-lang="zh-CN"
-    crossorigin
-    async
-></script>
-
-
-
-
-<script>
-    twikoo.init({
-        el: "#twikoo-container",
-        envId: "",
-        region: "",
-        path: location.pathname,
-        lang: "",
-    })
-</script>
-
-
     
 </body>
 </html>

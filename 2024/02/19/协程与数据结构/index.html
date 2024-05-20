@@ -44,7 +44,7 @@
 
 <link rel="stylesheet" href="/css/main.css" />
 
-<meta name="generator" content="Hexo 6.3.0"></head>
+<meta name="generator" content="Hexo 7.0.0"></head>
 <body>
     <div id="layout">
         <transition name="fade">
@@ -185,12 +185,12 @@
             
             <span class="tag">
                 
-                <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="color: #00bcd4">数据结构</a>
+                <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="color: #ff7d73">数据结构</a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/Unity%E5%BA%95%E5%B1%82/" style="color: #ff7d73">Unity底层</a>
+                <a href="/tags/Unity%E5%BA%95%E5%B1%82/" style="color: #00a596">Unity底层</a>
             </span>
             
         </span>
@@ -203,122 +203,34 @@
 <h2 id="协程、枚举器、迭代器">协程、枚举器、迭代器</h2>
 <h3 id="枚举器接口-IEnumerator">枚举器接口 IEnumerator</h3>
 <p>枚举器接口提供了一种通用的遍历集合的方法。比如当我们使用foreach循环时其实就是使用了一个IEnumerator。</p>
-<pre><code class="language-c#">public interface IEnumerator
-&#123;
-    bool MoveNext(); // 前进至下一个元素
-    object Current &#123; get; &#125; // 获取当前元素,只读属性保证不会更改集合中的元素
-    void Reset(); // 重置回第一个元素
-&#125;	
-//泛型版本
-public interface IEnumerator&lt;T&gt; : IEnumerator
-&#123;
-    bool MoveNext();
-    new T Current &#123; get; &#125;
-    void Reset();
-&#125;
-</code></pre>
+<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title">IEnumerator</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="built_in">bool</span> <span class="title">MoveNext</span>()</span>; <span class="comment">// 前进至下一个元素</span></span><br><span class="line">    <span class="built_in">object</span> Current &#123; <span class="keyword">get</span>; &#125; <span class="comment">// 获取当前元素,只读属性保证不会更改集合中的元素</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">Reset</span>()</span>; <span class="comment">// 重置回第一个元素</span></span><br><span class="line">&#125;	</span><br><span class="line"><span class="comment">//泛型版本</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title">IEnumerator</span>&lt;<span class="title">T</span>&gt; : <span class="title">IEnumerator</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="built_in">bool</span> <span class="title">MoveNext</span>()</span>;</span><br><span class="line">    <span class="keyword">new</span> T Current &#123; <span class="keyword">get</span>; &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">Reset</span>()</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>IEnumerator由三个成员组成，其中MoveNext()和Current是其核心。</p>
 <p>大概的步骤是： 1. 我们拿到一个集合（array、list、etc.） 2. 获取一个该集合的枚举器 3. 使用Current访问当前元素并用MoveNext()移至下一个元素，直到遍历完成。</p>
 <h3 id="可被枚举接口-IEnumerable">可被枚举接口 IEnumerable</h3>
 <p>仅仅是代表“可被枚举”这个特性。</p>
-<pre><code class="language-c#">public interface IEnumerable
-&#123;
-	IEnumerator GetEnumerator();
-&#125;
-</code></pre>
+<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title">IEnumerable</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="function">IEnumerator <span class="title">GetEnumerator</span>()</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>IEnumerable意味着什么？</p>
 <p>可以获取一个它的枚举器=&gt;可以通过该枚举器遍历其中的元素=&gt;可以使用foreach循环遍历其中的元素。</p>
 <p><em>熟知的C#自带的数据结构大多都是IEnumerable的，包括 Array、List、Dictionary、Stack、Queue等等</em></p>
 <h3 id="枚举器的使用">枚举器的使用</h3>
-<pre><code class="language-c#">IEnumerable&lt;int&gt; sequence = new List&lt;int&gt; &#123; 1, 2, 3, 4, 5 &#125;;
-IEnumerator&lt;int&gt; enumerator = sequence.GetEnumerator();
-while (enumerator.MoveNext())
-&#123;
-    int current = enumerator.Current;
-    print(current);
-&#125;
-</code></pre>
+<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line">IEnumerable&lt;<span class="built_in">int</span>&gt; sequence = <span class="keyword">new</span> List&lt;<span class="built_in">int</span>&gt; &#123; <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span> &#125;;</span><br><span class="line">IEnumerator&lt;<span class="built_in">int</span>&gt; enumerator = sequence.GetEnumerator();</span><br><span class="line"><span class="keyword">while</span> (enumerator.MoveNext())</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">int</span> current = enumerator.Current;</span><br><span class="line">    print(current);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>枚举器就像一个依次指向了集合中的各个元素。</p>
 <h3 id="迭代器-Iterator">迭代器 Iterator</h3>
 <p>迭代器是一种结构（或设计模式）。迭代器允许我们自定义一个枚举器的行为。</p>
-<pre><code class="language-c#">public IEnumerable&lt;int&gt; GetNumbers()
-&#123;
-    for (int i = 1; i &lt;= 5; i++)
-    &#123;
-        yield return i;
-    &#125;
-&#125;
-//返回IEnumerable&lt;int&gt;，但是没有return语句，更不论根本没有创建一个IEnumerable&lt;int&gt;类型的对象了
-</code></pre>
+<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> IEnumerable&lt;<span class="built_in">int</span>&gt; <span class="title">GetNumbers</span>()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="built_in">int</span> i = <span class="number">1</span>; i &lt;= <span class="number">5</span>; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">yield</span> <span class="keyword">return</span> i;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//返回IEnumerable&lt;int&gt;，但是没有return语句，更不论根本没有创建一个IEnumerable&lt;int&gt;类型的对象了</span></span><br></pre></td></tr></table></figure>
 <h3 id="Iterator和yield">Iterator和yield</h3>
 <p>在一个返回<code>IEnumerable</code>的函数中使用<code>yield</code>关键字时，系统会帮我们自动生成一个继承自<code>IEnumerable</code>的类，并在该类中实现我们所写的逻辑。（包括<code>MoveNext()</code>等方法）</p>
 <p>这个类它会记录当前迭代的状态，包括本地变量的值与迭代器在集合中的位置；它会把<code>yield return x</code>翻译成“将<code>Current</code>设为x，记录当前的状态，并暂停执行”这一系列操作。</p>
 <p>yield return具体的功能： 1. 将内部枚举器的Current设为一个值（或者说“提供枚举器的下一个值”） 2. “暂停函数的执行”，并且在下一次执行该函数时从yield return的位置开始（而非从头开始）</p>
-<pre><code class="language-c#">//eg.Form Microsoft
-var numbers = ProduceEvenNumbers(5);
-Console.WriteLine(&quot;Caller: about to iterate.&quot;);
-foreach (int i in numbers)
-&#123;
-    Console.WriteLine($&quot;Caller: &#123;i&#125;&quot;);
-&#125;
-
-IEnumerable&lt;int&gt; ProduceEvenNumbers(int upto)
-&#123;
-    Console.WriteLine(&quot;Iterator: start.&quot;);
-    for (int i = 0; i &lt;= upto; i += 2)
-    &#123;
-        Console.WriteLine($&quot;Iterator: about to yield &#123;i&#125;&quot;);
-        yield return i;
-        Console.WriteLine($&quot;Iterator: yielded &#123;i&#125;&quot;);
-    &#125;
-    Console.WriteLine(&quot;Iterator: end.&quot;);
-&#125;
-// Output:
-// Caller: about to iterate.
-// Iterator: start.
-// Iterator: about to yield 0
-// Caller: 0
-// Iterator: yielded 0
-// Iterator: about to yield 2
-// Caller: 2
-// Iterator: yielded 2
-// Iterator: about to yield 4
-// Caller: 4
-// Iterator: yielded 4
-// Iterator: end.
-</code></pre>
+<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="comment">//eg.Form Microsoft</span></span><br><span class="line"><span class="keyword">var</span> numbers = ProduceEvenNumbers(<span class="number">5</span>);</span><br><span class="line">Console.WriteLine(<span class="string">&quot;Caller: about to iterate.&quot;</span>);</span><br><span class="line"><span class="keyword">foreach</span> (<span class="built_in">int</span> i <span class="keyword">in</span> numbers)</span><br><span class="line">&#123;</span><br><span class="line">    Console.WriteLine(<span class="string">$&quot;Caller: <span class="subst">&#123;i&#125;</span>&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">IEnumerable&lt;<span class="built_in">int</span>&gt; <span class="title">ProduceEvenNumbers</span>(<span class="params"><span class="built_in">int</span> upto</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    Console.WriteLine(<span class="string">&quot;Iterator: start.&quot;</span>);</span><br><span class="line">    <span class="keyword">for</span> (<span class="built_in">int</span> i = <span class="number">0</span>; i &lt;= upto; i += <span class="number">2</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        Console.WriteLine(<span class="string">$&quot;Iterator: about to yield <span class="subst">&#123;i&#125;</span>&quot;</span>);</span><br><span class="line">        <span class="keyword">yield</span> <span class="keyword">return</span> i;</span><br><span class="line">        Console.WriteLine(<span class="string">$&quot;Iterator: yielded <span class="subst">&#123;i&#125;</span>&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    Console.WriteLine(<span class="string">&quot;Iterator: end.&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// Output:</span></span><br><span class="line"><span class="comment">// Caller: about to iterate.</span></span><br><span class="line"><span class="comment">// Iterator: start.</span></span><br><span class="line"><span class="comment">// Iterator: about to yield 0</span></span><br><span class="line"><span class="comment">// Caller: 0</span></span><br><span class="line"><span class="comment">// Iterator: yielded 0</span></span><br><span class="line"><span class="comment">// Iterator: about to yield 2</span></span><br><span class="line"><span class="comment">// Caller: 2</span></span><br><span class="line"><span class="comment">// Iterator: yielded 2</span></span><br><span class="line"><span class="comment">// Iterator: about to yield 4</span></span><br><span class="line"><span class="comment">// Caller: 4</span></span><br><span class="line"><span class="comment">// Iterator: yielded 4</span></span><br><span class="line"><span class="comment">// Iterator: end.</span></span><br></pre></td></tr></table></figure>
 <p><em>IEnumerable是一个声明式的接口，声明实现该接口的Class是“可枚举（Enumerable）”的，但并没有说明如何实现枚举器（iterator）；IEnumerator是一个实现式的接口，IEnumerator object就是一个iterator。</em></p>
 <p><em>IEnumerable和IEnumerator通过IEnumerable的GetEnumerator()方法建立了连接，Client可以通过IEnumerable的GetEnumerator()得到IEnumerator object，在这个意义上，将GetEnumerator()看作IEnumerator object的Factory Method也未尝不可。</em></p>
 <h3 id="协程的原理">协程的原理</h3>
 <p>Unity中的协程利用了迭代器的机制实现了**“执行一系列操作”<strong>而非</strong>“遍历一个集合”<strong>的功能。关键点在于：在这里一个协程中的</strong>“集合”**就是所有yield return的返回值，比如{null, new WaitForSeconds(5)}就是下方协程的集合。当我们在遍历这个集合时，所有真正有用的语句都会一并被执行。</p>
-<pre><code class="language-c#">IEnumerator MyCoroutine()
-&#123;
-    //真正有用的语句
-    yield return null;
-    //真正有用的语句
-    yield return new WaitForSeconds(5);
-&#125;
-</code></pre>
+<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="function">IEnumerator <span class="title">MyCoroutine</span>()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">//真正有用的语句</span></span><br><span class="line">    <span class="keyword">yield</span> <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">    <span class="comment">//真正有用的语句</span></span><br><span class="line">    <span class="function"><span class="keyword">yield</span> <span class="keyword">return</span> <span class="keyword">new</span> <span class="title">WaitForSeconds</span>(<span class="params"><span class="number">5</span></span>)</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>在调用<code>StartCoroutine()</code>函数来执行协程时，其实是在做这几 件事： 1. 每一帧调用MoveNext()，这样可以执行协程直到遇到yield return 2. 通过yield return返回的Current值，做一系列特定的操作。</p>
 <p>所以只有写<code>yield return null;</code>才会延迟到下一帧执行吗？可以写一段伪代码来看看<code>StartCoroutine()</code>的原理是什么。</p>
-<pre><code>void MyStartCoroutine()
-&#123;
-	Update//每一帧都执行
-	&#123;
-        MoveNext();
-        if(Current is WaitForSeconds)
-        &#123;
-        	Stop for x seconds;//具体逻辑可能就是我们写的一个简单的计时器，timer=time+=Time.dealtTime这样
-        &#125;
-        else if(Current is WaitFixedUpdate)
-        &#123;
-        	Stop for fixedupdate;
-        &#125;
-        else
-        	//···
-	&#125;
-&#125;
-</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">void MyStartCoroutine()</span><br><span class="line">&#123;</span><br><span class="line">	Update//每一帧都执行</span><br><span class="line">	&#123;</span><br><span class="line">        MoveNext();</span><br><span class="line">        if(Current is WaitForSeconds)</span><br><span class="line">        &#123;</span><br><span class="line">        	Stop for x seconds;//具体逻辑可能就是我们写的一个简单的计时器，timer=time+=Time.dealtTime这样</span><br><span class="line">        &#125;</span><br><span class="line">        else if(Current is WaitFixedUpdate)</span><br><span class="line">        &#123;</span><br><span class="line">        	Stop for fixedupdate;</span><br><span class="line">        &#125;</span><br><span class="line">        else</span><br><span class="line">        	//···</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>所以我们如果在<code>yield return</code>后面写一个<code>new GameObject();</code>编译器也不会报错，这些奇奇怪怪的返回类型根本在<code>StartCoroutine()</code>里面没有对应的情况，所以它不会执行特定的操作，依然默认间隔一帧，然后执行<code>MoveNext（）</code>，甚至写<code>new GameObject();</code>，确实会把Current的值设置为新实例化一个GO，场景里面真的会出现新的GO。</p>
 <p>所以写<code>yield return null;</code>只是为了不发生奇奇怪怪的事，并非它是特定的延迟一帧。</p>
 <h2 id="数据结构">数据结构</h2>
@@ -327,15 +239,7 @@ IEnumerable&lt;int&gt; ProduceEvenNumbers(int upto)
 <p>在C#中，我们可以使用[,]来定义多维数组。定义数组的时候一定要写明数组的大小。</p>
 <p>比如<code>int[,] grid = new int[5,5];</code></p>
 <p>遍历多维数组：</p>
-<pre><code class="language-c#">for(int i = 0; i &lt; grid.GetLength(0); i++)
-&#123;
-     for(int j = 0; j &lt; grid.GetLength(1); j++)
-     &#123;
-     	grid[i, j] = 0
-     &#125; 
- &#125;
-//GetLength(n)代表数组第n维的长度。
-</code></pre>
+<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="built_in">int</span> i = <span class="number">0</span>; i &lt; grid.GetLength(<span class="number">0</span>); i++)</span><br><span class="line">&#123;</span><br><span class="line">     <span class="keyword">for</span>(<span class="built_in">int</span> j = <span class="number">0</span>; j &lt; grid.GetLength(<span class="number">1</span>); j++)</span><br><span class="line">     &#123;</span><br><span class="line">     	grid[i, j] = <span class="number">0</span></span><br><span class="line">     &#125; </span><br><span class="line"> &#125;</span><br><span class="line"><span class="comment">//GetLength(n)代表数组第n维的长度。</span></span><br></pre></td></tr></table></figure>
 <h4 id="交错数组">交错数组</h4>
 <p>交错数组是大小不完全决定好的，“锯齿形”的一种数据结构。可以使用<code>[][]</code>来定义交错数组。<code>int[][] arr = new int[5][];</code></p>
 <p>第一个维度的大小要提前定义，而其他维度的大小不可以提前定义,可以把这个数组看成数组的数组。所以交错数组是<strong>一系列不一样长的数组</strong>的数组。行数是确定的，而列数不确定，所以是锯齿形。</p>
@@ -343,20 +247,9 @@ IEnumerable&lt;int&gt; ProduceEvenNumbers(int upto)
 <h3 id="树-Tree">树 Tree</h3>
 <p>树是一种由根节点和叶节点组成的数据结构。比如游戏中常见的“技能树”就是一种树。</p>
 <p><img src="/photos/%E5%8D%8F%E7%A8%8B%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84_%E6%A0%91.jpg" alt=""></p>
-<pre><code class="language-c#">class TreeNode
-&#123;
-    public float value;
-    public List&lt;TreeNode&gt;() children = new List&lt;TreeNode&gt;();
-&#125;
-</code></pre>
+<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title">TreeNode</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">float</span> <span class="keyword">value</span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">List</span>&lt;<span class="title">TreeNode</span>&gt;() children</span> = <span class="keyword">new</span> List&lt;TreeNode&gt;();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>只需要访问根节点（最上方的节点）就可以遍历整个树结构了。</p>
-<pre><code class="language-c#">void Traversal(TreeNode root)
-&#123;
-    print(root.value);
-    foreach(var child in root.children)
-    Traversal(child);
-&#125;
-</code></pre>
+<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Traversal</span>(<span class="params">TreeNode root</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    print(root.<span class="keyword">value</span>);</span><br><span class="line">    <span class="keyword">foreach</span>(<span class="keyword">var</span> child <span class="keyword">in</span> root.children)</span><br><span class="line">    Traversal(child);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>树其实是有向图的一种。它允许我们表示物体之间的依赖 /层级关系。 C#的GC的标记算法就是使用了树结构。</p>
 <h3 id="栈-Stack">栈 Stack</h3>
 <p>栈是一种像盒子一样，数据先进后出的一种数据结构。 简单来说，数据们依次堆在盒子里，在上方没有物体时我们才可以对一个数据进行操作。和内存中的Stack是一个东西。</p>
@@ -383,151 +276,16 @@ IEnumerable&lt;int&gt; ProduceEvenNumbers(int upto)
 <h3 id="深度优先搜索-Depth-First-Search">深度优先搜索 Depth-First Search</h3>
 <p>从每一个非零的位置开始向8个相邻的位置“发一条射线”，如果遇到了5个一样的棋子则判断成功；如果 所有非零的位置都不符合条件，则判断失败。这就是DFS。</p>
 <p>DFS只是做了两件事： 1. 选一个方向一路走到底 2. 遇到死路了就回到上一个路口换个方向继续</p>
-<pre><code class="language-c#">void DepthFirstSearch(TreeNode root)
-&#123;
-    if (root == null) return; 
-    root.visited = true;
-    foreach (var child in root.children) 
-    &#123;
-        if (!child.visited)
-        &#123;
-            DepthFirstSearch(child);
-        &#125;
-    &#125;
-&#125;
-//是一个通用的DFS模板。在不断“向深处探索”的时候也要标记出已经访问过的节点，防止走重复的路。
-</code></pre>
+<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">DepthFirstSearch</span>(<span class="params">TreeNode root</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> (root == <span class="literal">null</span>) <span class="keyword">return</span>; </span><br><span class="line">    root.visited = <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">foreach</span> (<span class="keyword">var</span> child <span class="keyword">in</span> root.children) </span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (!child.visited)</span><br><span class="line">        &#123;</span><br><span class="line">            DepthFirstSearch(child);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//是一个通用的DFS模板。在不断“向深处探索”的时候也要标记出已经访问过的节点，防止走重复的路。</span></span><br></pre></td></tr></table></figure>
 <h3 id="广度优先搜索-Breadth-First-Search">广度优先搜索 Breadth-First Search</h3>
 <p>BFS更像是“一层层前进”。它不会一条路都走到底，而是对每条路慢慢试探直到碰到终点为止。</p>
 <p>对于五子棋的例子，BFS也可以解：与其在每个方向上走到底，每次都在所有的方向上向前走一步，直到有任一方向走了 五步为止。</p>
-<pre><code class="language-c#">void BreadthFirstSearch(Node root) 
-&#123;
-    Queue&lt;Node&gt; queue = new Queue&lt;Node&gt;();//创建一个队列 queue，用于存储待访问的节点。
-    root.visited = true;//将根节点root标记为已访问
-    queue.enqueue(root);//将根节点加入队列
-    while (!queue.isEmpty()) //只要队列不为空
-    &#123;
-        Node node = queue.dequeue();//从队列中取出队首节点 node。
-        foreach (var child in node.children) //遍历该节点的所有子节点
-        if (!child.visited)
-        &#123;
-            child.visited = true;
-            queue.enqueue(child);//将该子节点加入队列=&gt;再从该子节点开始遍历该子节点的子节点，一层层深入
-        &#125;
-    &#125;
-&#125;
-//这是一个通用的BFS模板。注意到使用了一个Queue来代表目前正在探索的节点。这是因为Queue的先进先出的特性
-</code></pre>
+<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">BreadthFirstSearch</span>(<span class="params">Node root</span>)</span> </span><br><span class="line">&#123;</span><br><span class="line">    Queue&lt;Node&gt; queue = <span class="keyword">new</span> Queue&lt;Node&gt;();<span class="comment">//创建一个队列 queue，用于存储待访问的节点。</span></span><br><span class="line">    root.visited = <span class="literal">true</span>;<span class="comment">//将根节点root标记为已访问</span></span><br><span class="line">    queue.enqueue(root);<span class="comment">//将根节点加入队列</span></span><br><span class="line">    <span class="keyword">while</span> (!queue.isEmpty()) <span class="comment">//只要队列不为空</span></span><br><span class="line">    &#123;</span><br><span class="line">        Node node = queue.dequeue();<span class="comment">//从队列中取出队首节点 node。</span></span><br><span class="line">        <span class="keyword">foreach</span> (<span class="keyword">var</span> child <span class="keyword">in</span> node.children) <span class="comment">//遍历该节点的所有子节点</span></span><br><span class="line">        <span class="keyword">if</span> (!child.visited)</span><br><span class="line">        &#123;</span><br><span class="line">            child.visited = <span class="literal">true</span>;</span><br><span class="line">            queue.enqueue(child);<span class="comment">//将该子节点加入队列=&gt;再从该子节点开始遍历该子节点的子节点，一层层深入</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//这是一个通用的BFS模板。注意到使用了一个Queue来代表目前正在探索的节点。这是因为Queue的先进先出的特性</span></span><br></pre></td></tr></table></figure>
 <p>对于以下的场景，我们应该使用BFS还是DFS呢？</p>
 <p>一个地图是由NxN的方格构成的。玩家在其中一个方格向四周5x5的方形区域内进行了一次范围攻击，我们该如何得到被 攻击到的所有敌人？——BFS</p>
 <p>如何判断一个物体的所有子物体中有没有名为“Box”的物体？（注意，这里的“所有子物体”不仅指其直接的子物体，也包 括其子物体的子物体等等……） ——DFS</p>
 <p>如何在一个NxN的迷宫中找到从起点到终点的一条路径？那最短路径呢？——DFS/BFS、BFS</p>
-<pre><code class="language-c#">//这个使用DFS写的五子棋输赢判断
-using System;
-public class Gomoku
-&#123;
-   private const int BoardSize = 15;
-   private static int[,] board = new int[BoardSize, BoardSize];
-   public static bool CheckWin(int row, int col, int player)
-&#123;
-    int[,] directions = &#123;
-        &#123; 0, 1 &#125;,   // 水平方向
-        &#123; 1, 0 &#125;,   // 竖直方向
-        &#123; 1, 1 &#125;,   // 正斜线方向
-        &#123; 1, -1 &#125;   // 反斜线方向
-    &#125;;
-
-    for (int i = 0; i &lt; 4; i++)
-    &#123;
-        int count = 1;
-        int dr = directions[i, 0]; // 行偏移量
-        int dc = directions[i, 1]; // 列偏移量
-        // 向当前方向搜索
-        for (int j = -1; j &lt;= 1; j += 2)//-1和1切换表示向前搜索和向后搜索
-        &#123;
-            int r = row + dr * j; // 开始搜索的行号
-            int c = col + dc * j; // 开始搜索的列号
-            
-            // 搜索相同棋子数量
-            while (r &gt;= 0 &amp;&amp; r &lt; BoardSize &amp;&amp; c &gt;= 0 &amp;&amp; c &lt; BoardSize &amp;&amp; board[r, c] == player)
-            &#123;
-                count++;
-                r += dr;
-                c += dc;
-            &#125;
-        &#125;        
-        if (count &gt;= 5)
-        &#123;
-            return true;
-        &#125;
-    &#125;
-    return false;
-&#125;
-    public static void Main(string[] args)
-    &#123;
-        // 初始化棋盘，0表示空格，1表示玩家1的棋子，2表示玩家2的棋子
-        // 调用 CheckWin 方法检查玩家1是否获胜
-     &#125;
-&#125;
-
-//这是BFS算法
-using System.Collections.Generic;
-public class Gomoku
-&#123;
-    private const int BoardSize = 15; // 棋盘大小
-    private static int[,] board; // 棋盘
-    public static bool CheckWin(int row, int col, int player)
-    &#123;
-        board = new int[BoardSize, BoardSize]; // 初始化棋盘
-        // 在这里假设已经将棋盘上的棋子状态存储在board数组中，0表示空格，1表示白子，2表示黑子
-        int[,] directions = &#123;
-            &#123;0, 1&#125;,   // 水平方向
-            &#123;1, 0&#125;,   // 竖直方向
-            &#123;1, 1&#125;,   // 正斜线方向
-            &#123;1, -1&#125;   // 反斜线方向
-        &#125;;
-        // 以当前位置为起点，分别向四个方向进行广度优先搜索
-        for (int i = 0; i &lt; 4; i++)
-        &#123;
-            int count = 1; // 记录连续相同棋子的数量
-            Queue&lt;(int, int)&gt; queue = new Queue&lt;(int, int)&gt;(); // 用于广度优先搜索的队列
-            queue.Enqueue((row, col)); // 将起点加入队列
-            bool[,] visited = new bool[BoardSize, BoardSize]; // 记录已访问过的位置
-            while (queue.Count &gt; 0)
-            &#123;
-                var (r, c) = queue.Dequeue(); // 出队一个位置
-                visited[r, c] = true; // 标记为已访问
-                // 在当前位置的四个方向上继续搜索
-                for (int j = 0; j &lt; 4; j++)
-                &#123;
-                    int dr = directions[j, 0]; // 行增量
-                    int dc = directions[j, 1]; // 列增量
-                    int nr = r + dr; // 计算下一个位置的行号
-                    int nc = c + dc; // 计算下一个位置的列号
-                    // 判断下一个位置是否合法且未访问过
-                    if (nr &gt;= 0 &amp;&amp; nr &lt; BoardSize &amp;&amp; nc &gt;= 0 &amp;&amp; nc &lt; BoardSize &amp;&amp; !visited[nr, nc] &amp;&amp; board[nr, nc] == player)
-                    &#123;
-                        count++; // 连续相同棋子数量加一
-                        queue.Enqueue((nr, nc)); // 将下一个位置加入队列
-                    &#125;
-                &#125;
-            &#125;
-
-            if (count &gt;= 5)
-            &#123;
-                return true; // 如果连续相同棋子数量达到5个或以上，则返回true，表示当前玩家获胜
-            &#125;
-        &#125;
-        return false; // 如果所有方向上都没有连续相同棋子数量达到5个以上，则返回false，表示当前玩家未获胜
-    &#125;
-    public static void Main(string[] args)
-    &#123;
-        // 初始化棋盘，0表示空格，1表示玩家1的棋子，2表示玩家2的棋子
-        // 调用 CheckWin 方法检查玩家1是否获胜
-     &#125;
-&#125;
-
-</code></pre>
+<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="comment">//这个使用DFS写的五子棋输赢判断</span></span><br><span class="line"><span class="keyword">using</span> System;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Gomoku</span></span><br><span class="line">&#123;</span><br><span class="line">   <span class="keyword">private</span> <span class="keyword">const</span> <span class="built_in">int</span> BoardSize = <span class="number">15</span>;</span><br><span class="line">   <span class="keyword">private</span> <span class="keyword">static</span> <span class="built_in">int</span>[,] board = <span class="keyword">new</span> <span class="built_in">int</span>[BoardSize, BoardSize];</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="built_in">bool</span> <span class="title">CheckWin</span>(<span class="params"><span class="built_in">int</span> row, <span class="built_in">int</span> col, <span class="built_in">int</span> player</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">int</span>[,] directions = &#123;</span><br><span class="line">        &#123; <span class="number">0</span>, <span class="number">1</span> &#125;,   <span class="comment">// 水平方向</span></span><br><span class="line">        &#123; <span class="number">1</span>, <span class="number">0</span> &#125;,   <span class="comment">// 竖直方向</span></span><br><span class="line">        &#123; <span class="number">1</span>, <span class="number">1</span> &#125;,   <span class="comment">// 正斜线方向</span></span><br><span class="line">        &#123; <span class="number">1</span>, <span class="number">-1</span> &#125;   <span class="comment">// 反斜线方向</span></span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="built_in">int</span> i = <span class="number">0</span>; i &lt; <span class="number">4</span>; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">int</span> count = <span class="number">1</span>;</span><br><span class="line">        <span class="built_in">int</span> dr = directions[i, <span class="number">0</span>]; <span class="comment">// 行偏移量</span></span><br><span class="line">        <span class="built_in">int</span> dc = directions[i, <span class="number">1</span>]; <span class="comment">// 列偏移量</span></span><br><span class="line">        <span class="comment">// 向当前方向搜索</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="built_in">int</span> j = <span class="number">-1</span>; j &lt;= <span class="number">1</span>; j += <span class="number">2</span>)<span class="comment">//-1和1切换表示向前搜索和向后搜索</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">int</span> r = row + dr * j; <span class="comment">// 开始搜索的行号</span></span><br><span class="line">            <span class="built_in">int</span> c = col + dc * j; <span class="comment">// 开始搜索的列号</span></span><br><span class="line">            </span><br><span class="line">            <span class="comment">// 搜索相同棋子数量</span></span><br><span class="line">            <span class="keyword">while</span> (r &gt;= <span class="number">0</span> &amp;&amp; r &lt; BoardSize &amp;&amp; c &gt;= <span class="number">0</span> &amp;&amp; c &lt; BoardSize &amp;&amp; board[r, c] == player)</span><br><span class="line">            &#123;</span><br><span class="line">                count++;</span><br><span class="line">                r += dr;</span><br><span class="line">                c += dc;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;        </span><br><span class="line">        <span class="keyword">if</span> (count &gt;= <span class="number">5</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span>(<span class="params"><span class="built_in">string</span>[] args</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 初始化棋盘，0表示空格，1表示玩家1的棋子，2表示玩家2的棋子</span></span><br><span class="line">        <span class="comment">// 调用 CheckWin 方法检查玩家1是否获胜</span></span><br><span class="line">     &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//这是BFS算法</span></span><br><span class="line"><span class="keyword">using</span> System.Collections.Generic;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Gomoku</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">const</span> <span class="built_in">int</span> BoardSize = <span class="number">15</span>; <span class="comment">// 棋盘大小</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="built_in">int</span>[,] board; <span class="comment">// 棋盘</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="built_in">bool</span> <span class="title">CheckWin</span>(<span class="params"><span class="built_in">int</span> row, <span class="built_in">int</span> col, <span class="built_in">int</span> player</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        board = <span class="keyword">new</span> <span class="built_in">int</span>[BoardSize, BoardSize]; <span class="comment">// 初始化棋盘</span></span><br><span class="line">        <span class="comment">// 在这里假设已经将棋盘上的棋子状态存储在board数组中，0表示空格，1表示白子，2表示黑子</span></span><br><span class="line">        <span class="built_in">int</span>[,] directions = &#123;</span><br><span class="line">            &#123;<span class="number">0</span>, <span class="number">1</span>&#125;,   <span class="comment">// 水平方向</span></span><br><span class="line">            &#123;<span class="number">1</span>, <span class="number">0</span>&#125;,   <span class="comment">// 竖直方向</span></span><br><span class="line">            &#123;<span class="number">1</span>, <span class="number">1</span>&#125;,   <span class="comment">// 正斜线方向</span></span><br><span class="line">            &#123;<span class="number">1</span>, <span class="number">-1</span>&#125;   <span class="comment">// 反斜线方向</span></span><br><span class="line">        &#125;;</span><br><span class="line">        <span class="comment">// 以当前位置为起点，分别向四个方向进行广度优先搜索</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="built_in">int</span> i = <span class="number">0</span>; i &lt; <span class="number">4</span>; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">int</span> count = <span class="number">1</span>; <span class="comment">// 记录连续相同棋子的数量</span></span><br><span class="line">            Queue&lt;(<span class="built_in">int</span>, <span class="built_in">int</span>)&gt; queue = <span class="keyword">new</span> Queue&lt;(<span class="built_in">int</span>, <span class="built_in">int</span>)&gt;(); <span class="comment">// 用于广度优先搜索的队列</span></span><br><span class="line">            queue.Enqueue((row, col)); <span class="comment">// 将起点加入队列</span></span><br><span class="line">            <span class="built_in">bool</span>[,] visited = <span class="keyword">new</span> <span class="built_in">bool</span>[BoardSize, BoardSize]; <span class="comment">// 记录已访问过的位置</span></span><br><span class="line">            <span class="keyword">while</span> (queue.Count &gt; <span class="number">0</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">var</span> (r, c) = queue.Dequeue(); <span class="comment">// 出队一个位置</span></span><br><span class="line">                visited[r, c] = <span class="literal">true</span>; <span class="comment">// 标记为已访问</span></span><br><span class="line">                <span class="comment">// 在当前位置的四个方向上继续搜索</span></span><br><span class="line">                <span class="keyword">for</span> (<span class="built_in">int</span> j = <span class="number">0</span>; j &lt; <span class="number">4</span>; j++)</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="built_in">int</span> dr = directions[j, <span class="number">0</span>]; <span class="comment">// 行增量</span></span><br><span class="line">                    <span class="built_in">int</span> dc = directions[j, <span class="number">1</span>]; <span class="comment">// 列增量</span></span><br><span class="line">                    <span class="built_in">int</span> nr = r + dr; <span class="comment">// 计算下一个位置的行号</span></span><br><span class="line">                    <span class="built_in">int</span> nc = c + dc; <span class="comment">// 计算下一个位置的列号</span></span><br><span class="line">                    <span class="comment">// 判断下一个位置是否合法且未访问过</span></span><br><span class="line">                    <span class="keyword">if</span> (nr &gt;= <span class="number">0</span> &amp;&amp; nr &lt; BoardSize &amp;&amp; nc &gt;= <span class="number">0</span> &amp;&amp; nc &lt; BoardSize &amp;&amp; !visited[nr, nc] &amp;&amp; board[nr, nc] == player)</span><br><span class="line">                    &#123;</span><br><span class="line">                        count++; <span class="comment">// 连续相同棋子数量加一</span></span><br><span class="line">                        queue.Enqueue((nr, nc)); <span class="comment">// 将下一个位置加入队列</span></span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (count &gt;= <span class="number">5</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">true</span>; <span class="comment">// 如果连续相同棋子数量达到5个或以上，则返回true，表示当前玩家获胜</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>; <span class="comment">// 如果所有方向上都没有连续相同棋子数量达到5个以上，则返回false，表示当前玩家未获胜</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span>(<span class="params"><span class="built_in">string</span>[] args</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 初始化棋盘，0表示空格，1表示玩家1的棋子，2表示玩家2的棋子</span></span><br><span class="line">        <span class="comment">// 调用 CheckWin 方法检查玩家1是否获胜</span></span><br><span class="line">     &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
     </div>
     
