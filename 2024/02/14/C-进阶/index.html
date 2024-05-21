@@ -44,7 +44,7 @@
 
 <link rel="stylesheet" href="/css/main.css" />
 
-<meta name="generator" content="Hexo 7.0.0"></head>
+<meta name="generator" content="Hexo 6.3.0"></head>
 <body>
     <div id="layout">
         <transition name="fade">
@@ -180,7 +180,7 @@
             
             <span class="tag">
                 
-                <a href="/tags/C/" style="color: #03a9f4">C#</a>
+                <a href="/tags/C/" style="color: #ffa2c4">C#</a>
             </span>
             
         </span>
@@ -198,13 +198,24 @@
 <p>在C#中，数据类型分为两大类：值类型（value type）和引用类型（reference type）。 它们的区别主要在数据的存储方式与变量之间的数据传递方式：</p>
 <p>值类型直接存储数据，并且变量之间是通过拷贝的方式传递的。</p>
 <p>比如int是值类型，那么考虑以下的代码：</p>
-<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="built_in">int</span> a=<span class="number">7</span>;</span><br><span class="line"><span class="built_in">int</span> b=a;</span><br><span class="line">b=<span class="number">-1</span>;</span><br></pre></td></tr></table></figure>
+<pre><code class="language-c#">int a=7;
+int b=a;
+b=-1;
+</code></pre>
 <p>很明显，通过修改b的值是不能影响到a的值的。（尽管我们写了int b = a） 这是因为a这个变量中直接存储了‘7’这个数据，而b = a实际上是把a中的值拷贝了一份再复制给b的。所以b和a没有直接的联系。</p>
 <p><strong>值类型的数据是存储在栈（Stack）上的！</strong></p>
 <p><em>常见的值类型有：所有的基本数据类型(int, float, double, bool, long, char, etc.)、枚举类型（enum）、结构体（struct）</em></p>
 <h2 id="引用类型-Reference-Type">引用类型 Reference Type</h2>
 <p>引用类型与值类型很不同，它并非直接存储数据本身，而是存储了指向该数据的地址。 引用类型的变量之间传递数据时只是拷贝了其地址，并没有拷贝数据本身。所以自始至终只会有一份数据。</p>
-<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="comment">//Transform是引用类型，考虑以下代码：</span></span><br><span class="line">Transform tf1 = object1.transform; </span><br><span class="line"></span><br><span class="line">Transform tf2 = tf1;</span><br><span class="line"></span><br><span class="line"> tf2.position = <span class="keyword">new</span> Vector3(<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>);</span><br><span class="line"><span class="comment">//我们通过修改tf2的position会影响到object1的位置吗？会！</span></span><br><span class="line"><span class="comment">//这是因为tf1和tf2中只存储了指向object1.transform的地址。tf2=tf1这行代码仅拷贝了地址，并没有拷贝object1.transform本身，所以tf2和tf1指向的是同一个物体。</span></span><br></pre></td></tr></table></figure>
+<pre><code class="language-c#">//Transform是引用类型，考虑以下代码：
+Transform tf1 = object1.transform; 
+
+Transform tf2 = tf1;
+
+ tf2.position = new Vector3(1,0,0);
+//我们通过修改tf2的position会影响到object1的位置吗？会！
+//这是因为tf1和tf2中只存储了指向object1.transform的地址。tf2=tf1这行代码仅拷贝了地址，并没有拷贝object1.transform本身，所以tf2和tf1指向的是同一个物体。
+</code></pre>
 <p><strong>引用类型本身是存储在栈（Stack）上的，而引用类型所指向的数据是存储在堆（Heap）上的!</strong></p>
 <p>所有的引用类型都继承自System.Object类。</p>
 <p><em>常见的引用类型有：类（class）、字符串（string）、数组（与数组的元素类型无关）、委托（delegate）</em></p>
@@ -217,17 +228,54 @@
 <p>当我们频繁地引用一个内容相同的字符串时（比如在Update里写string s = “a”），难道系统会需要不断创建新的字符串吗？</p>
 <p>这 未免有些浪费了。 于是，C#内置了string interning机制。</p>
 <p>它很像一个“字符串池”，当我们想要引用一个字符串时，如果池中已经有内容相同的字 符串，我们可以直接访问该已存在的字符串，不需要创建新的字符串。</p>
-<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="built_in">string</span> str1 = <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line"><span class="built_in">string</span> str2 = <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line"><span class="built_in">bool</span> areEqual = Object.ReferenceEquals(str1, str2);</span><br><span class="line"><span class="comment">//areEqual为true！</span></span><br></pre></td></tr></table></figure>
+<pre><code class="language-c#">string str1 = &quot;Hello&quot;;
+string str2 = &quot;Hello&quot;;
+bool areEqual = Object.ReferenceEquals(str1, str2);
+//areEqual为true！
+</code></pre>
 <h2 id="ref-关键字">ref 关键字</h2>
 <p>C#中函数的参数可以被ref关键字修饰。它允许我们在传参时使用变量的引用，而非变量的值。</p>
 <p><em>（一般来说，我们向函数中传参数时都是复制了一份变量的值并传入的。这也是为什么函数内的变量通常和函数外的变量没关系。）</em></p>
-<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="built_in">int</span> a = <span class="number">1</span>;</span><br><span class="line">AddOne(a);</span><br><span class="line">print(a); <span class="comment">// a=1</span></span><br><span class="line">……</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">AddOne</span>(<span class="params"><span class="built_in">int</span> a</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">	a++;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//参数“a”是通过值传递的，和函数外的“a”完全没关系。</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="built_in">int</span> a = <span class="number">1</span>;</span><br><span class="line">AddOne(<span class="keyword">ref</span> a);</span><br><span class="line">print(a); <span class="comment">// a=2</span></span><br><span class="line">……</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">AddOne</span>(<span class="params"><span class="keyword">ref</span> <span class="built_in">int</span> a</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">	a++;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//有了ref关键字后，参数“a”是通过引用传递的。于是函数内的“a”和函数外的“a”是一个东西了。</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="built_in">string</span> s = “<span class="number">123</span>”;</span><br><span class="line">Append(<span class="keyword">ref</span> s);</span><br><span class="line">print(s); <span class="comment">// s=“123a”</span></span><br><span class="line">……</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Append</span>(<span class="params"><span class="keyword">ref</span> <span class="built_in">string</span> s</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">	s+=“a”;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//同样，这里函数内外的“s”也都是同一个东西了。</span></span><br></pre></td></tr></table></figure>
+<pre><code class="language-c#">int a = 1;
+AddOne(a);
+print(a); // a=1
+……
+void AddOne(int a)
+&#123;
+	a++;
+&#125;
+//参数“a”是通过值传递的，和函数外的“a”完全没关系。
+</code></pre>
+<pre><code class="language-c#">int a = 1;
+AddOne(ref a);
+print(a); // a=2
+……
+void AddOne(ref int a)
+&#123;
+	a++;
+&#125;
+//有了ref关键字后，参数“a”是通过引用传递的。于是函数内的“a”和函数外的“a”是一个东西了。
+</code></pre>
+<pre><code class="language-c#">string s = “123”;
+Append(ref s);
+print(s); // s=“123a”
+……
+void Append(ref string s)
+&#123;
+	s+=“a”;
+&#125;
+//同样，这里函数内外的“s”也都是同一个东西了。
+</code></pre>
 <h2 id="装箱与拆箱">装箱与拆箱</h2>
 <p>装箱（boxing）：从值类型转换到引用类型；拆箱（unboxing）：从引用类型转换到值类型。</p>
 <p>这是一个性能消耗较大的操作，应尽可能减少。</p>
-<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="comment">//装箱</span></span><br><span class="line"><span class="built_in">int</span> a = <span class="number">7</span>;</span><br><span class="line"><span class="built_in">object</span> o = a;</span><br><span class="line"><span class="comment">//拆箱</span></span><br><span class="line"><span class="built_in">object</span> o = <span class="number">42</span>;</span><br><span class="line"><span class="built_in">int</span> a = o;</span><br></pre></td></tr></table></figure>
+<pre><code class="language-c#">//装箱
+int a = 7;
+object o = a;
+//拆箱
+object o = 42;
+int a = o;
+</code></pre>
 <h2 id="GC：垃圾回收机制">GC：垃圾回收机制</h2>
 <p>我们一直在用new来在堆上创建新的物体，但从来不需要主动删除物体。难道内存一直会越来越挤，直到被用完吗？ 当然不！</p>
 <p>为此，C#提供了垃圾回收器（Garbage Collector）来帮助我们清理不需要的内存。</p>
@@ -243,7 +291,21 @@
 <p>这是通过一个“引用树”（Reference Tree）实现的：每一个引用类型的数据都“继承”自一个根节点，而这些物体之间的引 用关系构成了一个树状结构。</p>
 </li>
 </ol>
-<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Mark</span>(<span class="params">objectRef o</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">if</span> (!InUseList.Exists(o))</span><br><span class="line">	&#123;</span><br><span class="line">		InUseList.Add(o);</span><br><span class="line">		List refs = GetAllChildReferences(o);</span><br><span class="line">		<span class="keyword">foreach</span> (objectRef childRef <span class="keyword">in</span> refs)</span><br><span class="line">		&#123;</span><br><span class="line">			Mark(childRef);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//可以看到，这是一个递归的操作。我们可以从根节点开始逐渐探索到整个树状结构并将探索到的物体标记为“被使用”。</span></span><br><span class="line"><span class="comment">//这样，GC就成功找出了所有正在被使用的物体。它们将很幸运地活下来</span></span><br></pre></td></tr></table></figure>
+<pre><code class="language-c#">void Mark(objectRef o)
+&#123;
+	if (!InUseList.Exists(o))
+	&#123;
+		InUseList.Add(o);
+		List refs = GetAllChildReferences(o);
+		foreach (objectRef childRef in refs)
+		&#123;
+			Mark(childRef);
+		&#125;
+	&#125;
+&#125;
+//可以看到，这是一个递归的操作。我们可以从根节点开始逐渐探索到整个树状结构并将探索到的物体标记为“被使用”。
+//这样，GC就成功找出了所有正在被使用的物体。它们将很幸运地活下来
+</code></pre>
 <ol start="2">
 <li>
 <p>回收阶段（Collection Phase） 在这个阶段，GC会从内存中“删除”所有未被引用的物体。（也就是我们上一步没发现的物体）</p>
@@ -257,8 +319,24 @@
 <p>C#中的垃圾回收存在使得我们永远不会为手动清理内存而烦恼，但是因为GC清理是很耗性能的过程，我们需要谨慎地“生产垃圾”。</p>
 </li>
 </ol>
-<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="built_in">string</span> s;</span><br><span class="line"><span class="keyword">for</span>(<span class="built_in">int</span> i; i&lt;<span class="number">1000</span>; i++)</span><br><span class="line">&#123;</span><br><span class="line">	i+=“a”;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//这段代码会产出非常多的垃圾</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="built_in">int</span> i = <span class="number">0</span>; i &lt; mesh.vertices.Length; i++) </span><br><span class="line">&#123;</span><br><span class="line">	<span class="built_in">float</span> x, y, z;</span><br><span class="line">	x = mesh.vertices[i].x;</span><br><span class="line">	y = mesh.vertices[i].y;</span><br><span class="line">	z = mesh.vertices[i].z;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//这段代码也会产出非常多的垃圾。</span></span><br><span class="line"><span class="comment">//这是因为mesh是一个Unity类，vertices是其中的一个数组。Unity类在每次被访问其中的数组时，都会拷贝一份新的数组给使用者。</span></span><br><span class="line"><span class="comment">//所以代码生产了4份vertices数组。</span></span><br></pre></td></tr></table></figure>
+<pre><code class="language-c#">string s;
+for(int i; i&lt;1000; i++)
+&#123;
+	i+=“a”;
+&#125;
+//这段代码会产出非常多的垃圾
+</code></pre>
+<pre><code class="language-c#">for(int i = 0; i &lt; mesh.vertices.Length; i++) 
+&#123;
+	float x, y, z;
+	x = mesh.vertices[i].x;
+	y = mesh.vertices[i].y;
+	z = mesh.vertices[i].z;
+&#125;
+//这段代码也会产出非常多的垃圾。
+//这是因为mesh是一个Unity类，vertices是其中的一个数组。Unity类在每次被访问其中的数组时，都会拷贝一份新的数组给使用者。
+//所以代码生产了4份vertices数组。
+</code></pre>
 <h2 id="C-、Mono-、-NET">C# 、Mono 、.NET</h2>
 <p>.NET是一个微软为Windows推出的程序开发框架。</p>
 <p>它包含了许多常用的类库和一个称为“Common Language Runtime”（CLR） 的运行环境；CLR提供了将C#代码翻译成机器指令的功能、内存管理功能（包括GC）、多线程功能等等。</p>
@@ -278,16 +356,43 @@
 <p>泛型允许一个函数或类接受一些类型作为参数。</p>
 <h3 id="泛型方法-Generic-Methods">泛型方法 Generic Methods</h3>
 <p>首先我们来看看泛型在函数/方法上的用途。 在定义一个函数时，我们不仅用圆括号()标记所接受的变量参数，还可以用尖括号&lt;&gt;标记接受的类型参数。</p>
-<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="comment">//eg.</span></span><br><span class="line"><span class="function"><span class="built_in">int</span> <span class="title">Add</span>(<span class="params"><span class="built_in">int</span> a, <span class="built_in">int</span> b</span>)<span class="comment">//非泛型函数</span></span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">return</span> a+b;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">T <span class="title">AddGeneric</span>&lt;<span class="title">T</span>&gt;(<span class="params">T a, T b</span>)<span class="comment">//泛型函数</span></span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">return</span> a+b;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code class="language-c#">//eg.
+int Add(int a, int b)//非泛型函数
+&#123;
+	return a+b;
+&#125;
+
+T AddGeneric&lt;T&gt;(T a, T b)//泛型函数
+&#123;
+	return a+b;
+&#125;
+</code></pre>
 <p>这里我们接受了一个类型变量”T”。”T”这个名字是自选的，不过一般的惯例是命名为”T”（Type）。这样，a和b两个参数的类型都是T了。</p>
 <p>在调用泛型函数的时候，我们需要补充尖括号中的内容：<code>float sum = AddGeneric&lt;float&gt;(5f, 7f);</code>或者使用简写<code>float sum = AddGeneric(5f, 7f);</code></p>
 <p>泛型方法可以接受多个类型变量。我们在定义时需要用逗号隔开：</p>
-<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Insert</span>&lt;<span class="title">TKey</span>, <span class="title">TValue</span>&gt;(<span class="params">Dictionary&lt;TKey,TValue&gt; dict, TKey key, TValue <span class="keyword">value</span></span>)</span></span><br><span class="line">&#123;</span><br><span class="line">	dict.Add(key, <span class="keyword">value</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code class="language-c#">void Insert&lt;TKey, TValue&gt;(Dictionary&lt;TKey,TValue&gt; dict, TKey key, TValue value)
+&#123;
+	dict.Add(key, value);
+&#125;
+</code></pre>
 <p>调用时：<code>Insert(dict, 2, “February”);</code>或<code>Insert(dict, 2, “February”);</code></p>
-<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="comment">//现在，我们可以大概推断出Unity的GetComponent方法大概是怎么被定义的了：</span></span><br><span class="line"><span class="function">T <span class="title">GetComponent</span>&lt;<span class="title">T</span>&gt;()</span></span><br><span class="line">&#123;</span><br><span class="line">	T comp;</span><br><span class="line">	……</span><br><span class="line">	<span class="keyword">return</span> comp;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//不过GetComponent会接受所有类型的类型参数吗？可以Get一个int类型的Component吗？</span></span><br></pre></td></tr></table></figure>
+<pre><code class="language-c#">//现在，我们可以大概推断出Unity的GetComponent方法大概是怎么被定义的了：
+T GetComponent&lt;T&gt;()
+&#123;
+	T comp;
+	……
+	return comp;
+&#125;
+//不过GetComponent会接受所有类型的类型参数吗？可以Get一个int类型的Component吗？
+</code></pre>
 <h3 id="泛型的类型限制">泛型的类型限制</h3>
 <p>有时我们会希望一个函数所接受的泛型变量处于某个范围之内，比如GetComponent方法只会接受Component类型的参数。</p>
-<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="function">T <span class="title">AddGeneric</span>&lt;<span class="title">T</span>&gt;(<span class="params">T a, T b</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">return</span> a+b;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//事实上，这个函数在编译器里面是会报错的，因为“+”这个运算符，并没有在所有类型中都有定义</span></span><br></pre></td></tr></table></figure>
+<pre><code class="language-c#">T AddGeneric&lt;T&gt;(T a, T b)
+&#123;
+	return a+b;
+&#125;
+//事实上，这个函数在编译器里面是会报错的，因为“+”这个运算符，并没有在所有类型中都有定义
+</code></pre>
 <p>为了解决这个问题，我们可以在圆括号后使用where关键字对类型变量作出一些限制:</p>
 <ul>
 <li><code>where T: struct (T必须为值类型)</code></li>
@@ -296,13 +401,39 @@
 <li><code>where T :&lt;base class name&gt;  (T是继承自一个基类的) </code></li>
 <li><code>where T :&lt;interface name&gt;  (T实现了一个接口)</code></li>
 </ul>
-<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="function">T <span class="title">GetComponent</span>&lt;<span class="title">T</span>&gt;() <span class="keyword">where</span> T: Component <span class="comment">//其实就是使用继承来限制</span></span></span><br><span class="line">&#123;</span><br><span class="line">	T comp;</span><br><span class="line">	……</span><br><span class="line">	<span class="keyword">return</span> comp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code class="language-c#">T GetComponent&lt;T&gt;() where T: Component //其实就是使用继承来限制
+&#123;
+	T comp;
+	……
+	return comp;
+&#125;
+</code></pre>
 <h3 id="泛型类-Generic-Classes">泛型类 Generic Classes</h3>
 <p>一个泛型类允许我们在创建该类的实例时传入一个类型参数。</p>
-<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="comment">//eg.</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">MyList</span>&lt;<span class="title">T</span>&gt; <span class="keyword">where</span> <span class="title">T</span>: <span class="title">struct</span></span><br><span class="line">&#123;</span><br><span class="line">	List&lt;T&gt; list = <span class="keyword">new</span> List&lt;T&gt;();</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Add</span>(<span class="params">T item</span>)</span></span><br><span class="line">	&#123;</span><br><span class="line">		list.Add(item);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//这是一个接受值类型的List类。在类名的定义之后添加尖括号（以及类型限制）即可。</span></span><br></pre></td></tr></table></figure>
+<pre><code class="language-c#">//eg.
+public class MyList&lt;T&gt; where T: struct
+&#123;
+	List&lt;T&gt; list = new List&lt;T&gt;();
+	public void Add(T item)
+	&#123;
+		list.Add(item);
+	&#125;
+&#125;
+//这是一个接受值类型的List类。在类名的定义之后添加尖括号（以及类型限制）即可。
+</code></pre>
 <h2 id="Coroutine-协程">Coroutine 协程</h2>
 <p>协程是一个函数；定义如下：</p>
-<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"> IEnumerator &lt;FuncName&gt;(&lt;Params&gt;)</span><br><span class="line"> &#123;</span><br><span class="line">     &lt;content&gt;</span><br><span class="line"> &#125; </span><br><span class="line"><span class="comment">//即把一个函数的返回值改为“IEnumerator”即可</span></span><br><span class="line"><span class="comment">//eg.</span></span><br><span class="line"><span class="function">IEnumerator <span class="title">MyCoroutine</span> (<span class="params"><span class="built_in">float</span> f</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">	f = <span class="number">5</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code class="language-c#"> IEnumerator &lt;FuncName&gt;(&lt;Params&gt;)
+ &#123;
+     &lt;content&gt;
+ &#125; 
+//即把一个函数的返回值改为“IEnumerator”即可
+//eg.
+IEnumerator MyCoroutine (float f)
+&#123;
+	f = 5;
+&#125;
+</code></pre>
 <p>调用协程函数：</p>
 <p><code>StartCoroutine(IEnumerator routine);</code></p>
 <p>不可以直接视作函数调用</p>
@@ -320,17 +451,46 @@
 <li>yield return null：下一帧继续执行协程</li>
 <li>yield return new WaitForSeconds(i)：在i秒后继续执行</li>
 </ul>
-<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="comment">//eg.</span></span><br><span class="line"><span class="function">IEnumerator <span class="title">DisableAfterTwoSec</span>()</span></span><br><span class="line">&#123; </span><br><span class="line"><span class="function"><span class="keyword">yield</span> <span class="keyword">return</span> <span class="keyword">new</span> <span class="title">WaitForSeconds</span>(<span class="params"><span class="number">2</span></span>)</span>; </span><br><span class="line">gameObject.SetActive(<span class="literal">false</span>); </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//eg.</span></span><br><span class="line"><span class="function">IEnumerator <span class="title">MyUpdate</span>()</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">while</span>(<span class="literal">true</span>)</span><br><span class="line">&#123;</span><br><span class="line">    DoSomething();</span><br><span class="line">    <span class="keyword">yield</span> <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//这个函数的功能和Unity自带的Update（）函数是一样的</span></span><br></pre></td></tr></table></figure>
+<pre><code class="language-c#">//eg.
+IEnumerator DisableAfterTwoSec()
+&#123; 
+yield return new WaitForSeconds(2); 
+gameObject.SetActive(false); 
+&#125;
+
+//eg.
+IEnumerator MyUpdate()
+&#123;
+while(true)
+&#123;
+    DoSomething();
+    yield return null;
+&#125;
+&#125;
+//这个函数的功能和Unity自带的Update（）函数是一样的
+</code></pre>
 </li>
 </ul>
 <h3 id="关于WaitForSeconds">关于WaitForSeconds</h3>
 <p>注意WaitForSeconds是一个类！（使用new WaitForSeconds()来构造实例）</p>
 <p>好习惯：如果在循环中多次等待同一段时间，最好先建立WaitForSeconds实例 再使用，而不是在循环中不断new。</p>
-<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="comment">//eg.</span></span><br><span class="line">WaitForSeconds w1 = <span class="keyword">new</span> WaitForSeconds(<span class="number">1</span>); </span><br><span class="line"><span class="keyword">while</span>(<span class="literal">true</span>)</span><br><span class="line">&#123; </span><br><span class="line">	<span class="keyword">yield</span> <span class="keyword">return</span> w1; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code class="language-c#">//eg.
+WaitForSeconds w1 = new WaitForSeconds(1); 
+while(true)
+&#123; 
+	yield return w1; 
+&#125;
+</code></pre>
 <h2 id="Action与Func">Action与Func</h2>
 <p>C#中的事件系统中有两个常用的组件：Action和Func。可以把它们想象成存储了许多函 数的List。当一个Action/Func执行时，其中所有的函数都会一起执行。</p>
 <p>Action/Func是一个类型，我们可以定义类型为Action/Func的变量并用它来存放函数。</p>
-<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="comment">//eg.</span></span><br><span class="line"><span class="keyword">public</span> Action onPlayerInjure;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Start</span>()</span></span><br><span class="line">&#123;</span><br><span class="line">	onPlayerInjure+=ScreenFlash;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code class="language-c#">//eg.
+public Action onPlayerInjure;
+void Start()
+&#123;
+	onPlayerInjure+=ScreenFlash;
+&#125;
+</code></pre>
 <h3 id="Action：常用操作">Action：常用操作</h3>
 <p>Action位于namespace System中 ,它能够存放的函数必须是无返回值的(也就是void函数）</p>
 <p>有关的常用操作有这些：</p>
@@ -361,8 +521,20 @@
 <p>Action可以用来存放void函数，那如果想要存放有返回值的函数怎么办？</p>
 <p>这时就需要Func了！ - Func和Action是同一“家族”的，而它们唯一的区别就是有无返回值。</p>
 <p>在定义Func的时候，需要在所有参数之后加上返回值的类型：</p>
-<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">private</span> Func&lt;<span class="built_in">int</span>,<span class="built_in">float</span>&gt; func1; <span class="comment">//func1中的函数接受1个int类型的变量，并返回float</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> Func&lt;<span class="built_in">string</span>&gt; func2; <span class="comment">//func2中的函数不接受变量，返回string</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> Func&lt;<span class="built_in">int</span>,<span class="built_in">int</span>,<span class="built_in">int</span>&gt; func3; <span class="comment">//func3中的函数接受2个int类型的变量，并返回int </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> Func func4; <span class="comment">//func4会报错</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 使用Func的时候，当一个普通的有返回值的函数即可</span></span><br><span class="line"><span class="comment">//eg.</span></span><br><span class="line"><span class="keyword">private</span> Func&lt;<span class="built_in">int</span>, <span class="built_in">int</span>, <span class="built_in">int</span>&gt; <span class="keyword">add</span>;</span><br><span class="line">···</span><br><span class="line"><span class="built_in">int</span> sum = <span class="keyword">add</span>(<span class="number">4</span>,<span class="number">5</span>);</span><br></pre></td></tr></table></figure>
+<pre><code class="language-c#">private Func&lt;int,float&gt; func1; //func1中的函数接受1个int类型的变量，并返回float
+
+private Func&lt;string&gt; func2; //func2中的函数不接受变量，返回string
+
+private Func&lt;int,int,int&gt; func3; //func3中的函数接受2个int类型的变量，并返回int 
+
+private Func func4; //func4会报错
+</code></pre>
+<pre><code class="language-c#">// 使用Func的时候，当一个普通的有返回值的函数即可
+//eg.
+private Func&lt;int, int, int&gt; add;
+···
+int sum = add(4,5);
+</code></pre>
 <h2 id="委托-Delegate">委托 Delegate</h2>
 <p>Action和Func背后隐藏着一个强大的机制：委托。委托提供的功能正是“可以存放函数的类型”。</p>
 <p><code>delegate int Calculate(int x, int y);</code></p>
@@ -370,10 +542,25 @@
 <p><code>	delegate &lt;返回值类型&gt; &lt;委托类型名&gt;(&lt;参数列表&gt;);</code></p>
 <p>这是通用的模板。</p>
 <p>上方我们只是定义了一个类型。当我们想要使用委托时，需要声明一个该类型的变量。</p>
-<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="comment">//eg.</span></span><br><span class="line">Calculate cal; <span class="comment">//声明委托类型的变量</span></span><br><span class="line">cal = AddInt; <span class="comment">//将AddInt函数装进变量</span></span><br><span class="line"><span class="built_in">int</span> sum = cal(<span class="number">6</span>, <span class="number">7</span>); <span class="comment">//使用委托</span></span><br><span class="line"><span class="function"><span class="built_in">int</span> <span class="title">AddInt</span>(<span class="params"><span class="built_in">int</span> x, <span class="built_in">int</span> y</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">return</span> x+y;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="built_in">float</span> <span class="title">AddFloat</span>(<span class="params"><span class="built_in">float</span> x, <span class="built_in">float</span> y</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">return</span> x+y;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code class="language-c#">//eg.
+Calculate cal; //声明委托类型的变量
+cal = AddInt; //将AddInt函数装进变量
+int sum = cal(6, 7); //使用委托
+int AddInt(int x, int y)
+&#123;
+	return x+y;
+&#125;
+float AddFloat(float x, float y)
+&#123;
+	return x+y;
+&#125;
+</code></pre>
 <h3 id="多播委托-Multicasting">多播委托 Multicasting</h3>
 <p>一个委托变量中也可以存储/调用多个函数。这叫做Multicasting。</p>
-<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line">Calculate cal; </span><br><span class="line">cal += AddInt; <span class="comment">//我们可以使用+=运算符向委托变量中添加函数，</span></span><br><span class="line">cal += MinusInt;<span class="comment">//同样可以使用-=运算符除去函数。</span></span><br></pre></td></tr></table></figure>
+<pre><code class="language-c#">Calculate cal; 
+cal += AddInt; //我们可以使用+=运算符向委托变量中添加函数，
+cal += MinusInt;//同样可以使用-=运算符除去函数。
+</code></pre>
 <p>当一个装有多个函数的委托变量被调用时，其中的函数会被依次调用，且：</p>
 <ol>
 <li>如果参数中有引用类型的变量，该变量会依次受到这些函数的影响。</li>
@@ -382,11 +569,33 @@
 <p>一个委托类型中的函数们叫做调用列表（Invocation List）。我们可以通过<code>GetInvocationList()</code>获取它：</p>
 <p><code>cal.GetInvocationList();</code></p>
 <p><code>cal.GetInvocationList().Length;</code> 这样可以获取其中函数的数量。</p>
-<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="comment">//eg.</span></span><br><span class="line"><span class="function"><span class="built_in">delegate</span> <span class="built_in">int</span> <span class="title">Calculate</span>(<span class="params"><span class="built_in">int</span> x, <span class="built_in">int</span> y</span>)</span>; </span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span>()</span> </span><br><span class="line">&#123; </span><br><span class="line">	Calculate cal = <span class="literal">null</span>; </span><br><span class="line">	cal+=Add; </span><br><span class="line">	cal+=Add; </span><br><span class="line">	<span class="built_in">int</span> sum = cal(<span class="number">1</span>,<span class="number">1</span>); </span><br><span class="line">	Console.WriteLine(sum); </span><br><span class="line">&#125; </span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="built_in">int</span> <span class="title">Add</span>(<span class="params"><span class="built_in">int</span> x, <span class="built_in">int</span> y</span>)</span></span><br><span class="line">&#123; </span><br><span class="line">	<span class="keyword">return</span> x+y; </span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//output:2</span></span><br></pre></td></tr></table></figure>
+<pre><code class="language-c#">//eg.
+delegate int Calculate(int x, int y); 
+public static void Main() 
+&#123; 
+	Calculate cal = null; 
+	cal+=Add; 
+	cal+=Add; 
+	int sum = cal(1,1); 
+	Console.WriteLine(sum); 
+&#125; 
+private static int Add(int x, int y)
+&#123; 
+	return x+y; 
+&#125;
+//output:2
+</code></pre>
 <h3 id="事件-Event">事件 Event</h3>
 <p>事件（event）是对委托的一层封装。它允许我们更方便地在不同的类之间“发送提醒”。</p>
 <p>粗略地看，事件就是一个仅支持“+=”和“-=”的委托。这么做禁止了“=”，也就是不可以直接修改该委托的invocation list。 我们可以用event关键字修饰一个委托变量来将其变成事件变量。用法与委托大体一致。</p>
-<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="comment">//eg.</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="built_in">delegate</span> <span class="keyword">void</span> <span class="title">MyDelegate</span>(<span class="params"><span class="built_in">string</span> message</span>)</span>;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">event</span> MyDelegate MyEvent;</span><br><span class="line">…</span><br><span class="line">MyEvent+=xxx；<span class="comment">//这是可以的</span></span><br><span class="line">MyEvent-=xxx; <span class="comment">//这也是可以的</span></span><br><span class="line">MyEvent = xxx; <span class="comment">//这不可以</span></span><br></pre></td></tr></table></figure>
+<pre><code class="language-c#">//eg.
+public delegate void MyDelegate(string message);
+public event MyDelegate MyEvent;
+…
+MyEvent+=xxx；//这是可以的
+MyEvent-=xxx; //这也是可以的
+MyEvent = xxx; //这不可以
+</code></pre>
 <h3 id="Action-和-Func的实质">Action 和 Func的实质</h3>
 <p>Action就是一个<strong>无返回值</strong>的，接受0-16个参数的委托。</p>
 <p><code>public delegate void Action();</code></p>
@@ -402,47 +611,149 @@
 <p>字段是类中的成员变量，<code>private int speed = 5;</code></p>
 <p>很多时候，我们不希望其他类直接访问我们的字段。或者我们希望每次访问一个字段时可以做一点事。 属性（Property）提供了这个功能。</p>
 <p>属性可以理解为一个对字段的封装，它能给一个字段添加一些功能：比如读写限制、读 写时执行函数等等。 一个属性具有两个组成部分：getter与setter。它们分别定义了读、写该属性的行为：</p>
-<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="comment">//eg.</span></span><br><span class="line"><span class="keyword">private</span> <span class="built_in">int</span> speed = <span class="number">5</span>;<span class="comment">//事实上什么也没做</span></span><br><span class="line"><span class="keyword">public</span> <span class="built_in">int</span> Speed</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">get</span>&#123;<span class="keyword">return</span> speed;&#125;</span><br><span class="line">	<span class="keyword">set</span>&#123;speed = <span class="keyword">value</span>;&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//属性变量通常用于保护一个字段，为一个私有变量提供一个经过封装的公开访问通道。比如这里的Speed实则是一个对speed的封装。</span></span><br></pre></td></tr></table></figure>
+<pre><code class="language-c#">//eg.
+private int speed = 5;//事实上什么也没做
+public int Speed
+&#123;
+	get&#123;return speed;&#125;
+	set&#123;speed = value;&#125;
+&#125;
+//属性变量通常用于保护一个字段，为一个私有变量提供一个经过封装的公开访问通道。比如这里的Speed实则是一个对speed的封装。
+</code></pre>
 <h3 id="属性：Getter">属性：Getter</h3>
-<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="comment">//eg.</span></span><br><span class="line"><span class="keyword">private</span> <span class="built_in">int</span> speed = <span class="number">5</span>;</span><br><span class="line"><span class="keyword">public</span> <span class="built_in">int</span> Speed</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">get</span>&#123;<span class="keyword">return</span> speed;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code class="language-c#">//eg.
+private int speed = 5;
+public int Speed
+&#123;
+	get&#123;return speed;&#125;
+&#125;
+</code></pre>
 <p>属性的Getter定义了读取该属性的行为。Getter必须有返回值。 它看上去就像调用了一个函数并将函数的返回值给读取者。 语法：<code>get&#123;&lt;函数语句&gt;&#125;</code></p>
 <p>Getter的存在允许我们自定义读取某变量时的行为，它增加了类的安全性与可读性。</p>
 <h3 id="属性：Setter">属性：Setter</h3>
-<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="comment">//eg.</span></span><br><span class="line"><span class="keyword">private</span> <span class="built_in">int</span> speed = <span class="number">5</span>;</span><br><span class="line"><span class="keyword">public</span> <span class="built_in">int</span> Speed</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">set</span>&#123;speed = <span class="keyword">value</span>;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code class="language-c#">//eg.
+private int speed = 5;
+public int Speed
+&#123;
+	set&#123;speed = value;&#125;
+&#125;
+</code></pre>
 <p>属性的Setter定义了写入该属性的行为。Setter有一个看不见的参数 “value”。value代表我们要写入的那个值。 它看上去就像调用了一个函数并将在函数中修改了字段。 语法：<code>set&#123;&lt;函数语句&gt;</code></p>
 <h3 id="自动属性">自动属性</h3>
 <p><code>public int Speed &#123; get; set; &#125;</code></p>
 <p>与其写出完整的getter和setter，我们只需要写get;set;就可以自动获得默认的getter和 setter。</p>
 <p>通过这种方式，我们可以轻易地控制一个属性的可读/写性。</p>
-<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="built_in">int</span> Speed<span class="comment">//可读，不可写</span></span><br><span class="line">&#123; <span class="keyword">get</span>; &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="built_in">int</span> Speed<span class="comment">//可读，但只有本类可写</span></span><br><span class="line">&#123; <span class="keyword">get</span>; <span class="keyword">private</span> <span class="keyword">set</span>;&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="built_in">int</span> Speed<span class="comment">//可读，但只有本类和子类可写</span></span><br><span class="line">&#123; <span class="keyword">get</span>; <span class="keyword">protected</span> <span class="keyword">set</span>;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//属性不可以为“可写但不可读”。</span></span><br></pre></td></tr></table></figure>
+<pre><code class="language-c#">public int Speed//可读，不可写
+&#123; get; &#125;
+
+public int Speed//可读，但只有本类可写
+&#123; get; private set;&#125;
+
+public int Speed//可读，但只有本类和子类可写
+&#123; get; protected set;&#125;
+
+//属性不可以为“可写但不可读”。
+</code></pre>
 <h2 id="接口-Interface">接口 Interface</h2>
 <p>接口（Interface）定义了一系列类的规范。接口中可以包括<strong>方法</strong>、<strong>属性</strong>、<strong>事件</strong>等成员，而这些成员<strong>必须</strong>被其子类实现。</p>
-<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="comment">//eg.</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title">IDamageable</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="built_in">float</span> hp &#123;<span class="keyword">get</span>; <span class="keyword">set</span>;&#125; <span class="comment">//属性：生命值</span></span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">OnDamage</span>(<span class="params"><span class="built_in">float</span> <span class="keyword">value</span></span>)</span>;<span class="comment">//方法：受击</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code class="language-c#">//eg.
+public interface IDamageable
+&#123;
+	float hp &#123;get; set;&#125; //属性：生命值
+	void OnDamage(float value);//方法：受击
+&#125;
+</code></pre>
 <p>接口很像是一个“未完成的类”。在定义方法时，我们完全不用 （也不可以）写方法的主体；</p>
 <p>在定义属性时，我们也<strong>不可以</strong>给其赋予初始值。 它只是一个“接口”，等待子类接入并真正实现这些成员，以此来确保<strong>所有</strong>的子类都有这些实现。</p>
 <p>和一般的类一样，我们可以让一个类继承自接口。与类不同的是，我们可以继承自多个接口。</p>
-<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="comment">//eg.</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Enemy</span> : <span class="title">IDamageable</span>, <span class="title">IHittable</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="comment">//这里必须实现所有接口的成员，否则会报错！</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code class="language-c#">//eg.
+public class Enemy : IDamageable, IHittable
+&#123;
+	//这里必须实现所有接口的成员，否则会报错！
+&#125;
+</code></pre>
 <p>实现一个接口相当于补充接口中所有属性与方法的实现。</p>
-<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title">IDamageable</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="built_in">float</span> hp &#123;<span class="keyword">get</span>; <span class="keyword">set</span>;&#125; <span class="comment">//属性：生命值</span></span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">OnDamage</span>(<span class="params"><span class="built_in">float</span> <span class="keyword">value</span></span>)</span>;<span class="comment">//方法：受击</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Enemy</span> : <span class="title">IDamageable</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="built_in">float</span> hp &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">OnDamage</span>(<span class="params"><span class="built_in">float</span> <span class="keyword">value</span></span>)</span></span><br><span class="line">	&#123;</span><br><span class="line">		hp-=<span class="keyword">value</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;	</span><br><span class="line"><span class="comment">//Enemy类实现了接口中所有的属性与方法。这是必须完成的任务。</span></span><br></pre></td></tr></table></figure>
+<pre><code class="language-c#">public interface IDamageable
+&#123;
+	float hp &#123;get; set;&#125; //属性：生命值
+	void OnDamage(float value);//方法：受击
+&#125;
+
+public class Enemy : IDamageable
+&#123;
+	public float hp &#123; get; set; &#125;
+	public void OnDamage(float value)
+	&#123;
+		hp-=value;
+	&#125;
+&#125;	
+//Enemy类实现了接口中所有的属性与方法。这是必须完成的任务。
+</code></pre>
 <h2 id="部分类-Partial-Class">部分类 Partial Class</h2>
 <p>部分类允许我们把同一个类写在多个文件里，每个文件提供类的一部分。 定义时使用partial关键字。</p>
-<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="comment">//Map.cs</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">partial</span> <span class="keyword">class</span> <span class="title">Map</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">private</span> <span class="built_in">float</span> hp &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//MapAddHp.cs</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">partial</span> <span class="keyword">class</span> <span class="title">Map</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">AddHP</span>(<span class="params"><span class="built_in">float</span> <span class="keyword">value</span></span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">		hp += <span class="keyword">value</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;	</span><br><span class="line"><span class="comment">//Map类被定义在了两个文件中，但其实际的功能和直接写在一起是一样的</span></span><br></pre></td></tr></table></figure>
+<pre><code class="language-c#">//Map.cs
+public partial class Map
+&#123;
+	private float hp &#123; get; set; &#125;
+&#125;
+
+//MapAddHp.cs
+public partial class Map
+&#123;
+	public void AddHP(float value)
+    &#123;
+		hp += value;
+	&#125;
+&#125;	
+//Map类被定义在了两个文件中，但其实际的功能和直接写在一起是一样的
+</code></pre>
 <h2 id="Lambda-表达式">Lambda 表达式</h2>
 <p>Lambda表达式是一种允许我们“快速定义函数”的方法。可以把一个lambda表达式想象成一个简易函数。</p>
 <h3 id="expression-lambda">expression lambda</h3>
 <p><code>(参数列表) =&gt; (返回的表达式)</code>比如<code>（x,y）=&gt;x*y</code></p>
 <p>上方右侧表达式的含义和这个函数类似：</p>
-<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="function">T <span class="title">MyFunc</span>(<span class="params">T x, T y</span>)</span></span><br><span class="line"></span><br><span class="line">&#123; </span><br><span class="line">    <span class="keyword">return</span> x*y;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code class="language-c#">T MyFunc(T x, T y)
+
+&#123; 
+    return x*y;
+&#125;
+</code></pre>
 <p>注意lambda表达式是没有函数名的， 所以也被称为匿名函数。</p>
 <p>使用lambda表达式时把它当作一个<strong>委托类型的变量</strong>即可,比如<code>(x,y)=&gt;x*y</code>就可以是类型为<code>Func&lt;int,int,int&gt;</code>的变量。所以我们可以这么写：<code>Func&lt;int,int,int&gt; mul = (x,y) =&gt; x*y;</code></p>
 <h3 id="statement-lambda">statement lambda</h3>
 <p>statement lambda可以没有返回值。</p>
-<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line">(参数列表) =&gt;</span><br><span class="line">&#123;</span><br><span class="line">	执行的程序语句</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//eg.</span></span><br><span class="line">(go) =&gt;</span><br><span class="line">&#123;</span><br><span class="line">	go.SetActive(<span class="literal">false</span>); <span class="comment">//这里写任何语句都可以</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code class="language-c#">(参数列表) =&gt;
+&#123;
+	执行的程序语句
+&#125;
+//eg.
+(go) =&gt;
+&#123;
+	go.SetActive(false); //这里写任何语句都可以
+&#125;
+</code></pre>
 <p>一个没有返回值的statement lambda可以理解成一个Action类型的变量。</p>
-<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line">Action&lt;<span class="built_in">string</span>&gt; greet = name =&gt;</span><br><span class="line">&#123;</span><br><span class="line">	<span class="built_in">string</span> greeting = <span class="string">&quot;Hello &#123;name&#125;!&quot;</span>;</span><br><span class="line">	Console.WriteLine(greeting);</span><br><span class="line">&#125;;</span><br><span class="line">greet(<span class="string">&quot;World&quot;</span>);</span><br><span class="line"><span class="comment">//output:HelloWorld</span></span><br></pre></td></tr></table></figure>
+<pre><code class="language-c#">Action&lt;string&gt; greet = name =&gt;
+&#123;
+	string greeting = &quot;Hello &#123;name&#125;!&quot;;
+	Console.WriteLine(greeting);
+&#125;;
+greet(&quot;World&quot;);
+//output:HelloWorld
+</code></pre>
 <h3 id="作为参数的函数">作为参数的函数</h3>
 <p>有了lambda表达式后，我们就可以轻松地把函数作为参数传入其他函数了！ 只需定义一个Action/Func参数即可。</p>
-<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="function">IEnumerator <span class="title">DelayedCall</span>(<span class="params">Action action, <span class="built_in">float</span> seconds</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="function"><span class="keyword">yield</span> <span class="keyword">return</span> <span class="keyword">new</span> <span class="title">WaitForSeconds</span>(<span class="params">seconds</span>)</span>;</span><br><span class="line">	action();</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//这样调用</span></span><br><span class="line">StartCoroutine(DelayedCall(() =&gt;</span><br><span class="line">&#123;</span><br><span class="line">	Destroy(gameObject);</span><br><span class="line">&#125;, <span class="number">2.0f</span>)); </span><br></pre></td></tr></table></figure>
+<pre><code class="language-c#">IEnumerator DelayedCall(Action action, float seconds)
+&#123;
+	yield return new WaitForSeconds(seconds);
+	action();
+&#125;
+//这样调用
+StartCoroutine(DelayedCall(() =&gt;
+&#123;
+	Destroy(gameObject);
+&#125;, 2.0f)); 
+</code></pre>
 
     </div>
     

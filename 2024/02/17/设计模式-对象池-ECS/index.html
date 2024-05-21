@@ -44,7 +44,7 @@
 
 <link rel="stylesheet" href="/css/main.css" />
 
-<meta name="generator" content="Hexo 7.0.0"></head>
+<meta name="generator" content="Hexo 6.3.0"></head>
 <body>
     <div id="layout">
         <transition name="fade">
@@ -180,7 +180,7 @@
             
             <span class="tag">
                 
-                <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="color: #ffa2c4">设计模式</a>
+                <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="color: #03a9f4">设计模式</a>
             </span>
             
         </span>
@@ -193,12 +193,41 @@
 <h1>设计模式</h1>
 <h2 id="更好的单例模式">更好的单例模式</h2>
 <p>我们可能会用到多个单例类，对于每个单例类都写上那么一段单例模式代码实在不是很优雅。 我们可以创建一个通用的单例类，并让每个真正用到的单例类继承自它就好了！</p>
-<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Singleton</span>&lt;<span class="title">T</span>&gt; <span class="keyword">where</span> <span class="title">T</span> : <span class="keyword">class</span>, <span class="title">new</span>()</span><br><span class="line">&#123;</span><br><span class="line"> 	<span class="function"><span class="keyword">protected</span> <span class="title">Singleton</span>()</span> &#123;&#125;</span><br><span class="line">	 <span class="keyword">private</span> <span class="keyword">static</span> T _inst = <span class="literal">null</span>;</span><br><span class="line"> 	<span class="keyword">public</span> <span class="keyword">static</span> T instance =&gt; _inst ?? (_inst = <span class="keyword">new</span> T());</span><br><span class="line">    <span class="comment">//??运算符：a??b是一种简写方法，等价于a!=null?a:b,即a不为null时返回a，否则返回b</span></span><br><span class="line">    <span class="comment">//可以直接使用lambda表达式来创建getter</span></span><br><span class="line"> 	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Clear</span>()</span></span><br><span class="line">	&#123;</span><br><span class="line">	 	_inst = <span class="literal">null</span>;</span><br><span class="line"> 	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code class="language-c#">public class Singleton&lt;T&gt; where T : class, new()
+&#123;
+ 	protected Singleton() &#123;&#125;
+	 private static T _inst = null;
+ 	public static T instance =&gt; _inst ?? (_inst = new T());
+    //??运算符：a??b是一种简写方法，等价于a!=null?a:b,即a不为null时返回a，否则返回b
+    //可以直接使用lambda表达式来创建getter
+ 	public static void Clear()
+	&#123;
+	 	_inst = null;
+ 	&#125;
+&#125;
+</code></pre>
 <p>缺点：有时一个全局的访问点可能并不是好事，因为这样会增加类之间的耦合度，降低可读性，提高出错率。其实很多时候我们可以使用static字段与方法来代替单例；当我们过度使用单例时，每当一个单例类出错，很可能会导致整个系统崩溃。</p>
 <h2 id="指令模式-Command-Pattern">指令模式 Command Pattern</h2>
 <p>将我们的每一个操作抽象成一个指令，并给每个指令一个“撤销”的操作。</p>
 <p>『解耦』、『撤销功能』</p>
-<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title">ICommand</span><span class="comment">//公共的指令接口</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">Execute</span>()</span>;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">Undo</span>()</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">ConcreteCommand</span> : <span class="title">ICommand</span></span><br><span class="line">    <span class="comment">//每一个实际的指令都是一个继承自Icommand接口的类。执行该指令时调用Execute方法，撤销时调用Undo方法。</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Execute</span>()<span class="comment">//执行指令</span></span></span><br><span class="line">    &#123;</span><br><span class="line">	···</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Undo</span>()<span class="comment">//撤销指令</span></span></span><br><span class="line">    &#123;</span><br><span class="line">	···</span><br><span class="line"> 	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code class="language-c#">public interface ICommand//公共的指令接口
+&#123;
+	void Execute();
+	void Undo();
+&#125;
+public class ConcreteCommand : ICommand
+    //每一个实际的指令都是一个继承自Icommand接口的类。执行该指令时调用Execute方法，撤销时调用Undo方法。
+&#123;
+	public void Execute()//执行指令
+    &#123;
+	···
+	&#125;
+	public void Undo()//撤销指令
+    &#123;
+	···
+ 	&#125;
+&#125;
+</code></pre>
 <p><img src="/photos/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E3%80%81%E5%AF%B9%E8%B1%A1%E6%B1%A0%E3%80%81ECS_%E6%8C%87%E4%BB%A4%E6%A8%A1%E5%BC%8F.jpg" alt=""></p>
 <ul>
 <li><strong>（1）指令接口（Command Interface）</strong></li>
@@ -208,17 +237,131 @@
 <li><strong>（5）使用者（Client）：我们在这里创建指令并执行它们</strong></li>
 </ul>
 <h2 id="工厂模式-Factory-Pattern">工厂模式 Factory Pattern</h2>
-<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">class</span> <span class="title">Animal</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="built_in">string</span> <span class="title">Speak</span>()</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Dog</span> : <span class="title">Animal</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">override</span> <span class="built_in">string</span> <span class="title">Speak</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;Woof&quot;</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Cat</span> : <span class="title">Animal</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">override</span> <span class="built_in">string</span> <span class="title">Speak</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;Meow&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//工厂类</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">class</span> <span class="title">AnimalFactory</span></span><br><span class="line">&#123;</span><br><span class="line">     <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Animal <span class="title">CreateAnimal</span>(<span class="params"><span class="built_in">string</span> type</span>)</span></span><br><span class="line">     &#123;</span><br><span class="line">         <span class="keyword">switch</span> (type)</span><br><span class="line">         &#123;</span><br><span class="line">             <span class="keyword">case</span> <span class="string">&quot;Dog&quot;</span>:</span><br><span class="line">             <span class="keyword">return</span> <span class="keyword">new</span> Dog();</span><br><span class="line">             <span class="keyword">case</span> <span class="string">&quot;Cat&quot;</span>:</span><br><span class="line">             <span class="keyword">return</span> <span class="keyword">new</span> Cat();</span><br><span class="line">             <span class="literal">default</span>:</span><br><span class="line">             <span class="keyword">throw</span> <span class="keyword">new</span> NotSupportedException();</span><br><span class="line">         &#125;</span><br><span class="line">     &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//将工厂继续抽象，得到一个生成工厂的接口，原本的工厂只能生产单一的物品，比如我要生成黑猫和白猫的话就很麻烦</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title">IAnimalFactory</span><span class="comment">//这样可以得到多个工厂</span></span><br><span class="line">&#123;</span><br><span class="line">     <span class="function">Dog <span class="title">CreateDog</span>()</span>;</span><br><span class="line">     <span class="function">Cat <span class="title">CreateCat</span>()</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">AnimalFactory</span> : <span class="title">IAnimalFactory</span><span class="comment">//真正的工厂类继承自工厂接口</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Dog <span class="title">CreateDog</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> Dog();</span><br><span class="line">	&#125;</span><br><span class="line"> </span><br><span class="line">	<span class="function"><span class="keyword">public</span> Cat <span class="title">CreateCat</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">new</span> Cat();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code class="language-c#">public abstract class Animal
+&#123;
+	public abstract string Speak();
+&#125;
+public class Dog : Animal
+&#123;
+    public override string Speak()
+    &#123;
+    return &quot;Woof&quot;;
+	&#125;
+&#125;
+public class Cat : Animal
+&#123;
+    public override string Speak()
+    &#123;
+    return &quot;Meow&quot;;
+    &#125;
+&#125;
+//工厂类
+public static class AnimalFactory
+&#123;
+     public static Animal CreateAnimal(string type)
+     &#123;
+         switch (type)
+         &#123;
+             case &quot;Dog&quot;:
+             return new Dog();
+             case &quot;Cat&quot;:
+             return new Cat();
+             default:
+             throw new NotSupportedException();
+         &#125;
+     &#125;
+&#125;
+//将工厂继续抽象，得到一个生成工厂的接口，原本的工厂只能生产单一的物品，比如我要生成黑猫和白猫的话就很麻烦
+public interface IAnimalFactory//这样可以得到多个工厂
+&#123;
+     Dog CreateDog();
+     Cat CreateCat();
+&#125;
+public class AnimalFactory : IAnimalFactory//真正的工厂类继承自工厂接口
+&#123;
+    public Dog CreateDog()
+    &#123;
+    return new Dog();
+	&#125;
+ 
+	public Cat CreateCat()
+    &#123;
+	return new Cat();
+	&#125;
+&#125;
+</code></pre>
 <h1>对象池 Object Pool</h1>
 <p>是为了优化性能，如果一个GO频繁被实例化和Destroy掉，会产生大量的GC垃圾,而如果把本该销毁的GO改为enable，将其移动到屏幕之外，到再次需要启用时候，仅仅只进行坐标变换，那么消耗的性能会大大减少。</p>
 <p>下面是一个简单的对象池</p>
-<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">ObjectPool</span> : <span class="title">MonoBehaviour</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> GameObject objectToPool; </span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">int</span> initialPoolSize = <span class="number">10</span>; </span><br><span class="line">    <span class="keyword">private</span> List&lt;GameObject&gt; pool;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">Start</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        pool = <span class="keyword">new</span> List&lt;GameObject&gt;();</span><br><span class="line">        <span class="keyword">for</span> (<span class="built_in">int</span> i = <span class="number">0</span>; i &lt; initialPoolSize; i++)</span><br><span class="line">        &#123;</span><br><span class="line">        GameObject obj = Instantiate(objectToPool);</span><br><span class="line">        obj.SetActive(<span class="literal">false</span>);</span><br><span class="line">        pool.Add(obj);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> GameObject <span class="title">Get</span>()</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="built_in">int</span> i = <span class="number">0</span>; i &lt; pool.Count; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (!pool[i].activeInHierarchy)</span><br><span class="line">            &#123;</span><br><span class="line">            <span class="keyword">return</span> pool[i];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        GameObject obj = Instantiate(objectToPool);</span><br><span class="line">        obj.SetActive(<span class="literal">false</span>);</span><br><span class="line">        pool.Add(obj);</span><br><span class="line">        <span class="keyword">return</span> obj;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">ReturnToPool</span>(<span class="params">GameObject obj</span>)</span></span><br><span class="line">    &#123;</span><br><span class="line">   		obj.SetActive(<span class="literal">false</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code class="language-c#">public class ObjectPool : MonoBehaviour
+&#123;
+    public GameObject objectToPool; 
+    public int initialPoolSize = 10; 
+    private List&lt;GameObject&gt; pool;
+    void Start()
+    &#123;
+        pool = new List&lt;GameObject&gt;();
+        for (int i = 0; i &lt; initialPoolSize; i++)
+        &#123;
+        GameObject obj = Instantiate(objectToPool);
+        obj.SetActive(false);
+        pool.Add(obj);
+        &#125;
+    &#125;
+    public GameObject Get()
+    &#123;
+        for (int i = 0; i &lt; pool.Count; i++)
+        &#123;
+            if (!pool[i].activeInHierarchy)
+            &#123;
+            return pool[i];
+            &#125;
+        &#125;
+        GameObject obj = Instantiate(objectToPool);
+        obj.SetActive(false);
+        pool.Add(obj);
+        return obj;
+    &#125;
+    public void ReturnToPool(GameObject obj)
+    &#123;
+   		obj.SetActive(false);
+    &#125;
+&#125;
+</code></pre>
 <h1>ECS（Entity、Component、System）模式</h1>
 <p>这是一种面向数据的编程范式，可以获得更高的内存效能和更好的代码并行性。</p>
 <p>Entity 实体 和GameObject类似，entity是一个有ID的物体，其中有且只有一系列的component。</p>
 <p>Component组件和Unity中的component不同，ECS中的component只不过是一些数据结构。它们提供了物体执行逻辑时所需要的数据。 使用Unity中的component时，我们一般不会使用它所以得功能，所以造成了性能浪费。</p>
 <p>System系统System是真正完成物体逻辑的部分。一个system会在所有有特定component的entity上执行操作。（比如一个Render System可能会在所有有sprite renderer组件的物体上执行渲染操作）</p>
-<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="comment">//eg.</span></span><br><span class="line"><span class="keyword">class</span> <span class="title">Position</span> </span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">float</span> x;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">float</span> y;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title">Velocity</span> </span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">float</span> dx;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">float</span> dy;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title">Entity</span> </span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">string</span> id;</span><br><span class="line">    <span class="keyword">public</span> Position position;</span><br><span class="line">    <span class="keyword">public</span> Velocity velocity;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title">MovementSystem</span> </span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Update</span>(<span class="params">Entity entity, <span class="built_in">float</span> deltaTime</span>)</span> </span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(entity.position != <span class="literal">null</span> &amp;&amp; entity.velocity != <span class="literal">null</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            entity.position.x += entity.velocity.dx * deltaTime;</span><br><span class="line">            entity.position.y += entity.velocity.dy * deltaTime;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code class="language-c#">//eg.
+class Position 
+&#123;
+    public float x;
+    public float y;
+&#125;
+class Velocity 
+&#123;
+    public float dx;
+    public float dy;
+&#125;
+class Entity 
+&#123;
+    public string id;
+    public Position position;
+    public Velocity velocity;
+&#125;
+class MovementSystem 
+&#123;
+    public void Update(Entity entity, float deltaTime) 
+    &#123;
+        if(entity.position != null &amp;&amp; entity.velocity != null)
+        &#123;
+            entity.position.x += entity.velocity.dx * deltaTime;
+            entity.position.y += entity.velocity.dy * deltaTime;
+        &#125;
+    &#125;
+&#125;
+</code></pre>
 
     </div>
     

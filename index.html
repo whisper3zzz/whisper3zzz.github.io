@@ -40,7 +40,7 @@
 
 <link rel="stylesheet" href="/css/main.css" />
 
-<meta name="generator" content="Hexo 7.0.0"></head>
+<meta name="generator" content="Hexo 6.3.0"></head>
 <body>
     <div id="layout">
         <transition name="fade">
@@ -172,6 +172,15 @@
     </a>
     <div class="category-and-date">
         
+        <span class="category">
+            <a href="/categories/%E5%AD%A6%E4%B9%A0/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                学习
+            </a>
+        </span>
+        
         <span class="date">
             <span class="icon">
                 <i class="fa-solid fa-calendar fa-fw"></i>
@@ -184,13 +193,48 @@
     <div class="description">
         <div class="content" v-pre>
             
-            
+            <h2 id="下载ML-Agents">下载ML-Agents</h2>
+<p>到官方Github库下载<a target="_blank" rel="noopener" href="https://github.com/Unity-Technologies/ml-agents/releases/tag/release_21">Release21</a>版本（后续教程均基于此版本），下载完成后解压到本地目录。</p>
+<h2 id="环境配置">环境配置</h2>
+<p>1.安装<a target="_blank" rel="noopener" href="https://www.anaconda.com/download/">anaconda</a>，建议安装完成之后更新到最新版本，否则即使你的anaconda不安装在C盘，创建的环境也会在C盘，且无法修改，在安装过程中务必勾选将anaconda添加到环境变量，安装完成之后，可以在cmd中运行<code>conda --version</code>,如果成功输出版本号，则添加成功；如果发生报错，请手动配置环境变量，在控制面板\系统和安全\系统\高级系统设置\环境变量\用户变量\PATH 中添加 anaconda的安装目录的Scripts文件夹。</p>
+<p>2.创建虚拟环境，这里有两种方法，一种是使用图形化界面anaconda Navigator ，另一种是使用anaconda Prompt。</p>
+<h3 id="使用图形化界面anaconda-Navigator">使用图形化界面anaconda Navigator</h3>
+<p>启动anaconda Navigator</p>
+<p><img src="/photos/MLA_1.jpg" alt=""></p>
+<p>如图所示创建一个环境，python版本选择一个靠近3.10.12的版本，创建好之后，请切换python版本到3.10.12，参考下图</p>
+<p><img src="/photos/MLA_2.jpg" alt=""></p>
+<p><img src="/photos/MLA_3.jpg" alt=""></p>
+<h3 id="使用anaconda-Prompt">使用anaconda Prompt</h3>
+<p>启动anaconda Prompt，输入<code>conda create -n UniMLA python=3.10.12</code></p>
+<p>这样就创建了一个名为UniMLA的虚拟环境</p>
+<p>3.Win+R，输入cmd，使用cd命令进入ML-Agents解压后的文件夹，比如</p>
+<p><code>cd /d G:\ml-agents-release_21</code>(使用/d是为了切换盘符，如果你的ML-Agents文件夹在系统盘，请忽略/d)</p>
+<p>然后输入<code>conda -activate UniMLA</code>，启动你创建的虚拟环境，成功启动后，cmd新一行会变成<code>(UniMLA) G:\ml-agents-release_21&gt;</code></p>
+<p>4.打开文件夹ml-agents-envs，<a target="_blank" rel="noopener" href="http://xn--setup-ln2hv6qb31b3yf.py">找到文件setup.py</a>，使用诸如VScode之类的软件打开，找到install_requires，把numpy后面的版本号改成1.22.4，保存并退出。</p>
+<p>5.回到启用虚拟环境的cmd窗口，依次输入</p>
+<pre><code class="language-Cmd">pip3 install torch -f https://download.pytorch.org/whl/torch_stable.html
+pip3 install -e ./ml-agents-envs
+pip3 install -e ./ml-agents
+</code></pre>
+<p>等待安装完成，如果有报错，请按照提示处理，比如更新pip版本。</p>
+<p><em>从第三步开始不使用cmd，使用anaconda Prompt过程一致</em></p>
+<p>之后创建一个Unity项目（Release21版本推荐使用2022.3及以后版本），在packmanager里面选择从磁盘导入包找到<code>\ml-agents-release_21\com.unity.ml-agents\package.json</code>导入即可。</p>
+
             
         </div>
     </div>
     <div class="post-tags">
         
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
         
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/Unity-AI/" style="color: #ff7d73">-Unity -AI</a>
+        </span>
         
     </div>
     <a href="/2024/05/20/Unity-ML-Agents-Study/" class="go-post">阅读全文</a>
@@ -237,7 +281,7 @@
         
         <span class="tag">
             
-            <a href="/tags/Unity/" style="color: #ff7d73">Unity</a>
+            <a href="/tags/Unity/" style="color: #03a9f4">Unity</a>
         </span>
         
     </div>
@@ -286,12 +330,12 @@
         
         <span class="tag">
             
-            <a href="/tags/%E6%B8%B2%E6%9F%93/" style="color: #ff7d73">渲染</a>
+            <a href="/tags/Unity/" style="color: #00a596">Unity</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/Unity/" style="color: #ffa2c4">Unity</a>
+            <a href="/tags/%E6%B8%B2%E6%9F%93/" style="color: #ffa2c4">渲染</a>
         </span>
         
     </div>
@@ -339,12 +383,12 @@
         
         <span class="tag">
             
-            <a href="/tags/%E6%B8%B2%E6%9F%93/" style="color: #03a9f4">渲染</a>
+            <a href="/tags/Unity/" style="color: #00bcd4">Unity</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/Unity/" style="color: #ffa2c4">Unity</a>
+            <a href="/tags/%E6%B8%B2%E6%9F%93/" style="color: #ffa2c4">渲染</a>
         </span>
         
     </div>
@@ -392,12 +436,12 @@
         
         <span class="tag">
             
-            <a href="/tags/%E6%B8%B2%E6%9F%93/" style="color: #00a596">渲染</a>
+            <a href="/tags/Unity/" style="color: #00bcd4">Unity</a>
         </span>
         
         <span class="tag">
             
-            <a href="/tags/Unity/" style="color: #ffa2c4">Unity</a>
+            <a href="/tags/%E6%B8%B2%E6%9F%93/" style="color: #03a9f4">渲染</a>
         </span>
         
     </div>
