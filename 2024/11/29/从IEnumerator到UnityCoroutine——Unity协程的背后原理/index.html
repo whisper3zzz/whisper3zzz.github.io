@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <title>whisper3zzzの窝</title>
+    <title>从IEnumerator到UnityCoroutine——Unity协程的背后原理 | whisper3zzzの窝</title>
     <meta name="author" content="whisper3zzz" />
     <meta name="description" content="" />
     <meta name="keywords" content="" />
@@ -36,7 +36,11 @@
 
 
 
-<script src="/js/lib/home.js"></script>
+
+
+<script src="https://cdn.staticfile.org/twikoo/1.6.22/twikoo.all.min.js"></script>
+
+
 
 <link rel="stylesheet" href="/css/main.css" />
 
@@ -146,32 +150,11 @@
 </transition>
 
         <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
-            <div id="home-head">
-    <div id="home-background" ref="homeBackground" data-images="/images/background1.jpg,/images/background2.jpg,/images/background3.jpg,/images/background4.jpg,/images/background5.jpg"></div>
-    <div id="home-info" @click="homeClick">
-        <span class="loop"></span>
-        <span class="loop"></span>
-        <span class="loop"></span>
-        <span class="loop"></span>
-        <span class="info">
-            <div class="wrap">
-                <h1>whisper3zzzの窝</h1>
-                <h3></h3>
-                <h5></h5>
-            </div>
-        </span>
+            <div class="article">
+    <div>
+        <h1>从IEnumerator到UnityCoroutine——Unity协程的背后原理</h1>
     </div>
-</div>
-<div id="home-posts-wrap" true ref="homePostsWrap">
-    <div id="home-posts">
-        
-
-<div class="post">
-    <a href="/2024/11/29/%E4%BB%8EIEnumerator%E5%88%B0UnityCoroutine%E2%80%94%E2%80%94Unity%E5%8D%8F%E7%A8%8B%E7%9A%84%E8%83%8C%E5%90%8E%E5%8E%9F%E7%90%86/">
-        <h2 class="post-title">从IEnumerator到UnityCoroutine——Unity协程的背后原理</h2>
-    </a>
-    <div class="category-and-date">
-        
+    <div class="info">
         <span class="date">
             <span class="icon">
                 <i class="fa-solid fa-calendar fa-fw"></i>
@@ -181,10 +164,9 @@
         
         
     </div>
-    <div class="description">
-        <div class="content" v-pre>
-            
-            <p>本篇文章可以回答以下问题：</p>
+    
+    <div class="content" v-pre>
+        <p>本篇文章可以回答以下问题：</p>
 <ol>
 <li><code>MonoBehaviour.StartCoroutine</code>接收的参数为什么是<code>IEnumerator</code>，<code>IEnumerator</code>和协程有什么关系？</li>
 <li>既然协程函数返回值声明是<code>IEnumerator</code>，为什么函数内<code>yield return</code>的又是不同类型的返回值？</li>
@@ -452,303 +434,21 @@ static IEnumerator Test()
 <p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/279383752">Unity协程的原理与应用</a></p>
 <p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/356632347">【迭代器模式】深入理解协程</a></p>
 
-            
-        </div>
-    </div>
-    <div class="post-tags">
-        
-        
-        
-    </div>
-    <a href="/2024/11/29/%E4%BB%8EIEnumerator%E5%88%B0UnityCoroutine%E2%80%94%E2%80%94Unity%E5%8D%8F%E7%A8%8B%E7%9A%84%E8%83%8C%E5%90%8E%E5%8E%9F%E7%90%86/" class="go-post">阅读全文</a>
-</div>
-
-<div class="post">
-    <a href="/2024/08/05/xLua%E7%83%AD%E6%9B%B4%E6%96%B0/">
-        <h2 class="post-title">xLua热更新</h2>
-    </a>
-    <div class="category-and-date">
-        
-        <span class="category">
-            <a href="/categories/%E5%AD%A6%E4%B9%A0/">
-                <span class="icon">
-                    <i class="fa-solid fa-bookmark fa-fw"></i>
-                </span>
-                学习
-            </a>
-        </span>
-        
-        <span class="date">
-            <span class="icon">
-                <i class="fa-solid fa-calendar fa-fw"></i>
-            </span>
-            2024/8/5
-        </span>
-        
-        
-    </div>
-    <div class="description">
-        <div class="content" v-pre>
-            
-            <h1>xLua的新功能-HotFix</h1>
-<p>优势：</p>
-<p>开发时使用C#，打好hotfix标签，出现问题时再使用lua修复，大版本更新时将lua部分更新回C#。</p>
-<p>劣势：</p>
-<ul>
-<li>热修复复杂脚本的难度：
-<ul>
-<li>储备lua开发人员。</li>
-<li>制定C#编写规范。</li>
-<li>考虑C#和lua之间“翻译”的语言特性问题。</li>
-</ul>
-</li>
-<li>更新频率：
-<ul>
-<li>不适合高频维护项目。</li>
-</ul>
-</li>
-</ul>
-
-            
-        </div>
-    </div>
-    <div class="post-tags">
-        
-        <span class="icon">
-            <i class="fa-solid fa-tags fa-fw"></i>
-        </span>
-        
-        
-        
-        <span class="tag">
-            
-            <a href="/tags/Unity/" style="color: #00bcd4">Unity</a>
-        </span>
-        
-        <span class="tag">
-            
-            <a href="/tags/%E7%83%AD%E6%9B%B4%E6%96%B0/" style="color: #ff7d73">热更新</a>
-        </span>
-        
-    </div>
-    <a href="/2024/08/05/xLua%E7%83%AD%E6%9B%B4%E6%96%B0/" class="go-post">阅读全文</a>
-</div>
-
-<div class="post">
-    <a href="/2024/06/15/%E5%A6%82%E4%BD%95%E5%AE%9A%E4%BD%8DUnity%E7%BC%96%E8%BE%91%E5%99%A8%E5%B4%A9%E6%BA%83%E9%97%AE%E9%A2%98/">
-        <h2 class="post-title">如何定位Unity编辑器崩溃问题</h2>
-    </a>
-    <div class="category-and-date">
-        
-        <span class="date">
-            <span class="icon">
-                <i class="fa-solid fa-calendar fa-fw"></i>
-            </span>
-            2024/6/15
-        </span>
-        
-        
-    </div>
-    <div class="description">
-        <div class="content" v-pre>
-            
-            <p>在<code>C:\Users\&#123;username&#125;\AppData\Local\Unity\Editor</code>文件夹中，Editor.log文件是当前编辑器的控制台输出，Editor-prev.log是上一次编辑器的控制台输出，查看Editor-prev.log即可找到导致编辑器崩溃的报错。</p>
-
-            
-        </div>
-    </div>
-    <div class="post-tags">
-        
-        <span class="icon">
-            <i class="fa-solid fa-tags fa-fw"></i>
-        </span>
-        
-        
-        
-        <span class="tag">
-            
-            <a href="/tags/Unity/" style="color: #00bcd4">Unity</a>
-        </span>
-        
-    </div>
-    <a href="/2024/06/15/%E5%A6%82%E4%BD%95%E5%AE%9A%E4%BD%8DUnity%E7%BC%96%E8%BE%91%E5%99%A8%E5%B4%A9%E6%BA%83%E9%97%AE%E9%A2%98/" class="go-post">阅读全文</a>
-</div>
-
-<div class="post">
-    <a href="/2024/05/20/Unity-ML-Agents-Study/">
-        <h2 class="post-title">Unity ML_Agents_Study</h2>
-    </a>
-    <div class="category-and-date">
-        
-        <span class="category">
-            <a href="/categories/%E5%AD%A6%E4%B9%A0/">
-                <span class="icon">
-                    <i class="fa-solid fa-bookmark fa-fw"></i>
-                </span>
-                学习
-            </a>
-        </span>
-        
-        <span class="date">
-            <span class="icon">
-                <i class="fa-solid fa-calendar fa-fw"></i>
-            </span>
-            2024/5/20
-        </span>
-        
-        
-    </div>
-    <div class="description">
-        <div class="content" v-pre>
-            
-            <h2 id="下载ML-Agents">下载ML-Agents</h2>
-<p>到官方Github库下载<a target="_blank" rel="noopener" href="https://github.com/Unity-Technologies/ml-agents/releases/tag/release_21">Release21</a>版本（后续教程均基于此版本），下载完成后解压到本地目录。</p>
-<h2 id="环境配置">环境配置</h2>
-<p>1.安装<a target="_blank" rel="noopener" href="https://www.anaconda.com/download/">anaconda</a>，建议安装完成之后更新到最新版本，否则即使你的anaconda不安装在C盘，创建的环境也会在C盘，且无法修改，在安装过程中务必勾选将anaconda添加到环境变量，安装完成之后，可以在cmd中运行<code>conda --version</code>,如果成功输出版本号，则添加成功；如果发生报错，请手动配置环境变量，在控制面板\系统和安全\系统\高级系统设置\环境变量\用户变量\PATH 中添加 anaconda的安装目录的Scripts文件夹。</p>
-<p>2.创建虚拟环境，这里有两种方法，一种是使用图形化界面anaconda Navigator ，另一种是使用anaconda Prompt。</p>
-<h3 id="使用图形化界面anaconda-Navigator">使用图形化界面anaconda Navigator</h3>
-<p>启动anaconda Navigator</p>
-<p><img src="/photos/MLA_1.jpg" alt=""></p>
-<p>如图所示创建一个环境，python版本选择一个靠近3.10.12的版本，创建好之后，请切换python版本到3.10.12，参考下图</p>
-<p><img src="/photos/MLA_2.jpg" alt=""></p>
-<p><img src="/photos/MLA_3.jpg" alt=""></p>
-<h3 id="使用anaconda-Prompt">使用anaconda Prompt</h3>
-<p>启动anaconda Prompt，输入<code>conda create -n UniMLA python=3.10.12</code></p>
-<p>这样就创建了一个名为UniMLA的虚拟环境</p>
-<p>3.Win+R，输入cmd，使用cd命令进入ML-Agents解压后的文件夹，比如</p>
-<p><code>cd /d G:\ml-agents-release_21</code>(使用/d是为了切换盘符，如果你的ML-Agents文件夹在系统盘，请忽略/d)</p>
-<p>然后输入<code>conda -activate UniMLA</code>，启动你创建的虚拟环境，成功启动后，cmd新一行会变成<code>(UniMLA) G:\ml-agents-release_21&gt;</code></p>
-<p>4.打开文件夹ml-agents-envs，<a target="_blank" rel="noopener" href="http://xn--setup-ln2hv6qb31b3yf.py">找到文件setup.py</a>，使用诸如VScode之类的软件打开，找到install_requires，把numpy后面的版本号改成1.23.5，保存并退出；打开文件夹ml-agents，<a target="_blank" rel="noopener" href="http://xn--setup-ln2hv6qb31b3yf.py">找到文件setup.py</a>，同样找到 install_requires，把numpy的那一行改成<code>&quot;numpy&gt;=1.23.5,&lt;1.24.0&quot;</code>。</p>
-<p>5.回到启用虚拟环境的cmd窗口，依次输入</p>
-<pre><code class="language-Cmd">pip3 install torch -f https://download.pytorch.org/whl/torch_stable.html
-pip3 install -e ./ml-agents-envs
-pip3 install -e ./ml-agents
-</code></pre>
-<p>等待安装完成，如果有报错，请按照提示处理，比如更新pip版本。</p>
-<p><em>从第三步开始不使用cmd，使用anaconda Prompt过程一致</em></p>
-<p>之后创建一个Unity项目（Release21版本推荐使用2022.3及以后版本），在packmanager里面选择从磁盘导入包找到<code>\ml-agents-release_21\com.unity.ml-agents\package.json</code>导入即可。</p>
-
-            
-        </div>
-    </div>
-    <div class="post-tags">
-        
-        <span class="icon">
-            <i class="fa-solid fa-tags fa-fw"></i>
-        </span>
-        
-        
-        
-        <span class="tag">
-            
-            <a href="/tags/Unity-AI/" style="color: #ff7d73">-Unity -AI</a>
-        </span>
-        
-    </div>
-    <a href="/2024/05/20/Unity-ML-Agents-Study/" class="go-post">阅读全文</a>
-</div>
-
-<div class="post">
-    <a href="/2024/03/24/UniTask/">
-        <h2 class="post-title">UniTask</h2>
-    </a>
-    <div class="category-and-date">
-        
-        <span class="category">
-            <a href="/categories/%E5%AD%A6%E4%B9%A0/">
-                <span class="icon">
-                    <i class="fa-solid fa-bookmark fa-fw"></i>
-                </span>
-                学习
-            </a>
-        </span>
-        
-        <span class="date">
-            <span class="icon">
-                <i class="fa-solid fa-calendar fa-fw"></i>
-            </span>
-            2024/3/24
-        </span>
-        
-        
-    </div>
-    <div class="description">
-        <div class="content" v-pre>
-            
-            
-            
-        </div>
-    </div>
-    <div class="post-tags">
-        
-        <span class="icon">
-            <i class="fa-solid fa-tags fa-fw"></i>
-        </span>
-        
-        
-        
-        <span class="tag">
-            
-            <a href="/tags/Unity/" style="color: #00bcd4">Unity</a>
-        </span>
-        
-    </div>
-    <a href="/2024/03/24/UniTask/" class="go-post">阅读全文</a>
-</div>
-
-
-        <div class="page-current">
-    
-    <span class="current">1</span>
-    
-    <a class="page-num" href="/page/2">2</a>
-    
-    
-    <a class="page-num" href="/page/3">3</a>
-    
-    
-    <span class="page-omit">...</span>
-    <a class="page-num" href="/page/4">4</a>
-    
-    
-    <a class="page-num" href="/page/2/">
-        <i class="fa-solid fa-caret-right fa-fw"></i>
-    </a>
-    
-</div>
-
     </div>
     
-    <div id="home-card">
-        <div id="card-style">
-    <div id="card-div">
-        <div class="avatar">
-            <img src="/images/avatar.jpg" alt="avatar" />
-        </div>
-        <div class="name">whisper3zzz</div>
-        <div class="description">
-            <p>Description<br>
-Unity学习&amp;游戏开发&amp;Computer Graphics学习</p>
-
-        </div>
-        
-        
-        <div class="friend-links">
-            
-            <div class="friend-link">
-                <a target="_blank" rel="noopener" href="https://rdququ.top">蛐蛐</a>
-            </div>
-            
-            <div class="friend-link">
-                <a target="_blank" rel="noopener" href="https://foth0626.github.io">Foth</a>
-            </div>
-            
-        </div>
-        
+    
+    
+    
+    <div id="comment">
+        <div id="giscus-container" class="giscus"></div>
     </div>
-</div>
-
+    
+    
+    
+    <div id="comment">
+        <div id="twikoo-container"></div>
     </div>
+    
     
 </div>
 
@@ -780,6 +480,39 @@ Unity学习&amp;游戏开发&amp;Computer Graphics学习</p>
         
     </div>
     <script src="/js/main.js"></script>
+    
+    
+<script
+    src="https://giscus.app/client.js"
+    data-repo="whisper3zzz/whisper3zzz.github.io"
+    data-repo-id="R_kgDOK7y0CA"
+    data-category="Announcements"
+    data-category-id="DIC_kwDOK7y0CM4Cb4tb"
+    data-mapping="title"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="bottom"
+    data-theme="light"
+    data-lang="zh-CN"
+    crossorigin
+    async
+></script>
+
+
+
+
+<script>
+    twikoo.init({
+        el: "#twikoo-container",
+        envId: "",
+        region: "",
+        path: location.pathname,
+        lang: "",
+    })
+</script>
+
+
     
 </body>
 </html>
