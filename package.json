@@ -13,6 +13,8 @@
   },
   "dependencies": {
     "valaxy": "0.26.6",
+    "valaxy-addon-components": "^0.1.0",
+    "valaxy-addon-meting": "^0.1.4",
     "valaxy-theme-sakura": "^0.10.2",
     "valaxy-theme-yun": "0.26.6"
   },
