@@ -143,6 +143,8 @@ export default defineValaxyConfig<ThemeUserConfig>({
         server: 'netease',
         type:'song',
         autoplay:true
+      },options:{
+         animationIn:true
       }
     })
   ]
