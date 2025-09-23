@@ -19,7 +19,7 @@ tags:
 
 表达颜色的方式可以有很多种。比如最常见的RGB颜色，以及加入加入透明度（alpha）的RGBA颜色
 
-![](.//UnityShader与图形渲染（4）_rgba.jpg)
+![](./UnityShader与图形渲染（4）_rgba.jpg)
 
 以及通过色彩（Hue）、饱和度（Saturation）和明度（Brightness）表示的HSV颜色：
 
