@@ -79,14 +79,7 @@ export default defineValaxyConfig<ThemeUserConfig>({
         ]
       }
     ],
-    footer: {
-      since: 2023,
-      icon: {
-        animated: true,      
-        title: 'whisper3zzz'
-      },
-      powered: true,
-    }
+  
   },
 
 })
