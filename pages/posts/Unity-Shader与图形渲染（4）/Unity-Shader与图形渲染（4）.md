@@ -17,12 +17,7 @@ tags:
 
 ## 色彩空间 Color Space
 
-表达颜色的方式可以有很多种。比如最常见的RGB颜色，以及加入加入透明度（alpha）的RGBA颜色
-
-![](https://f866f87.webp.li/UnityShader%E4%B8%8E%E5%9B%BE%E5%BD%A2%E6%B8%B2%E6%9F%93%EF%BC%884%EF%BC%89_rgba.jpg)
-
-以及通过色彩（Hue）、饱和度（Saturation）和明度（Brightness）表示的HSV颜色：
-
+表达颜色的方式可以有很多种。比如最常见的RGB颜色，以及加入加入透明度（alpha）的RGBA颜色以及通过色彩（Hue）、饱和度（Saturation）和明度（Brightness）表示的HSV颜色：
 ![](./UnityShader与图形渲染（4）_hsv.jpg)
 
 ## 颜色的属性
