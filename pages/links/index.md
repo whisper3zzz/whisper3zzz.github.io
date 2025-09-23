@@ -1,6 +1,7 @@
 ---
 layout: links
 title: 友链版
+cover: https://f866f87.webp.li/%E5%A3%81%E7%BA%B836.jpg
 keywords: 链接
 description: 我的的小伙伴们
 
@@ -24,6 +25,5 @@ links:
     color: "rgba(24, 88, 91, 1)"
 
 random: true
+commet: false
 ---
-
-<YunLinks :links="frontmatter.links" :random="frontmatter.random" />
