@@ -36,7 +36,6 @@ declare module 'vue-router/auto-routes' {
     '/posts/Unity-ML-Agents-Study/Unity-ML-Agents-Study': RouteRecordInfo<'/posts/Unity-ML-Agents-Study/Unity-ML-Agents-Study', '/posts/Unity-ML-Agents-Study/Unity-ML-Agents-Study', Record<never, never>, Record<never, never>>,
     '/posts/Unity-Shader与图形渲染（2）/Unity-Shader与图形渲染（2）': RouteRecordInfo<'/posts/Unity-Shader与图形渲染（2）/Unity-Shader与图形渲染（2）', '/posts/Unity-Shader与图形渲染（2）/Unity-Shader与图形渲染（2）', Record<never, never>, Record<never, never>>,
     '/posts/Unity-Shader与图形渲染（3）/Unity-Shader与图形渲染（3）': RouteRecordInfo<'/posts/Unity-Shader与图形渲染（3）/Unity-Shader与图形渲染（3）', '/posts/Unity-Shader与图形渲染（3）/Unity-Shader与图形渲染（3）', Record<never, never>, Record<never, never>>,
-    '/posts/Unity-Shader与图形渲染（4）': RouteRecordInfo<'/posts/Unity-Shader与图形渲染（4）', '/posts/Unity-Shader与图形渲染（4）', Record<never, never>, Record<never, never>, '/posts/Unity-Shader与图形渲染（4）/Unity-Shader与图形渲染（4）'>,
     '/posts/Unity-Shader与图形渲染（4）/Unity-Shader与图形渲染（4）': RouteRecordInfo<'/posts/Unity-Shader与图形渲染（4）/Unity-Shader与图形渲染（4）', '/posts/Unity-Shader与图形渲染（4）/Unity-Shader与图形渲染（4）', Record<never, never>, Record<never, never>>,
     '/posts/Unity粒子系统（1）': RouteRecordInfo<'/posts/Unity粒子系统（1）', '/posts/Unity粒子系统（1）', Record<never, never>, Record<never, never>>,
     '/posts/Unity粒子系统（2）': RouteRecordInfo<'/posts/Unity粒子系统（2）', '/posts/Unity粒子系统（2）', Record<never, never>, Record<never, never>>,
@@ -131,10 +130,6 @@ declare module 'vue-router/auto-routes' {
     'pages/posts/Unity-Shader与图形渲染（3）/Unity-Shader与图形渲染（3）.md': {
       routes: '/posts/Unity-Shader与图形渲染（3）/Unity-Shader与图形渲染（3）'
       views: never
-    }
-    'pages/posts/Unity-Shader与图形渲染（4）.md': {
-      routes: '/posts/Unity-Shader与图形渲染（4）' | '/posts/Unity-Shader与图形渲染（4）/Unity-Shader与图形渲染（4）'
-      views: 'default'
     }
     'pages/posts/Unity-Shader与图形渲染（4）/Unity-Shader与图形渲染（4）.md': {
       routes: '/posts/Unity-Shader与图形渲染（4）/Unity-Shader与图形渲染（4）'
