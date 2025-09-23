@@ -1,6 +1,6 @@
-import type { UserThemeConfig } from 'valaxy-theme-sakura'
+import type { ThemeUserConfig } from 'valaxy-theme-sakura'
 import { defineValaxyConfig } from 'valaxy'
-
+import { addonMeting } from 'valaxy-addon-meting'
 // add icons what you will need
 const safelist = [
   'i-ri-home-line',
@@ -9,7 +9,7 @@ const safelist = [
 /**
  * User Config
  */
-export default defineValaxyConfig<UserThemeConfig>({
+export default defineValaxyConfig<ThemeUserConfig>({
   // site config see site.config.ts
 
   theme: 'sakura',
@@ -29,7 +29,7 @@ export default defineValaxyConfig<UserThemeConfig>({
       }
     },
     hero: {
-      title: 'HI, SAKURA!',
+      title: 'Hi, I am whisper3zzz!',
       urls: [
         'https://valaxy-theme-sakura.s3.bitiful.net/wallpaper-2025%2Fwallhaven-858k3j.jpg',
         'https://valaxy-theme-sakura.s3.bitiful.net/wallpaper-2025%2Fwallhaven-3l2vm3.jpg',
@@ -55,6 +55,39 @@ export default defineValaxyConfig<UserThemeConfig>({
         preload: true,
       },
     },
+    postFooter: {
+      navigationMerge: true
+    },
+    postList: {
+      text: 'Discovery',
+      isImageReversed: true,
+      defaultImage: [
+        'https://www.dmoe.cc/random.php?random', 'https://img.xjh.me/random_img.php?random?type=bg&return=302'
+      ]
+    },
+    navbar: [
+      {
+        icon: 'i-fa-fort-awesome',
+        locale: 'menu.home',
+        link: '/'
+      },
+      {
+        text: 'Links',
+        icon: 'i-fa-chain',
+        link: '/links',
+        items: [
+        ]
+      }
+    ],
+    footer: {
+      since: 2023,
+      icon: {
+        animated: true,
+        url: 'https://whisper3zzz.top',
+        title: 'whisper3zzz'
+      },
+      powered: true,
+    }
   },
 
 })

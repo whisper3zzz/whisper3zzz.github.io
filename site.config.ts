@@ -7,7 +7,7 @@ export default defineSiteConfig({
   author: {
     name: 'whisper3zzz',
   },
-  description: 'Valaxy Theme Yun Preview.',
+  description: 'whisper3zzzの小窝',
   social: [
 
     {
