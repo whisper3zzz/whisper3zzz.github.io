@@ -3,6 +3,7 @@ import { defineSiteConfig } from 'valaxy'
 export default defineSiteConfig({
   lang: 'zh-CN',
   title: 'whisper3zzzの小窝',
+  url: 'https://whisper3zzz.top',
   author: {
     name: 'whisper3zzz',
   },
