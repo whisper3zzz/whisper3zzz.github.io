@@ -44,6 +44,7 @@ declare module 'vue-router/auto-routes' {
     '/posts/协程与数据结构/协程与数据结构': RouteRecordInfo<'/posts/协程与数据结构/协程与数据结构', '/posts/协程与数据结构/协程与数据结构', Record<never, never>, Record<never, never>>,
     '/posts/如何定位Unity编辑器崩溃问题': RouteRecordInfo<'/posts/如何定位Unity编辑器崩溃问题', '/posts/如何定位Unity编辑器崩溃问题', Record<never, never>, Record<never, never>>,
     '/posts/射线和射线检测': RouteRecordInfo<'/posts/射线和射线检测', '/posts/射线和射线检测', Record<never, never>, Record<never, never>>,
+    '/posts/漫谈跨语言调用/漫谈跨语言调用': RouteRecordInfo<'/posts/漫谈跨语言调用/漫谈跨语言调用', '/posts/漫谈跨语言调用/漫谈跨语言调用', Record<never, never>, Record<never, never>>,
     '/posts/设计模式-对象池-ECS/设计模式-对象池-ECS': RouteRecordInfo<'/posts/设计模式-对象池-ECS/设计模式-对象池-ECS', '/posts/设计模式-对象池-ECS/设计模式-对象池-ECS', Record<never, never>, Record<never, never>>,
     '/tags/': RouteRecordInfo<'/tags/', '/tags', Record<never, never>, Record<never, never>>,
   }
@@ -161,6 +162,10 @@ declare module 'vue-router/auto-routes' {
     }
     'pages/posts/射线和射线检测.md': {
       routes: '/posts/射线和射线检测'
+      views: never
+    }
+    'pages/posts/漫谈跨语言调用/漫谈跨语言调用.md': {
+      routes: '/posts/漫谈跨语言调用/漫谈跨语言调用'
       views: never
     }
     'pages/posts/设计模式-对象池-ECS/设计模式-对象池-ECS.md': {
