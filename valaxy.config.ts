@@ -134,10 +134,6 @@ export default defineValaxyConfig<ThemeUserConfig>({
       hamburgerStyle: 'uneven'
     },
 
-
-
-
-
   },
   addons: [
     // 暂时禁用 Waline 评论系统

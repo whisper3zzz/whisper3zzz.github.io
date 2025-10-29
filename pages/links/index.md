@@ -11,13 +11,11 @@ links:
     name: 蛐蛐
     blog: 蛐蛐的软件开发世界
     color: "#0078e7"
-
   - url: https://www.foth.top
     avatar: https://www.foth.top/img/foth_hu_4eff4256c12406c3.jpg
     name: FOTH0626
     blog: Foth's Blog
     color: "#6058d9"
-
   - url: https://blog.bluespace.ren
     avatar: https://blog.bluespace.ren/img/soine.png
     name: Blau
@@ -25,5 +23,5 @@ links:
     color: "rgba(24, 88, 91, 1)"
 
 random: true
-commet: false
+comment: false
 ---
