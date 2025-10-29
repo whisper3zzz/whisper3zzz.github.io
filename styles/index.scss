@@ -1,1 +1,64 @@
 // you can custom css here
+
+// 确保深色模式切换按钮可见
+.navbar-tools {
+  display: flex !important;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.navbar-tool {
+  display: inline-flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  width: auto !important;
+  height: auto !important;
+}
+
+// 深色模式按钮样式
+.toggle-dark-btn,
+[class*="toggle-dark"],
+.navbar-tool button {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+}
+
+// 深色模式下的按钮样式
+:root.dark {
+  .toggle-dark-btn,
+  [class*="toggle-dark"],
+  .navbar-tool button {
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+  }
+}
+
+// 修复 sakura 主题导航栏链接样式
+.sakura-navbar-link {
+  .router-link-active {
+    color: var(--sakura-color-primary, #fe9500);
+    font-weight: 600;
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background-color: var(--sakura-color-primary, #fe9500);
+      border-radius: 1px;
+    }
+  }
+}

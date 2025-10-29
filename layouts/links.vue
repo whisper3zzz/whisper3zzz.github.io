@@ -1,0 +1,4 @@
+<template>
+  <SakuraLinksLayout />
+</template>
+

@@ -5,6 +5,12 @@ import { addonWaline } from 'valaxy-addon-waline/index.js'
 // add icons what you will need
 const safelist = [
   'i-ri-home-line',
+  'i-ri-folder-2-line',
+  'i-ri-archive-line',
+  'i-ri-price-tag-3-line',
+  'i-fa-chain',
+  'i-line-md-moon-alt-to-sunny-outline-loop-transition',
+  'i-line-md-sunny-outline-to-moon-loop-transition',
 ]
 
 /**
@@ -15,6 +21,9 @@ export default defineValaxyConfig<ThemeUserConfig>({
 
   theme: 'sakura',
   devtools: false,
+  unocss: {
+    safelist,
+  },
 
   themeConfig: {
     ui: {
@@ -131,11 +140,12 @@ export default defineValaxyConfig<ThemeUserConfig>({
 
   },
   addons: [
-    addonWaline({
-      serverURL: 'https://waline.whisper3zzz.top',
-      comment: true,
-      pageview: true,
-    }),
+    // 暂时禁用 Waline 评论系统
+    // addonWaline({
+    //   serverURL: 'https://waline.whisper3zzz.top',
+    //   comment: true,
+    //   pageview: true,
+    // }),
     addonMeting({
       global:true,
       props:{

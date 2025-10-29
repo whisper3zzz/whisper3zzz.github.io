@@ -43,7 +43,7 @@ export default defineSiteConfig({
     enable: true,
   },
   comment: {
-    enable: true
+    enable: false  // 暂时禁用评论功能
   },
   license:{
     enabled: false,

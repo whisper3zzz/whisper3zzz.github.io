@@ -12,6 +12,8 @@
     "serve": "vite preview"
   },
   "dependencies": {
+    "@iconify-json/fa": "^1.2.2",
+    "@iconify-json/line-md": "^1.2.11",
     "valaxy": "0.26.6",
     "valaxy-addon-components": "^0.1.0",
     "valaxy-addon-meting": "^0.1.4",
