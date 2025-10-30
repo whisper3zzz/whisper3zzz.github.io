@@ -32,9 +32,11 @@ const linksData = computed(() => {
           <div class="links">
             <ul class="link-items">
               <li v-for="link, i in linksData" :key="i" class="link-item" :style="`--primary-color: ${link.color}`">
-                <a class="link-url" p="x-4 y-2" :href="link.url" :title="link.name" alt="portrait" rel="friend" target="_blank">
+                <a class="link-url" p="x-4 y-2" :href="link.url" :title="link.name" alt="portrait" rel="friend"
+                  target="_blank">
                   <div class="link-left">
-                    <SakuraImageCard class="link-avatar" width="64" height="64" w="16" h="16" :src="link.avatar" :alt="link.name" :error-img="frontmatter.errorImg" />
+                    <SakuraImageCard class="link-avatar" width="64" height="64" w="16" h="16" :src="link.avatar"
+                      :alt="link.name" :error-img="frontmatter.errorImg" />
                   </div>
                   <div class="link-info" m="l-2">
                     <div class="link-blog" font="serif black">{{ link.blog }}</div>
@@ -119,4 +121,3 @@ const linksData = computed(() => {
   }
 }
 </style>
-
