@@ -1,0 +1,1 @@
+import"./chunks/pinia.DI5qxAOK.js";import{a6 as o,a9 as t,a7 as r,a8 as c}from"./framework.Pf5KiX8g.js";const n={};function a(s,_){const e=t("RouterView");return c(),r(e)}const i=o(n,[["render",a]]);export{i as default};
