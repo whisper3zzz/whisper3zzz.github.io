@@ -2,7 +2,6 @@
 title: 漫谈跨语言调用
 excerpt_type: html
 date: 2025-10-29
-path: /posts/cross-language-call
 ---
 
 <!-- more -->

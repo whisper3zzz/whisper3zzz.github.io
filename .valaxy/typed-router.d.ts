@@ -27,25 +27,25 @@ declare module 'vue-router/auto-routes' {
     '/categories/': RouteRecordInfo<'/categories/', '/categories', Record<never, never>, Record<never, never>>,
     '/links/': RouteRecordInfo<'/links/', '/links', Record<never, never>, Record<never, never>>,
     '/page/[page]': RouteRecordInfo<'/page/[page]', '/page/:page', { page: ParamValue<true> }, { page: ParamValue<false> }>,
-    '/posts/C-引用参数的修饰符/C-引用参数的修饰符': RouteRecordInfo<'/posts/C-引用参数的修饰符/C-引用参数的修饰符', '/posts/C-引用参数的修饰符/C-引用参数的修饰符', Record<never, never>, Record<never, never>>,
-    '/posts/C-进阶/C-进阶': RouteRecordInfo<'/posts/C-进阶/C-进阶', '/posts/C-进阶/C-进阶', Record<never, never>, Record<never, never>>,
-    '/posts/LuaDepth': RouteRecordInfo<'/posts/LuaDepth', '/posts/LuaDepth', Record<never, never>, Record<never, never>>,
-    '/posts/transform-forward和Vector3-forward的区别': RouteRecordInfo<'/posts/transform-forward和Vector3-forward的区别', '/posts/transform-forward和Vector3-forward的区别', Record<never, never>, Record<never, never>>,
-    '/posts/UniTask': RouteRecordInfo<'/posts/UniTask', '/posts/UniTask', Record<never, never>, Record<never, never>>,
-    '/posts/Unity Shader与图形渲染（1）/Unity Shader与图形渲染（1）': RouteRecordInfo<'/posts/Unity Shader与图形渲染（1）/Unity Shader与图形渲染（1）', '/posts/Unity Shader与图形渲染（1）/Unity Shader与图形渲染（1）', Record<never, never>, Record<never, never>>,
-    '/posts/Unity-ML-Agents-Study/Unity-ML-Agents-Study': RouteRecordInfo<'/posts/Unity-ML-Agents-Study/Unity-ML-Agents-Study', '/posts/Unity-ML-Agents-Study/Unity-ML-Agents-Study', Record<never, never>, Record<never, never>>,
-    '/posts/Unity-Shader与图形渲染（2）/Unity-Shader与图形渲染（2）': RouteRecordInfo<'/posts/Unity-Shader与图形渲染（2）/Unity-Shader与图形渲染（2）', '/posts/Unity-Shader与图形渲染（2）/Unity-Shader与图形渲染（2）', Record<never, never>, Record<never, never>>,
-    '/posts/Unity-Shader与图形渲染（3）/Unity-Shader与图形渲染（3）': RouteRecordInfo<'/posts/Unity-Shader与图形渲染（3）/Unity-Shader与图形渲染（3）', '/posts/Unity-Shader与图形渲染（3）/Unity-Shader与图形渲染（3）', Record<never, never>, Record<never, never>>,
-    '/posts/Unity-Shader与图形渲染（4）/Unity-Shader与图形渲染（4）': RouteRecordInfo<'/posts/Unity-Shader与图形渲染（4）/Unity-Shader与图形渲染（4）', '/posts/Unity-Shader与图形渲染（4）/Unity-Shader与图形渲染（4）', Record<never, never>, Record<never, never>>,
-    '/posts/Unity粒子系统（1）': RouteRecordInfo<'/posts/Unity粒子系统（1）', '/posts/Unity粒子系统（1）', Record<never, never>, Record<never, never>>,
-    '/posts/Unity粒子系统（2）': RouteRecordInfo<'/posts/Unity粒子系统（2）', '/posts/Unity粒子系统（2）', Record<never, never>, Record<never, never>>,
-    '/posts/xLua热更新': RouteRecordInfo<'/posts/xLua热更新', '/posts/xLua热更新', Record<never, never>, Record<never, never>>,
-    '/posts/从IEnumerator到UnityCoroutine——Unity协程的背后原理': RouteRecordInfo<'/posts/从IEnumerator到UnityCoroutine——Unity协程的背后原理', '/posts/从IEnumerator到UnityCoroutine——Unity协程的背后原理', Record<never, never>, Record<never, never>>,
-    '/posts/协程与数据结构/协程与数据结构': RouteRecordInfo<'/posts/协程与数据结构/协程与数据结构', '/posts/协程与数据结构/协程与数据结构', Record<never, never>, Record<never, never>>,
-    '/posts/如何定位Unity编辑器崩溃问题': RouteRecordInfo<'/posts/如何定位Unity编辑器崩溃问题', '/posts/如何定位Unity编辑器崩溃问题', Record<never, never>, Record<never, never>>,
-    '/posts/射线和射线检测': RouteRecordInfo<'/posts/射线和射线检测', '/posts/射线和射线检测', Record<never, never>, Record<never, never>>,
-    '/posts/漫谈跨语言调用/漫谈跨语言调用': RouteRecordInfo<'/posts/漫谈跨语言调用/漫谈跨语言调用', '/posts/漫谈跨语言调用/漫谈跨语言调用', Record<never, never>, Record<never, never>>,
-    '/posts/设计模式-对象池-ECS/设计模式-对象池-ECS': RouteRecordInfo<'/posts/设计模式-对象池-ECS/设计模式-对象池-ECS', '/posts/设计模式-对象池-ECS/设计模式-对象池-ECS', Record<never, never>, Record<never, never>>,
+    '/posts/coroutine-and-data-structure/': RouteRecordInfo<'/posts/coroutine-and-data-structure/', '/posts/coroutine-and-data-structure', Record<never, never>, Record<never, never>>,
+    '/posts/cross-language-call/': RouteRecordInfo<'/posts/cross-language-call/', '/posts/cross-language-call', Record<never, never>, Record<never, never>>,
+    '/posts/csharp-advanced/': RouteRecordInfo<'/posts/csharp-advanced/', '/posts/csharp-advanced', Record<never, never>, Record<never, never>>,
+    '/posts/csharp-ref-modifiers/': RouteRecordInfo<'/posts/csharp-ref-modifiers/', '/posts/csharp-ref-modifiers', Record<never, never>, Record<never, never>>,
+    '/posts/design-pattern-object-pool-ecs/': RouteRecordInfo<'/posts/design-pattern-object-pool-ecs/', '/posts/design-pattern-object-pool-ecs', Record<never, never>, Record<never, never>>,
+    '/posts/lua-depth': RouteRecordInfo<'/posts/lua-depth', '/posts/lua-depth', Record<never, never>, Record<never, never>>,
+    '/posts/raycast': RouteRecordInfo<'/posts/raycast', '/posts/raycast', Record<never, never>, Record<never, never>>,
+    '/posts/transform-forward-vs-vector3-forward': RouteRecordInfo<'/posts/transform-forward-vs-vector3-forward', '/posts/transform-forward-vs-vector3-forward', Record<never, never>, Record<never, never>>,
+    '/posts/unitask': RouteRecordInfo<'/posts/unitask', '/posts/unitask', Record<never, never>, Record<never, never>>,
+    '/posts/unity-coroutine-principle': RouteRecordInfo<'/posts/unity-coroutine-principle', '/posts/unity-coroutine-principle', Record<never, never>, Record<never, never>>,
+    '/posts/unity-editor-crash-debug': RouteRecordInfo<'/posts/unity-editor-crash-debug', '/posts/unity-editor-crash-debug', Record<never, never>, Record<never, never>>,
+    '/posts/unity-ml-agents-study/': RouteRecordInfo<'/posts/unity-ml-agents-study/', '/posts/unity-ml-agents-study', Record<never, never>, Record<never, never>>,
+    '/posts/unity-particle-system-1': RouteRecordInfo<'/posts/unity-particle-system-1', '/posts/unity-particle-system-1', Record<never, never>, Record<never, never>>,
+    '/posts/unity-particle-system-2': RouteRecordInfo<'/posts/unity-particle-system-2', '/posts/unity-particle-system-2', Record<never, never>, Record<never, never>>,
+    '/posts/unity-shader-rendering-1/': RouteRecordInfo<'/posts/unity-shader-rendering-1/', '/posts/unity-shader-rendering-1', Record<never, never>, Record<never, never>>,
+    '/posts/unity-shader-rendering-2/': RouteRecordInfo<'/posts/unity-shader-rendering-2/', '/posts/unity-shader-rendering-2', Record<never, never>, Record<never, never>>,
+    '/posts/unity-shader-rendering-3/': RouteRecordInfo<'/posts/unity-shader-rendering-3/', '/posts/unity-shader-rendering-3', Record<never, never>, Record<never, never>>,
+    '/posts/unity-shader-rendering-4/': RouteRecordInfo<'/posts/unity-shader-rendering-4/', '/posts/unity-shader-rendering-4', Record<never, never>, Record<never, never>>,
+    '/posts/xlua-hotfix': RouteRecordInfo<'/posts/xlua-hotfix', '/posts/xlua-hotfix', Record<never, never>, Record<never, never>>,
     '/tags/': RouteRecordInfo<'/tags/', '/tags', Record<never, never>, Record<never, never>>,
   }
 
@@ -96,80 +96,80 @@ declare module 'vue-router/auto-routes' {
       routes: '/page/[page]'
       views: never
     }
-    'pages/posts/C-引用参数的修饰符/C-引用参数的修饰符.md': {
-      routes: '/posts/C-引用参数的修饰符/C-引用参数的修饰符'
+    'pages/posts/coroutine-and-data-structure/index.md': {
+      routes: '/posts/coroutine-and-data-structure/'
       views: never
     }
-    'pages/posts/C-进阶/C-进阶.md': {
-      routes: '/posts/C-进阶/C-进阶'
+    'pages/posts/cross-language-call/index.md': {
+      routes: '/posts/cross-language-call/'
       views: never
     }
-    'pages/posts/LuaDepth.md': {
-      routes: '/posts/LuaDepth'
+    'pages/posts/csharp-advanced/index.md': {
+      routes: '/posts/csharp-advanced/'
       views: never
     }
-    'pages/posts/transform-forward和Vector3-forward的区别.md': {
-      routes: '/posts/transform-forward和Vector3-forward的区别'
+    'pages/posts/csharp-ref-modifiers/index.md': {
+      routes: '/posts/csharp-ref-modifiers/'
       views: never
     }
-    'pages/posts/UniTask.md': {
-      routes: '/posts/UniTask'
+    'pages/posts/design-pattern-object-pool-ecs/index.md': {
+      routes: '/posts/design-pattern-object-pool-ecs/'
       views: never
     }
-    'pages/posts/Unity Shader与图形渲染（1）/Unity Shader与图形渲染（1）.md': {
-      routes: '/posts/Unity Shader与图形渲染（1）/Unity Shader与图形渲染（1）'
+    'pages/posts/lua-depth.md': {
+      routes: '/posts/lua-depth'
       views: never
     }
-    'pages/posts/Unity-ML-Agents-Study/Unity-ML-Agents-Study.md': {
-      routes: '/posts/Unity-ML-Agents-Study/Unity-ML-Agents-Study'
+    'pages/posts/raycast.md': {
+      routes: '/posts/raycast'
       views: never
     }
-    'pages/posts/Unity-Shader与图形渲染（2）/Unity-Shader与图形渲染（2）.md': {
-      routes: '/posts/Unity-Shader与图形渲染（2）/Unity-Shader与图形渲染（2）'
+    'pages/posts/transform-forward-vs-vector3-forward.md': {
+      routes: '/posts/transform-forward-vs-vector3-forward'
       views: never
     }
-    'pages/posts/Unity-Shader与图形渲染（3）/Unity-Shader与图形渲染（3）.md': {
-      routes: '/posts/Unity-Shader与图形渲染（3）/Unity-Shader与图形渲染（3）'
+    'pages/posts/unitask.md': {
+      routes: '/posts/unitask'
       views: never
     }
-    'pages/posts/Unity-Shader与图形渲染（4）/Unity-Shader与图形渲染（4）.md': {
-      routes: '/posts/Unity-Shader与图形渲染（4）/Unity-Shader与图形渲染（4）'
+    'pages/posts/unity-coroutine-principle.md': {
+      routes: '/posts/unity-coroutine-principle'
       views: never
     }
-    'pages/posts/Unity粒子系统（1）.md': {
-      routes: '/posts/Unity粒子系统（1）'
+    'pages/posts/unity-editor-crash-debug.md': {
+      routes: '/posts/unity-editor-crash-debug'
       views: never
     }
-    'pages/posts/Unity粒子系统（2）.md': {
-      routes: '/posts/Unity粒子系统（2）'
+    'pages/posts/unity-ml-agents-study/index.md': {
+      routes: '/posts/unity-ml-agents-study/'
       views: never
     }
-    'pages/posts/xLua热更新.md': {
-      routes: '/posts/xLua热更新'
+    'pages/posts/unity-particle-system-1.md': {
+      routes: '/posts/unity-particle-system-1'
       views: never
     }
-    'pages/posts/从IEnumerator到UnityCoroutine——Unity协程的背后原理.md': {
-      routes: '/posts/从IEnumerator到UnityCoroutine——Unity协程的背后原理'
+    'pages/posts/unity-particle-system-2.md': {
+      routes: '/posts/unity-particle-system-2'
       views: never
     }
-    'pages/posts/协程与数据结构/协程与数据结构.md': {
-      routes: '/posts/协程与数据结构/协程与数据结构'
+    'pages/posts/unity-shader-rendering-1/index.md': {
+      routes: '/posts/unity-shader-rendering-1/'
       views: never
     }
-    'pages/posts/如何定位Unity编辑器崩溃问题.md': {
-      routes: '/posts/如何定位Unity编辑器崩溃问题'
+    'pages/posts/unity-shader-rendering-2/index.md': {
+      routes: '/posts/unity-shader-rendering-2/'
       views: never
     }
-    'pages/posts/射线和射线检测.md': {
-      routes: '/posts/射线和射线检测'
+    'pages/posts/unity-shader-rendering-3/index.md': {
+      routes: '/posts/unity-shader-rendering-3/'
       views: never
     }
-    'pages/posts/漫谈跨语言调用/漫谈跨语言调用.md': {
-      routes: '/posts/漫谈跨语言调用/漫谈跨语言调用'
+    'pages/posts/unity-shader-rendering-4/index.md': {
+      routes: '/posts/unity-shader-rendering-4/'
       views: never
     }
-    'pages/posts/设计模式-对象池-ECS/设计模式-对象池-ECS.md': {
-      routes: '/posts/设计模式-对象池-ECS/设计模式-对象池-ECS'
+    'pages/posts/xlua-hotfix.md': {
+      routes: '/posts/xlua-hotfix'
       views: never
     }
     'pages/tags/index.md': {

@@ -4,7 +4,6 @@ date: 2024-01-21 20:58:04
 categories: 学习
 tags: 
     - C#
-path: /posts/csharp-ref-modifiers
 ---
 
 # **两个常见的简单参数修饰符**

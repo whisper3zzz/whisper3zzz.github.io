@@ -5,7 +5,6 @@ categories: 学习
 tags: 
     - 渲染
     - Unity
-path: /posts/unity-shader-rendering-3
 ---
 空间变换与Shader结构
 

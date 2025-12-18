@@ -5,7 +5,6 @@ categories: 学习
 tags:
     - 设计模式
 toc: true
-path: /posts/design-pattern-object-pool-ecs
 ---
 
 设计模式、对象池、ECS

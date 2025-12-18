@@ -5,7 +5,6 @@ categories: 学习
 tags: 
     - 渲染
     - Unity
-path: /posts/unity-shader-rendering-2
 ---
 
 主要是CG语言语法

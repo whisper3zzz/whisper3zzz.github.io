@@ -4,7 +4,6 @@ date: 2023-12-20 22:04:18
 categories: 学习
 tags: 
     - Unity
-path: /posts/unity-particle-system-1
 ---
 
 # 一、粒子系统概述

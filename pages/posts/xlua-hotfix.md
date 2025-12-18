@@ -5,7 +5,6 @@ categories: 学习
 tags: 
     - 热更新
     - Unity
-path: /posts/xlua-hotfix
 ---
 
 # xLua的新功能-HotFix
