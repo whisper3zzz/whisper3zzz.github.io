@@ -1,0 +1,1 @@
+import"./chunks/pinia.gM4CtPT_.js";import{u as a,a as r,d as t}from"./chunks/vue-router.COYb0BJC.js";import{M as s,a2 as n,ab as p,a8 as c}from"./framework.hWCtYY1X.js";const u=s({__name:"[...path]",setup(i){const o=r(),e=a();return n(()=>{e.path!=="/"&&e.path.endsWith("/")&&o.replace(e.path.slice(0,-1))}),(f,m)=>(c(),p("div"))}});typeof t=="function"&&t(u);export{u as default};

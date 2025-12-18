@@ -1,0 +1,242 @@
+{
+    "version": "https://jsonfeed.org/version/1",
+    "title": "whisper3zzzの小窝",
+    "home_page_url": "https://whisper3zzz.top/",
+    "feed_url": "https://whisper3zzz.top/feed.json",
+    "description": "whisper3zzzの小窝",
+    "icon": "https://valaxy.site/valaxy-logo.png",
+    "author": {
+        "name": "whisper3zzz",
+        "url": "https://valaxy.site"
+    },
+    "items": [
+        {
+            "id": "https://whisper3zzz.top/posts/xlua-hotfix",
+            "content_html": "<h1>xLua的新功能-HotFix</h1>\n<p>优势：</p>\n<p>开发时使用C#，打好hotfix标签，出现问题时再使用lua修复，大版本更新时将lua部分更新回C#。</p>\n<p>劣势：</p>\n<ul>\n<li>\n<h2>热修复复杂脚本的难度：</h2>\n</li>\n</ul>\n<br/><p>访问 <a href=\"https://whisper3zzz.top/posts/xlua-hotfix\" target=\"_blank\">https://whisper3zzz.top/posts/xlua-hotfix</a> 阅读全文。</p>",
+            "url": "https://whisper3zzz.top/posts/xlua-hotfix",
+            "title": "xLua热更新",
+            "date_modified": "2024-08-05T14:37:59.000Z",
+            "date_published": "2025-12-18T13:11:53.376Z",
+            "author": {
+                "name": "whisper3zzz",
+                "url": "https://valaxy.site"
+            }
+        },
+        {
+            "id": "https://whisper3zzz.top/posts/unity-shader-rendering-4/index",
+            "content_html": "<p>颜色、形状、动画</p>\n<p>如何在Shader中创建颜色和形状，实现动画效果，屏幕后处理</p>\n<br/><p>访问 <a href=\"https://whisper3zzz.top/posts/unity-shader-rendering-4/index\" target=\"_blank\">https://whisper3zzz.top/posts/unity-shader-rendering-4/index</a> 阅读全文。</p>",
+            "url": "https://whisper3zzz.top/posts/unity-shader-rendering-4/index",
+            "title": "Unity Shader与图形渲染（4）",
+            "date_modified": "2024-02-21T11:19:13.000Z",
+            "date_published": "2025-12-18T13:11:53.376Z",
+            "author": {
+                "name": "whisper3zzz",
+                "url": "https://valaxy.site"
+            }
+        },
+        {
+            "id": "https://whisper3zzz.top/posts/unity-shader-rendering-3/index",
+            "content_html": "<p>空间变换与Shader结构</p>\n<br/><p>访问 <a href=\"https://whisper3zzz.top/posts/unity-shader-rendering-3/index\" target=\"_blank\">https://whisper3zzz.top/posts/unity-shader-rendering-3/index</a> 阅读全文。</p>",
+            "url": "https://whisper3zzz.top/posts/unity-shader-rendering-3/index",
+            "title": "Unity Shader与图形渲染（3）",
+            "date_modified": "2024-02-20T15:15:37.000Z",
+            "date_published": "2025-12-18T13:11:53.307Z",
+            "author": {
+                "name": "whisper3zzz",
+                "url": "https://valaxy.site"
+            }
+        },
+        {
+            "id": "https://whisper3zzz.top/posts/unity-shader-rendering-1/index",
+            "content_html": "<p>一些基础的概念</p>\n<br/><p>访问 <a href=\"https://whisper3zzz.top/posts/unity-shader-rendering-1/index\" target=\"_blank\">https://whisper3zzz.top/posts/unity-shader-rendering-1/index</a> 阅读全文。</p>",
+            "url": "https://whisper3zzz.top/posts/unity-shader-rendering-1/index",
+            "title": "Unity Shader与图形渲染（1）",
+            "date_modified": "2024-01-30T13:29:49.000Z",
+            "date_published": "2025-12-18T13:11:53.305Z",
+            "author": {
+                "name": "whisper3zzz",
+                "url": "https://valaxy.site"
+            }
+        },
+        {
+            "id": "https://whisper3zzz.top/posts/unity-shader-rendering-2/index",
+            "content_html": "<p>主要是CG语言语法</p>\n<br/><p>访问 <a href=\"https://whisper3zzz.top/posts/unity-shader-rendering-2/index\" target=\"_blank\">https://whisper3zzz.top/posts/unity-shader-rendering-2/index</a> 阅读全文。</p>",
+            "url": "https://whisper3zzz.top/posts/unity-shader-rendering-2/index",
+            "title": "Unity Shader与图形渲染（2）",
+            "date_modified": "2024-02-20T13:39:11.000Z",
+            "date_published": "2025-12-18T13:11:53.305Z",
+            "author": {
+                "name": "whisper3zzz",
+                "url": "https://valaxy.site"
+            }
+        },
+        {
+            "id": "https://whisper3zzz.top/posts/lua-depth",
+            "content_html": "<h1>协程</h1>\n<p>线程：抢占式多任务机制，是一个相对独立的、可调度的执行单元，是系统独立调度和分配CPU的基本单位。它由操作系统来决定执行哪个任务，在运行过程中需要调度，休眠挂起，上下文切换等系统开销，而</p>\n<br/><p>访问 <a href=\"https://whisper3zzz.top/posts/lua-depth\" target=\"_blank\">https://whisper3zzz.top/posts/lua-depth</a> 阅读全文。</p>",
+            "url": "https://whisper3zzz.top/posts/lua-depth",
+            "title": "LuaDepth",
+            "date_modified": "2025-04-25T15:11:10.000Z",
+            "date_published": "2025-12-18T13:11:53.304Z",
+            "author": {
+                "name": "whisper3zzz",
+                "url": "https://valaxy.site"
+            }
+        },
+        {
+            "id": "https://whisper3zzz.top/posts/raycast",
+            "content_html": "<p>碰撞检测可以帮助我们实现诸如抵达某个地点自动触发剧情、判断子弹是否击中玩家等功能，但我如果想要实现如当鼠标悬浮某个人物上，自动弹出该人物信息，要如何判断呢？这时使用碰撞检测会太繁琐了。射线检测可以很好地解决这个问题。</p>\n<br/><p>访问 <a href=\"https://whisper3zzz.top/posts/raycast\" target=\"_blank\">https://whisper3zzz.top/posts/raycast</a> 阅读全文。</p>",
+            "url": "https://whisper3zzz.top/posts/raycast",
+            "title": "射线和射线检测",
+            "date_modified": "2024-01-21T19:30:28.000Z",
+            "date_published": "2025-12-18T13:11:53.304Z",
+            "author": {
+                "name": "whisper3zzz",
+                "url": "https://valaxy.site"
+            }
+        },
+        {
+            "id": "https://whisper3zzz.top/posts/transform-forward-vs-vector3-forward",
+            "content_html": "<p>transform.forward：其值是物体局部坐标的Z轴在世界坐标的指向，不一定是（0,0,1）。</p>\n<p>Vector3.forward：其值永远等于（0,0,1），是世界坐标，是不变的。</p>\n<br/><p>访问 <a href=\"https://whisper3zzz.top/posts/transform-forward-vs-vector3-forward\" target=\"_blank\">https://whisper3zzz.top/posts/transform-forward-vs-vector3-forward</a> 阅读全文。</p>",
+            "url": "https://whisper3zzz.top/posts/transform-forward-vs-vector3-forward",
+            "title": "transform.forward和Vector3.forward的区别",
+            "date_modified": "2024-01-21T20:49:53.000Z",
+            "date_published": "2025-12-18T13:11:53.304Z",
+            "author": {
+                "name": "whisper3zzz",
+                "url": "https://valaxy.site"
+            }
+        },
+        {
+            "id": "https://whisper3zzz.top/posts/unity-coroutine-principle",
+            "content_html": "<h2>在Unity中使用协程</h2>\n<p>在最开始做游戏的时候，我们经常会遇到这种需求：玩家死亡之后玩家应该逐渐消失而非瞬间消失。玩家死亡很简单，我们按照最开始初学者的思路，死亡直接调用`Destroy(ga</p>\n<br/><p>访问 <a href=\"https://whisper3zzz.top/posts/unity-coroutine-principle\" target=\"_blank\">https://whisper3zzz.top/posts/unity-coroutine-principle</a> 阅读全文。</p>",
+            "url": "https://whisper3zzz.top/posts/unity-coroutine-principle",
+            "title": "从IEnumerator到UnityCoroutine——Unity协程的背后原理",
+            "date_modified": "2024-11-29T21:02:59.000Z",
+            "date_published": "2025-12-18T13:11:53.304Z",
+            "author": {
+                "name": "whisper3zzz",
+                "url": "https://valaxy.site"
+            }
+        },
+        {
+            "id": "https://whisper3zzz.top/posts/unity-editor-crash-debug",
+            "content_html": "<p>在<code>C:\\Users\\{username}\\AppData\\Local\\Unity\\Editor</code>文件夹中，Editor.log文件是当前编辑器的控制台输出，Editor-prev.log是上一次编</p>\n<br/><p>访问 <a href=\"https://whisper3zzz.top/posts/unity-editor-crash-debug\" target=\"_blank\">https://whisper3zzz.top/posts/unity-editor-crash-debug</a> 阅读全文。</p>",
+            "url": "https://whisper3zzz.top/posts/unity-editor-crash-debug",
+            "title": "如何定位Unity编辑器崩溃问题",
+            "date_modified": "2024-06-15T20:13:28.000Z",
+            "date_published": "2025-12-18T13:11:53.304Z",
+            "author": {
+                "name": "whisper3zzz",
+                "url": "https://valaxy.site"
+            }
+        },
+        {
+            "id": "https://whisper3zzz.top/posts/unity-particle-system-1",
+            "content_html": "<h1>一、粒子系统概述</h1>\n<p>小型效果诸如击中特效，火焰特效等使用内置粒子系统即可，对于更加绚丽，需要粒子数量更多的，诸如雨雪天气，大爆炸之类的可酌情使用VFX（Visual Effect Graph粒子系统）。</p>\n<br/><p>访问 <a href=\"https://whisper3zzz.top/posts/unity-particle-system-1\" target=\"_blank\">https://whisper3zzz.top/posts/unity-particle-system-1</a> 阅读全文。</p>",
+            "url": "https://whisper3zzz.top/posts/unity-particle-system-1",
+            "title": "Unity粒子系统（1）",
+            "date_modified": "2023-12-20T22:04:18.000Z",
+            "date_published": "2025-12-18T13:11:53.304Z",
+            "author": {
+                "name": "whisper3zzz",
+                "url": "https://valaxy.site"
+            }
+        },
+        {
+            "id": "https://whisper3zzz.top/posts/unity-particle-system-2",
+            "content_html": "<h1>粒子系统主模块</h1>\n<br/><p>访问 <a href=\"https://whisper3zzz.top/posts/unity-particle-system-2\" target=\"_blank\">https://whisper3zzz.top/posts/unity-particle-system-2</a> 阅读全文。</p>",
+            "url": "https://whisper3zzz.top/posts/unity-particle-system-2",
+            "title": "Unity粒子系统（2）",
+            "date_modified": "2023-12-20T22:04:18.000Z",
+            "date_published": "2025-12-18T13:11:53.304Z",
+            "author": {
+                "name": "whisper3zzz",
+                "url": "https://valaxy.site"
+            }
+        },
+        {
+            "id": "https://whisper3zzz.top/posts/csharp-advanced/index",
+            "content_html": "<p>一些高级语法</p>\n<br/><p>访问 <a href=\"https://whisper3zzz.top/posts/csharp-advanced/index\" target=\"_blank\">https://whisper3zzz.top/posts/csharp-advanced/index</a> 阅读全文。</p>",
+            "url": "https://whisper3zzz.top/posts/csharp-advanced/index",
+            "title": "C#进阶",
+            "date_modified": "2024-02-14T18:36:04.000Z",
+            "date_published": "2025-12-18T13:11:53.304Z",
+            "author": {
+                "name": "whisper3zzz",
+                "url": "https://valaxy.site"
+            }
+        },
+        {
+            "id": "https://whisper3zzz.top/posts/csharp-ref-modifiers/index",
+            "content_html": "<h1><strong>两个常见的简单参数修饰符</strong></h1>\n<h2>1.ref</h2>\n<p>若要使用 <code>ref</code> 参数，方法定义和调用方法均必须显式使用 <code>ref</code> 关键字，如下面的示例所示。 （除了在进行 COM 调用时，调用方</p>\n<br/><p>访问 <a href=\"https://whisper3zzz.top/posts/csharp-ref-modifiers/index\" target=\"_blank\">https://whisper3zzz.top/posts/csharp-ref-modifiers/index</a> 阅读全文。</p>",
+            "url": "https://whisper3zzz.top/posts/csharp-ref-modifiers/index",
+            "title": "C#引用参数的修饰符",
+            "date_modified": "2024-01-21T20:58:04.000Z",
+            "date_published": "2025-12-18T13:11:53.304Z",
+            "author": {
+                "name": "whisper3zzz",
+                "url": "https://valaxy.site"
+            }
+        },
+        {
+            "id": "https://whisper3zzz.top/posts/design-pattern-object-pool-ecs/index",
+            "content_html": "<p>设计模式、对象池、ECS</p>\n<br/><p>访问 <a href=\"https://whisper3zzz.top/posts/design-pattern-object-pool-ecs/index\" target=\"_blank\">https://whisper3zzz.top/posts/design-pattern-object-pool-ecs/index</a> 阅读全文。</p>",
+            "url": "https://whisper3zzz.top/posts/design-pattern-object-pool-ecs/index",
+            "title": "设计模式、对象池、ECS",
+            "date_modified": "2024-02-17T14:28:41.000Z",
+            "date_published": "2025-12-18T13:11:53.304Z",
+            "author": {
+                "name": "whisper3zzz",
+                "url": "https://valaxy.site"
+            }
+        },
+        {
+            "id": "https://whisper3zzz.top/posts/coroutine-and-data-structure/index",
+            "content_html": "<p>Unity协程原理、基础的数据结构知识，还有一点图算法（DFS和BFS）</p>\n<br/><p>访问 <a href=\"https://whisper3zzz.top/posts/coroutine-and-data-structure/index\" target=\"_blank\">https://whisper3zzz.top/posts/coroutine-and-data-structure/index</a> 阅读全文。</p>",
+            "url": "https://whisper3zzz.top/posts/coroutine-and-data-structure/index",
+            "title": "协程与数据结构",
+            "date_modified": "2024-02-19T13:48:51.000Z",
+            "date_published": "2025-12-18T13:11:53.303Z",
+            "author": {
+                "name": "whisper3zzz",
+                "url": "https://valaxy.site"
+            }
+        },
+        {
+            "id": "https://whisper3zzz.top/posts/cross-language-call/index",
+            "content_html": "<br/><p>访问 <a href=\"https://whisper3zzz.top/posts/cross-language-call/index\" target=\"_blank\">https://whisper3zzz.top/posts/cross-language-call/index</a> 阅读全文。</p>",
+            "url": "https://whisper3zzz.top/posts/cross-language-call/index",
+            "title": "漫谈跨语言调用",
+            "date_modified": "2025-10-29T00:00:00.000Z",
+            "date_published": "2025-12-18T13:11:53.303Z",
+            "author": {
+                "name": "whisper3zzz",
+                "url": "https://valaxy.site"
+            }
+        },
+        {
+            "id": "https://whisper3zzz.top/posts/Unity-ML-Agents-Study/index",
+            "content_html": "<h2>下载ML-Agents</h2>\n<p>到官方Github库下载[Release21](<a href=\"https://github.com/Unity-Technologies/ml-agents/releases/ta\">https://github.com/Unity-Technologies/ml-agents/releases/ta</a></p>\n<br/><p>访问 <a href=\"https://whisper3zzz.top/posts/Unity-ML-Agents-Study/index\" target=\"_blank\">https://whisper3zzz.top/posts/Unity-ML-Agents-Study/index</a> 阅读全文。</p>",
+            "url": "https://whisper3zzz.top/posts/Unity-ML-Agents-Study/index",
+            "title": "Unity ML_Agents_Study",
+            "date_modified": "2024-05-20T22:38:13.000Z",
+            "date_published": "2025-12-18T13:11:53.303Z",
+            "author": {
+                "name": "whisper3zzz",
+                "url": "https://valaxy.site"
+            }
+        },
+        {
+            "id": "https://whisper3zzz.top/posts/UniTask",
+            "content_html": "<br/><p>访问 <a href=\"https://whisper3zzz.top/posts/UniTask\" target=\"_blank\">https://whisper3zzz.top/posts/UniTask</a> 阅读全文。</p>",
+            "url": "https://whisper3zzz.top/posts/UniTask",
+            "title": "UniTask",
+            "date_modified": "2024-03-24T14:18:00.000Z",
+            "date_published": "2025-12-18T13:11:53.301Z",
+            "author": {
+                "name": "whisper3zzz",
+                "url": "https://valaxy.site"
+            }
+        }
+    ]
+}
