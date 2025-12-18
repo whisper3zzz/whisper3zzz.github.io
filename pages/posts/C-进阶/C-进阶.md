@@ -5,6 +5,7 @@ categories: 学习
 tags:
   - C#
 toc: true
+path: /posts/csharp-advanced
 ---
 一些高级语法
 

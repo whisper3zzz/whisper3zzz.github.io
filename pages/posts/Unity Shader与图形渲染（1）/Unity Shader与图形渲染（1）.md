@@ -5,6 +5,7 @@ categories: 学习
 tags: 
     - 渲染
     - Unity
+path: /posts/unity-shader-rendering-1
 ---
 一些基础的概念
 

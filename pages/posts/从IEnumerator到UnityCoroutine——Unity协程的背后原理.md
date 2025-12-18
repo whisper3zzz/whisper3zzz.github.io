@@ -2,6 +2,7 @@
 title: 从IEnumerator到UnityCoroutine——Unity协程的背后原理
 date: 2024-11-29 21:02:59
 tags:
+path: /posts/unity-coroutine-principle
 ---
 
 ## 在Unity中使用协程

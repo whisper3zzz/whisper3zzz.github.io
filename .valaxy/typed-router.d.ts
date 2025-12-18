@@ -186,6 +186,6 @@ declare module 'vue-router/auto-routes' {
    */
   export type _RouteNamesForFilePath<FilePath extends string> =
     _RouteFileInfoMap extends Record<FilePath, infer Info>
-    ? Info['routes']
-    : keyof RouteNamedMap
+      ? Info['routes']
+      : keyof RouteNamedMap
 }
